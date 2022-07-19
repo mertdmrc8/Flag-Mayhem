@@ -160,18 +160,31 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.26999998, y: 0.39999998}
-      - {x: 0.29999998, y: 0.84999996}
-      - {x: 0.47, y: 0.84999996}
-      - {x: 0.65, y: 1.28}
-      - {x: 0.65, y: 1.5899999}
+    - - {x: 0.1997199, y: 0.3781762}
+      - {x: 0.26999998, y: 0.39999998}
+      - {x: 0.2484639, y: 0.875768}
+      - {x: 0.45282146, y: 0.90153617}
+      - {x: 0.46162117, y: 1.3833046}
+      - {x: 0.6743072, y: 1.4137745}
+      - {x: 0.6597252, y: 1.4835896}
+      - {x: 0.4818778, y: 1.5191829}
+      - {x: 0.46413326, y: 1.6862245}
       - {x: 0.34, y: 1.9}
       - {x: -0.39, y: 1.9}
       - {x: -0.56, y: 1.8399999}
       - {x: -0.65, y: 1.73}
-      - {x: -0.65, y: 1.27}
-      - {x: -0.59, y: 0.39}
+      - {x: -0.6658087, y: 1.3899425}
+      - {x: -0.5576595, y: 1.3953185}
+      - {x: -0.53896093, y: 0.8991381}
+      - {x: -0.37791252, y: 0.8404043}
+      - {x: -0.5431819, y: 0.713719}
+      - {x: -0.5755947, y: 0.3323785}
+      - {x: -0.46945667, y: 0.3309219}
       - {x: -0.47, y: 0}
+      - {x: -0.21920252, y: 0}
+      - {x: -0.22110128, y: 0.26177454}
+      - {x: -0.082351685, y: 0.2592969}
+      - {x: -0.035585403, y: -0.014418602}
       - {x: 0.17, y: 0}
 --- !u!114 &4708351694781848556
 MonoBehaviour:
@@ -245,12 +258,12 @@ MonoBehaviour:
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
   m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: isWalking
   - Type: 3
     SynchronizeType: 1
     Name: Animate
-  - Type: 1
-    SynchronizeType: 0
-    Name: direction
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -266,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28166b130eae2f64db7f1bd5ce39cf24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 106363938236644778}
   speed: 5
   jumpSpeed: 3
   groundLayer:

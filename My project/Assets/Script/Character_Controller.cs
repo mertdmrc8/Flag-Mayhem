@@ -5,11 +5,12 @@ using Photon.Realtime;
 using Photon.Pun;
 public class Character_Controller : MonoBehaviour
 {
-    //public Animator anim;
+    public Animator anim;
     Rigidbody2D rb;
 
-    public float speed = 5f;
-    public float jumpSpeed = 3f;
+
+    public float speed = 7f;
+    public float jumpSpeed = 5f;
     private float direction = 0f;
 
     
@@ -36,6 +37,7 @@ public class Character_Controller : MonoBehaviour
         else if (pw.IsMine)
         {
             rb=GetComponent<Rigidbody2D>();
+            anim.SetBool("isWalking", false);
         }
     }
 
@@ -47,6 +49,7 @@ public class Character_Controller : MonoBehaviour
             isTouchingGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckRadius, groundLayer);
             direction = Input.GetAxis("Horizontal");
             Movement();
+            
         }
     }
     private void Movement()
@@ -55,20 +58,25 @@ public class Character_Controller : MonoBehaviour
         {
             rb.velocity = new Vector2(direction * speed, rb.velocity.y);
             transform.eulerAngles = new Vector3(0, 0, 0); // Flipped
+            anim.SetBool("isWalking", true);
         }
         else if (direction < 0f)
         {
             rb.velocity = new Vector2(direction * speed, rb.velocity.y);
             transform.eulerAngles = new Vector3(0, 180, 0); // Flipped
+            anim.SetBool("isWalking", true);
         }
+       
         else
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
+
         }
 
         if (Input.GetButtonDown("Jump") && isTouchingGround)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            
         }
     }
     private void FixedUpdate()
