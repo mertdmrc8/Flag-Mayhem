@@ -28,10 +28,14 @@ public class Character_Controller : MonoBehaviour
 
         if (pw.IsMine == false)
         {
-            rb=GetComponent<Rigidbody2D>();
+            
             GetComponent<SpriteRenderer>().color = Color.red;
-                          
-           
+
+
+        }
+        else if (pw.IsMine)
+        {
+            rb=GetComponent<Rigidbody2D>();
         }
     }
 
@@ -42,30 +46,30 @@ public class Character_Controller : MonoBehaviour
         {
             isTouchingGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckRadius, groundLayer);
             direction = Input.GetAxis("Horizontal");
-            //Movement();
+            Movement();
         }
     }
-    //private void Movement()
-    //{
-    //    if (direction > 0f)
-    //    {
-    //        rb.velocity = new Vector2(direction * speed, rb.velocity.y);
-    //    }
-    //    else if (direction < 0f)
-    //    {
-    //        rb.velocity = new Vector2(direction * speed, rb.velocity.y);
-            
-    //    }
-    //    else
-    //    {
-    //        rb.velocity = new Vector2(0, rb.velocity.y);
-    //    }
+    private void Movement()
+    {
+        if (direction > 0f)
+        {
+            rb.velocity = new Vector2(direction * speed, rb.velocity.y);
+        }
+        else if (direction < 0f)
+        {
+            rb.velocity = new Vector2(direction * speed, rb.velocity.y);
 
-    //    if (Input.GetButtonDown("Jump") && isTouchingGround)
-    //    {
-    //        rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-    //    }
-    //}
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+
+        if (Input.GetButtonDown("Jump") && isTouchingGround)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+        }
+    }
     private void FixedUpdate()
     {
        
