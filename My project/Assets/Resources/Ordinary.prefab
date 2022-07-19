@@ -259,10 +259,10 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: isWalking
   m_SynchronizeLayers:
-  - SynchronizeType: 1
+  - SynchronizeType: 2
     LayerIndex: 0
 --- !u!114 &6292702046891475464
 MonoBehaviour:
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 106363938236644778}
   speed: 5
-  jumpSpeed: 3
+  jumpSpeed: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
