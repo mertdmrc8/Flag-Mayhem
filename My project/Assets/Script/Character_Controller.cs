@@ -54,11 +54,12 @@ public class Character_Controller : MonoBehaviour
         if (direction > 0f)
         {
             rb.velocity = new Vector2(direction * speed, rb.velocity.y);
+            transform.eulerAngles = new Vector3(0, 0, 0); // Flipped
         }
         else if (direction < 0f)
         {
             rb.velocity = new Vector2(direction * speed, rb.velocity.y);
-
+            transform.eulerAngles = new Vector3(0, 180, 0); // Flipped
         }
         else
         {
