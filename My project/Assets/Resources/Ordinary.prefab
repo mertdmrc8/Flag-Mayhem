@@ -261,9 +261,6 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: isWalking
-  - Type: 3
-    SynchronizeType: 1
-    Name: Animate
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
