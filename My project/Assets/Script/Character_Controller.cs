@@ -47,9 +47,19 @@ public class Character_Controller : MonoBehaviour
         if (pw.IsMine)
         {
             isTouchingGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckRadius, groundLayer);
-            direction = Input.GetAxis("Horizontal");
+            direction = Input.GetAxisRaw("Horizontal");
             Movement();
-            
+
+            //Animation
+            if (direction < 0f || direction > 0f)
+            {
+                anim.SetBool("isWalking", true);
+            }
+            else
+            {
+                anim.SetBool("isWalking", false);
+            }
+
         }
     }
     private void Movement()
@@ -58,20 +68,21 @@ public class Character_Controller : MonoBehaviour
         {
             rb.velocity = new Vector2(direction * speed, rb.velocity.y);
             transform.eulerAngles = new Vector3(0, 0, 0); // Flipped
-            anim.SetBool("isWalking", true);
+            //anim.SetBool("isWalking", true);
         }
         else if (direction < 0f)
         {
             rb.velocity = new Vector2(direction * speed, rb.velocity.y);
             transform.eulerAngles = new Vector3(0, 180, 0); // Flipped
-            anim.SetBool("isWalking", true);
+            //anim.SetBool("isWalking", true);
         }
-       
+        
         else
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
 
         }
+      
 
         if (Input.GetButtonDown("Jump") && isTouchingGround)
         {
