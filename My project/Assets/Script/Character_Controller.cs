@@ -81,6 +81,6 @@ public class Character_Controller : MonoBehaviour
     }
     private void FixedUpdate()
     {
-       
+        Debug.Log(direction);
     }
 }
