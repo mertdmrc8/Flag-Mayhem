@@ -19,6 +19,8 @@ public class Character_Controller : MonoBehaviour
     public LayerMask groundLayer;
     public Transform groundcheck;
 
+    [HideInInspector] public bool isFacingRight=true;
+
     PhotonView pw;
     void Start()
     {
@@ -47,7 +49,7 @@ public class Character_Controller : MonoBehaviour
         if (pw.IsMine)
         {
             isTouchingGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckRadius, groundLayer);
-            direction = Input.GetAxisRaw("Horizontal");
+            
             Movement();
 
             //Animation
@@ -55,7 +57,11 @@ public class Character_Controller : MonoBehaviour
             {
                 anim.SetBool("isWalking", true);
             }
-            else
+            else 
+            {
+                anim.SetBool("isWalking", false);
+            }
+            if (!isTouchingGround)
             {
                 anim.SetBool("isWalking", false);
             }
@@ -64,17 +70,19 @@ public class Character_Controller : MonoBehaviour
     }
     private void Movement()
     {
+        direction = Input.GetAxisRaw("Horizontal");
         if (direction > 0f)
         {
             rb.velocity = new Vector2(direction * speed, rb.velocity.y);
             transform.eulerAngles = new Vector3(0, 0, 0); // Flipped
-            //anim.SetBool("isWalking", true);
+            isFacingRight = true;
+          
         }
         else if (direction < 0f)
         {
             rb.velocity = new Vector2(direction * speed, rb.velocity.y);
             transform.eulerAngles = new Vector3(0, 180, 0); // Flipped
-            //anim.SetBool("isWalking", true);
+            isFacingRight = false;
         }
         
         else
