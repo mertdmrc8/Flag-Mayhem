@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Realtime;
 using Photon.Pun;
 
-public class GameManager : MonoBehaviourPunCallbacks
+public class Network : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
     void Start()
@@ -25,8 +25,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
-        Debug.Log("odaya girlidr");
+        Debug.Log("odaya girildi");
         GameObject Player = PhotonNetwork.Instantiate("Ordinary", Vector3.zero, Quaternion.identity, 0, null);
+        GameObject Bullet=PhotonNetwork.Instantiate("Bullet",Vector3.zero,Quaternion.identity,0, null);
     }
     void Update()
     {

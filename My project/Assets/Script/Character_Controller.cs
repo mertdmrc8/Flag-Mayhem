@@ -31,22 +31,25 @@ public class Character_Controller : MonoBehaviour
 
         if (pw.IsMine == false)
         {
-            
+
             GetComponent<SpriteRenderer>().color = Color.red;
 
 
         }
-        else if (pw.IsMine)
+        else if (GetComponent<PhotonView>().IsMine == true)
         {
             rb=GetComponent<Rigidbody2D>();
             anim.SetBool("isWalking", false);
+            
         }
+         
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (pw.IsMine)
+        if (pw.IsMine==true)
         {
             isTouchingGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckRadius, groundLayer);
             
@@ -74,15 +77,17 @@ public class Character_Controller : MonoBehaviour
         if (direction > 0f)
         {
             rb.velocity = new Vector2(direction * speed, rb.velocity.y);
-            transform.eulerAngles = new Vector3(0, 0, 0); // Flipped
+            pw.transform.eulerAngles = new Vector3(0, 0, 0); // Flipped
             isFacingRight = true;
+            
           
         }
         else if (direction < 0f)
         {
             rb.velocity = new Vector2(direction * speed, rb.velocity.y);
-            transform.eulerAngles = new Vector3(0, 180, 0); // Flipped
+            pw.transform.eulerAngles = new Vector3(0, 180, 0); // Flipped
             isFacingRight = false;
+            
         }
         
         else
