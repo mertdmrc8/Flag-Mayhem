@@ -1213,8 +1213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d03eb66878f6a458dfe44a03910513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  authenticationPrefab: {fileID: 2286936223608854573, guid: c419c48bb25962d4687c22d94c390e49, type: 3}
-  Canvals: {fileID: 0}
+  authenticationPrefab: {fileID: 2426535099492348235, guid: c419c48bb25962d4687c22d94c390e49, type: 3}
+  Canvals: {fileID: 542642660}
 --- !u!4 &1897210923
 Transform:
   m_ObjectHideFlags: 0
