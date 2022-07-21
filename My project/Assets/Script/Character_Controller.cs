@@ -5,7 +5,7 @@ using Photon.Realtime;
 using Photon.Pun;
 using System;
 
-public class Character_Controller : MonoBehaviourPun, IPunObservable
+public class Character_Controller : MonoBehaviourPun
 {
     public Animator anim;
     Rigidbody2D rb;
@@ -14,10 +14,9 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
     public float speed = 7f;
     public float jumpSpeed = 5f;
     private float direction = 0f;
-    private Vector2 smootMove;
+    
 
-    private GameObject  playerCamera;
-    private GameObject sceneCamera;
+    
     private bool isTouchingGround;
     float groundcheckRadius = 0.1f;
     public LayerMask groundLayer;
@@ -29,8 +28,7 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
     void Start()
     {
 
-        sceneCamera = GameObject.Find("Main Camera");
-        playerCamera = GameObject.Find("PlayerCamera");
+       
 
         pw = GetComponent<PhotonView>();
 
@@ -49,11 +47,7 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
 
         }
 
-        //if (pw.IsMine)
-        //{
-        //    sceneCamera.SetActive(false);
-        //    playerCamera.SetActive(true);
-        //}
+       
 
 
     }
@@ -68,6 +62,7 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
             Movement();
 
             //Animation
+           
             if (direction < 0f || direction > 0f)
             {
                 anim.SetBool("isWalking", true);
@@ -82,20 +77,16 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
             }
 
         }
-        else if (!pw.IsMine)
-        {
-            SmoothMovement();
-        }
+       
     }
 
-    private void SmoothMovement()
-    {
-        transform.position = Vector2.Lerp(transform.position, smootMove, Time.deltaTime * 10);
-    }
+    
 
     private void Movement()
     {
         direction = Input.GetAxisRaw("Horizontal");
+
+
         if (direction > 0f)
         {
             rb.velocity = new Vector2(direction * speed, rb.velocity.y);
@@ -130,15 +121,5 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
         Debug.Log(direction);
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(transform.position);
-        }
-        else if (stream.IsReading)
-        {
-            smootMove = (Vector2)stream.ReceiveNext();
-        }
-    }
+  
 }
