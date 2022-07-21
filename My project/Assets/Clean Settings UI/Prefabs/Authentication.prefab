@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 8521107278575160873}
   - component: {fileID: 7682675844307772912}
   m_Layer: 5
-  m_Name: Button (Legacy) (3)
+  m_Name: Exit_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 1804525001740292455}
   - component: {fileID: 3014857928818001432}
   m_Layer: 5
-  m_Name: Input
+  m_Name: Input2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 8470998390645104729}
   - component: {fileID: 5045225325630419192}
   m_Layer: 5
-  m_Name: Button (Legacy) (2)
+  m_Name: Connrction_b
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -756,7 +756,7 @@ GameObject:
   - component: {fileID: 5089175801422351772}
   - component: {fileID: 321399177890426139}
   m_Layer: 5
-  m_Name: Input
+  m_Name: Input1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -838,7 +838,7 @@ GameObject:
   - component: {fileID: 6668218256825978011}
   - component: {fileID: 1489015991440250213}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: E-mail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1163,7 +1163,7 @@ GameObject:
   - component: {fileID: 7115580659709690394}
   - component: {fileID: 7714373091786695280}
   m_Layer: 5
-  m_Name: InputField (1)
+  m_Name: Password
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

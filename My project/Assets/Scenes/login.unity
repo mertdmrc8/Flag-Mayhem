@@ -1122,8 +1122,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1897210922}
-        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+      - m_Target: {fileID: 1897210924}
+        m_TargetAssemblyTypeName: DatabeseScript, Assembly-CSharp
         m_MethodName: signinbutton
         m_Mode: 1
         m_Arguments:
@@ -1194,6 +1194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1897210923}
   - component: {fileID: 1897210922}
+  - component: {fileID: 1897210924}
   m_Layer: 0
   m_Name: ButtonController
   m_TagString: Untagged
@@ -1213,8 +1214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d03eb66878f6a458dfe44a03910513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  authenticationPrefab: {fileID: 2426535099492348235, guid: c419c48bb25962d4687c22d94c390e49, type: 3}
-  Canvals: {fileID: 542642660}
 --- !u!4 &1897210923
 Transform:
   m_ObjectHideFlags: 0
@@ -1230,6 +1229,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1897210924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897210921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5039ca93ff0c2174aac5281a9e547d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  authenticationPrefab: {fileID: 2426535099492348235, guid: c419c48bb25962d4687c22d94c390e49, type: 3}
+  Canvals: {fileID: 542642660}
 --- !u!1 &2040852704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,9 +1414,7 @@ GameObject:
   - component: {fileID: 2127074969}
   - component: {fileID: 2127074972}
   - component: {fileID: 2127074971}
-  - component: {fileID: 2127074974}
   - component: {fileID: 2127074970}
-  - component: {fileID: 2127074973}
   m_Layer: 5
   m_Name: login
   m_TagString: Untagged
@@ -1476,8 +1487,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1897210922}
-        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+      - m_Target: {fileID: 1897210924}
+        m_TargetAssemblyTypeName: DatabeseScript, Assembly-CSharp
         m_MethodName: loginbutton
         m_Mode: 1
         m_Arguments:
@@ -1526,27 +1537,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2127074968}
   m_CullTransparentMesh: 1
---- !u!114 &2127074973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2127074968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43d60a152972eb1499fb696d22f1c3c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2127074974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2127074968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43d60a152972eb1499fb696d22f1c3c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
