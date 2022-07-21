@@ -112,33 +112,26 @@ public class DatabeseScript : MonoBehaviour
 
         Button connection_button = cloneprefab.transform.GetChild(0).GetComponent<Button>();
         Button exit_button = cloneprefab.transform.GetChild(1).GetComponent<Button>();
- 
-           
-
-
-
-
+  
         connection_button.onClick.AddListener(delegate
-        {
-             IEnumerator POST = null;
+        { 
             switch(number) 
             {
             case 1: 
                 print(input1.text);
-                print(input2.text);
-
-                POST=SigninPosrRequest(input1.text,input2.text);
+                print(input2.text); 
+                StartCoroutine(SigninPosrRequest(input1.text,input2.text)); 
 
                 break;
             case 2: 
  
                  print(input1.text);
                  print(input2.text); 
-                POST=LoginPostRequest(input1.text,input2.text);
+                 StartCoroutine(LoginPostRequest(input1.text,input2.text)); 
                 break;
             
             }
-            StartCoroutine(POST);
+            
 
         });
 
