@@ -8,10 +8,12 @@ public class Bullet : MonoBehaviour
     public float bulletSpeed = 10f;
     public Rigidbody2D rb;
     PhotonView pw_b;
+    CharacterController cc;
 
 
     private void Start()
     {
+        cc = gameObject.GetComponent<CharacterController>();
 
         pw_b = GetComponent<PhotonView>();
     }
@@ -22,13 +24,13 @@ public class Bullet : MonoBehaviour
         
 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
         Destroy(gameObject);
-       
-
-
+        if (collision.tag=="Player")
+        {
+            Debug.Log("aha kafasýna geldi");
+        }
     }
 
 }

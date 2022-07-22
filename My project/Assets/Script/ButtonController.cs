@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class ButtonController : MonoBehaviour
-{ 
-  
+{
+
+    public GameObject menuCanvas;
+    public GameObject roomCanvas;
     void Start()
     {
         
@@ -18,8 +20,11 @@ public class ButtonController : MonoBehaviour
 
 
     public void startbutton(){
-        SceneManager.LoadScene(1);
+        menuCanvas.SetActive(false);
+        roomCanvas.SetActive(true) ;
     }
+    void CreateRoom() { }
+    void JoinRoom() { }
 
     public void quitbutton(){
       Application.Quit();

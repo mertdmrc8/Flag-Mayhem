@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1067949193435563698}
   - component: {fileID: 1067949193435563699}
   - component: {fileID: 1067949193435563700}
-  - component: {fileID: 1067949193435563701}
   - component: {fileID: 2992261823746724289}
   m_Layer: 0
   m_Name: Flag
@@ -136,27 +135,10 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 1067949193435563700}
-  - {fileID: 1067949193435563701}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &1067949193435563700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1067949193435563702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
---- !u!114 &1067949193435563701
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,7 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2211ab78a4c295a4e84386ec61702a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 106363938236644781, guid: 670bbd11762713547b8f3336b745a3bf, type: 3}
 --- !u!1 &4267340622033604205
 GameObject:
   m_ObjectHideFlags: 0

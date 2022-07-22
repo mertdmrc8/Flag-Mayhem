@@ -6,8 +6,7 @@ using Photon.Pun;
 public class Flag : MonoBehaviour
 {
     PhotonView pw;
-
- 
+    
 
     private void Start()
     {
@@ -21,12 +20,18 @@ public class Flag : MonoBehaviour
         if (collision.tag == "Player")
         {
             Player = collision.gameObject;
-            
-            GameObject Flag = GameObject.Find("Flag");
-        
+              
             this.transform.parent = Player.transform;
 
         }
+        else if (collision.tag == "House")
+        {
+            Destroy(gameObject);
+            Debug.Log("asfas");
+
+        }
+        
 
     }
+    
 }

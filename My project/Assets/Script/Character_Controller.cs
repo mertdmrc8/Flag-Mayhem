@@ -22,6 +22,8 @@ public class Character_Controller : MonoBehaviourPun
     public LayerMask groundLayer;
     public Transform groundcheck;
 
+    public int health = 3;
+
     [HideInInspector] public bool isFacingRight = true;
 
     PhotonView pw;
@@ -51,6 +53,14 @@ public class Character_Controller : MonoBehaviourPun
 
 
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag=="Bullet")
+        {
+            health -= 1;
+            Debug.Log(health);
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -78,8 +88,11 @@ public class Character_Controller : MonoBehaviourPun
             }
 
         }
-       
 
+        if (health==0)
+        {
+            Dead();
+        }
 
     }
 
@@ -126,6 +139,10 @@ public class Character_Controller : MonoBehaviourPun
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
+    }
+    void Dead()
+    {
+        Debug.Log("öldün");
     }
 
 
