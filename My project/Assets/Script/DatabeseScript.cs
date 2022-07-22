@@ -119,7 +119,7 @@ public class DatabeseScript : MonoBehaviour
             {
             case 1: 
                 print(input1.text);
-                print(input2.text); 
+                print(input2.text);  
                 StartCoroutine(SigninPosrRequest(input1.text,input2.text)); 
 
                 break;

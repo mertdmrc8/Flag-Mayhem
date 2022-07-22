@@ -27,17 +27,12 @@ public class Character_Controller : MonoBehaviourPun
     PhotonView pw;
     void Start()
     {
-
-       
-
         pw = GetComponent<PhotonView>();
-
+        //bütün photon viewlere  odadaki bütün bilgiler gider 
 
         if (pw.IsMine == false)
-        {
-
-            GetComponent<SpriteRenderer>().color = Color.red;
-
+        { 
+            GetComponent<SpriteRenderer>().color = Color.red; 
 
         }
         else if (GetComponent<PhotonView>().IsMine == true)
@@ -46,9 +41,6 @@ public class Character_Controller : MonoBehaviourPun
             anim.SetBool("isWalking", false);
 
         }
-
-       
-
 
     }
 
