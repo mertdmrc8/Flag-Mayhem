@@ -6,8 +6,6 @@ using UnityEngine.Networking;
 
 public class DatabeseScript : MonoBehaviour
 {
-
-
     [SerializeField]
     private GameObject authenticationPrefab;
 
@@ -99,8 +97,6 @@ public class DatabeseScript : MonoBehaviour
 
     private void Authentication(int number)
     {
-
-
         postcode = number;
         GameObject cloneprefab = Instantiate(authenticationPrefab, new Vector3(Canvals.transform.position.x, Canvals.transform.position.y, Canvals.transform.position.z), Quaternion.identity);
 
@@ -141,5 +137,11 @@ public class DatabeseScript : MonoBehaviour
         });
     }
 
+
+    private void JoinButtonMethod(){
+
+
+
+    }
 
 }
