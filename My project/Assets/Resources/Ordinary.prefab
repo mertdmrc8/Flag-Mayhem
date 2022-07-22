@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 7452224451029826331}
   m_Layer: 7
   m_Name: Ordinary
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 329289b15be49ba468bf102443a7a96a, type: 2}
+  m_Material: {fileID: 6200000, guid: ddb27b1c1abf9a947ad428bb656391e7, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -229,7 +229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 106363938236644778}
   speed: 5
-  jumpSpeed: 5
+  jumpSpeed: 7
+  flag: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
