@@ -14,7 +14,7 @@ public class Character_Controller : MonoBehaviourPun
     public float speed = 7f;
     public float jumpSpeed = 5f;
     private float direction = 0f;
-    
+    public GameObject flag;
 
     
     private bool isTouchingGround;
@@ -55,6 +55,7 @@ public class Character_Controller : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+        //Movement
         if (pw.IsMine)
         {
             isTouchingGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckRadius, groundLayer);
@@ -78,6 +79,8 @@ public class Character_Controller : MonoBehaviourPun
 
         }
        
+
+
     }
 
     
@@ -118,8 +121,12 @@ public class Character_Controller : MonoBehaviourPun
     }
     private void FixedUpdate()
     {
-        Debug.Log(direction);
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
     }
 
-  
+
 }
