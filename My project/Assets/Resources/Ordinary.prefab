@@ -235,6 +235,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   groundcheck: {fileID: 4683667195974394568}
+  health: 3
   isFacingRight: 1
 --- !u!114 &9064606459168794967
 MonoBehaviour:

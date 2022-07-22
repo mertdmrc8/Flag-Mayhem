@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Manager : MonoBehaviour
+public class Manager : MonoBehaviourPun
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   
+   
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
         
     }
+   
+    public void SpawnPlayer()
+    {
+        GameObject Player = PhotonNetwork.Instantiate("Ordinary", Vector3.zero, Quaternion.identity, 0, null) as GameObject;
+    }
+     public void SpawnFlag() {
+
+        GameObject Flag = PhotonNetwork.Instantiate("Flag", Vector3.zero, Quaternion.identity, 0, null) as GameObject;
+    }
+     public void Win() {
+
+
+    }
+     public void Lose()
+    {
+
+    }
+    
+
+
+    
 }

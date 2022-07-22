@@ -7,6 +7,9 @@ TagManager:
   - groundLayer
   - PlayerCamera
   - Flag
+  - Blue T
+  - Red T
+  - House
   layers:
   - Default
   - TransparentFX
