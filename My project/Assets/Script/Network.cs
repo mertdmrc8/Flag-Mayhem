@@ -9,14 +9,22 @@ public class Network : MonoBehaviourPunCallbacks
     Transform spawnPoint_player2;
     GameObject spawnPoint_Flag;
     Manager manager;
+
+
+    GameObject enemy;
     PhotonView pw;
     void Start()
     {
         spawnPoint_player1 = GameObject.Find("HouseBlue").transform;
         spawnPoint_player2 = GameObject.Find("HouseRed").transform;
         
+
+
+
         manager = GetComponent<Manager>();
         PhotonNetwork.ConnectUsingSettings();
+
+        
     }
 
     public override void OnConnectedToMaster()
@@ -35,6 +43,10 @@ public class Network : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("odaya girildi");
+        
+       
+
+
         if (PhotonNetwork.IsMasterClient)
         {
             //GameObject Player = PhotonNetwork.Instantiate("Ordinary", Vector3.zero, Quaternion.identity, 0, null) as GameObject;
@@ -43,17 +55,18 @@ public class Network : MonoBehaviourPunCallbacks
         else
         {
             GameObject Player = PhotonNetwork.Instantiate("Ordinary", spawnPoint_player2.transform.position, spawnPoint_player2.transform.rotation, 0, null) as GameObject;
+            GameObject Flag = PhotonNetwork.Instantiate("Flag", Vector3.zero, Quaternion.identity, 0, null) as GameObject;
         }
         
 
-        GameObject Flag = PhotonNetwork.Instantiate("Flag", Vector3.zero, Quaternion.identity, 0, null) as GameObject;
+        
 
 
 
     }
     void Update()
     {
-
+       
     }
 
 }

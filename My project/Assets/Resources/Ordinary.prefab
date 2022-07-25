@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 6292702046891475464}
   - component: {fileID: 9064606459168794967}
   - component: {fileID: 7452224451029826331}
+  - component: {fileID: 3772442435319522106}
   m_Layer: 7
   m_Name: Ordinary
   m_TagString: Player
@@ -159,6 +160,7 @@ MonoBehaviour:
   - {fileID: 7024687994519788391}
   - {fileID: 4685881961805095142}
   - {fileID: 4940973054585008518}
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -230,12 +232,10 @@ MonoBehaviour:
   anim: {fileID: 106363938236644778}
   speed: 5
   jumpSpeed: 7
-  flag: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   groundcheck: {fileID: 4683667195974394568}
-  health: 3
   isFacingRight: 1
 --- !u!114 &9064606459168794967
 MonoBehaviour:
@@ -278,6 +278,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 1.9}
   m_EdgeRadius: 0
+--- !u!114 &3772442435319522106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106363938236644781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d1486fb234a3245b7595db920bf68d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localHealth: 5
+  enemyHealth: 5
 --- !u!1 &633072679340205629
 GameObject:
   m_ObjectHideFlags: 0

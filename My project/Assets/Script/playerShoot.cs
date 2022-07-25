@@ -10,12 +10,14 @@ public class playerShoot : MonoBehaviour
     public GameObject bullet;
     float timeUntilFire;
     Character_Controller cc;
+    
 
     
 
     private void Start()
     {
         cc = gameObject.GetComponent<Character_Controller>();
+        
     }
     private void Update()
     {

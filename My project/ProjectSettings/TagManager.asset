@@ -10,6 +10,8 @@ TagManager:
   - Blue T
   - Red T
   - House
+  - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
