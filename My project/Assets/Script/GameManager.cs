@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class GameManager : MonoBehaviour
 {
+
+
      [SerializeField]
     private GameObject Rooms ;
     
@@ -22,18 +25,23 @@ public class GameManager : MonoBehaviour
         Rooms_.transform.parent=Canvas.transform;
         Rooms=Rooms_;
         JoinButtonMethod();
-
     }
 
+
+
     private void JoinButtonMethod(){
-        Button Joinbutton = Rooms.transform.GetChild(2).GetComponent<Button>();
+        GameObject oda = Rooms.transform.GetChild(1).gameObject; 
+        Button Joinbutton = oda.transform.GetChild(0).GetComponent<Button>();  
         Joinbutton.onClick.AddListener(delegate
         { 
             Destroy(Rooms);
-
        });
 
     }
 
+
+    void Update(){
+
+    }
 
 }
