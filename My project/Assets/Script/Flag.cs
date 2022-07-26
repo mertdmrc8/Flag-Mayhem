@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Flag : MonoBehaviour
+public class Flag : MonoBehaviourPun,IPunObservable
 {
     PhotonView pw;
     
@@ -24,14 +24,36 @@ public class Flag : MonoBehaviour
             this.transform.parent = Player.transform;
 
         }
-        else if (collision.tag == "House")
+        else if (collision.tag == "BlueHouse")
         {
             Destroy(gameObject);
-            Debug.Log("asfas");
+            Debug.Log("maviye 1 yaz");
 
         }
-        
+        else if (collision.tag == "RedHouse")
+        {
+            Destroy(gameObject);
+            Debug.Log("kýrmýzýya 1 yaz");
+        }
+        if (collision.tag=="Bullet")
+        {
+            this.transform.parent = null;
+        }
+
 
     }
-    
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        //if (stream.IsWriting)
+        //{
+        //    stream.SendNext(transform.position);
+           
+        //}
+        //else if (stream.IsReading)
+        //{
+        //    transform.position = (Vector3)stream.ReceiveNext();
+            
+        //}
+    }
 }

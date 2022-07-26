@@ -11,10 +11,15 @@ public class Network : MonoBehaviourPunCallbacks
     Manager manager;
 
 
-    GameObject enemy;
+    
     PhotonView pw;
     void Start()
     {
+        PhotonNetwork.SendRate = 40;
+        PhotonNetwork.SerializationRate = 40;
+        PhotonNetwork.AutomaticallySyncScene = true;
+
+
         spawnPoint_player1 = GameObject.Find("HouseBlue").transform;
         spawnPoint_player2 = GameObject.Find("HouseRed").transform;
         
@@ -55,6 +60,7 @@ public class Network : MonoBehaviourPunCallbacks
         else
         {
             GameObject Player = PhotonNetwork.Instantiate("Ordinary", spawnPoint_player2.transform.position, spawnPoint_player2.transform.rotation, 0, null) as GameObject;
+            
             GameObject Flag = PhotonNetwork.Instantiate("Flag", Vector3.zero, Quaternion.identity, 0, null) as GameObject;
         }
         
@@ -64,9 +70,6 @@ public class Network : MonoBehaviourPunCallbacks
 
 
     }
-    void Update()
-    {
-       
-    }
+  
 
 }

@@ -20,8 +20,7 @@ public class Bullet : MonoBehaviourPun
         _health = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
         
         pw_b = GetComponent<PhotonView>();
-        Debug.Log(_health.localHealth);
-
+        
         player = GameObject.FindGameObjectWithTag("Player");
     }
     private void FixedUpdate()
@@ -33,27 +32,14 @@ public class Bullet : MonoBehaviourPun
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision== player)
-        {
-            if (pw_b.IsMine)
-            {
-                
-                _health.localHealth--;
-                Debug.Log("local " + _health.localHealth);
-            }
-           
-           
-
-        }
-        else
-        {
-            
-            _health.enemyHealth--;
-            Debug.Log("guest" + _health.enemyHealth);
-        }
+        
 
         Destroy(gameObject);
-
+        var enemyHealth=collision.GetComponent<Health>();
+        if (enemyHealth)
+        {
+            enemyHealth.TakeDamage(1);
+        }
     }
 
    

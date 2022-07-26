@@ -13,13 +13,13 @@ GameObject:
   - component: {fileID: 106363938236644778}
   - component: {fileID: 1540636091821645029}
   - component: {fileID: 4708351694781848556}
-  - component: {fileID: 7024687994519788391}
   - component: {fileID: 4685881961805095142}
   - component: {fileID: 4940973054585008518}
   - component: {fileID: 6292702046891475464}
   - component: {fileID: 9064606459168794967}
   - component: {fileID: 7452224451029826331}
   - component: {fileID: 3772442435319522106}
+  - component: {fileID: 5215058370996053182}
   m_Layer: 7
   m_Name: Ordinary
   m_TagString: Player
@@ -157,29 +157,14 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 7024687994519788391}
   - {fileID: 4685881961805095142}
   - {fileID: 4940973054585008518}
-  - {fileID: 0}
+  - {fileID: 6292702046891475464}
+  - {fileID: 3772442435319522106}
+  - {fileID: 5215058370996053182}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &7024687994519788391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 106363938236644781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!114 &4685881961805095142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,8 +275,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d1486fb234a3245b7595db920bf68d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localHealth: 5
-  enemyHealth: 5
+  health: 2
+--- !u!114 &5215058370996053182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106363938236644781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
 --- !u!1 &633072679340205629
 GameObject:
   m_ObjectHideFlags: 0

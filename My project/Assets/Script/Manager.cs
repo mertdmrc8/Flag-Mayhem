@@ -5,13 +5,12 @@ using Photon.Pun;
 
 public class Manager : MonoBehaviourPun
 {
-    PhotonView pw;
+    
    public GameObject _player;
 
     private void Start()
     {
-       
-       
+
     }
    
     public void SpawnPlayer()

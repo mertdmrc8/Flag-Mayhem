@@ -5,7 +5,7 @@ using Photon.Realtime;
 using Photon.Pun;
 using System;
 
-public class Character_Controller : MonoBehaviourPun
+public class Character_Controller : MonoBehaviourPun, IPunObservable
 {
     public Animator anim;
     Rigidbody2D rb;
@@ -14,32 +14,32 @@ public class Character_Controller : MonoBehaviourPun
     public float speed = 7f;
     public float jumpSpeed = 5f;
     private float direction = 0f;
-    
 
-    
+
+
     private bool isTouchingGround;
     float groundcheckRadius = 0.1f;
     public LayerMask groundLayer;
     public Transform groundcheck;
 
-   
+
 
     [HideInInspector] public bool isFacingRight = true;
 
     PhotonView pw;
 
 
-    
+
 
     void Start()
     {
-        
+
         pw = GetComponent<PhotonView>();
         //bütün photon viewlere  odadaki bütün bilgiler gider 
 
         if (pw.IsMine == false)
-        { 
-            GetComponent<SpriteRenderer>().color = Color.red; 
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
 
         }
         else if (GetComponent<PhotonView>().IsMine == true)
@@ -49,19 +49,10 @@ public class Character_Controller : MonoBehaviourPun
 
         }
 
-        
+
 
     }
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.collider.tag == "Bullet")
-    //    {
-    //        health -= 1;
-    //        Debug.Log(health);
-    //    }
-    //}
 
-    // Update is called once per frame
     void Update()
     {
         //Movement
@@ -72,7 +63,7 @@ public class Character_Controller : MonoBehaviourPun
             Movement();
 
             //Animation
-           
+
             if (direction < 0f || direction > 0f)
             {
                 anim.SetBool("isWalking", true);
@@ -91,12 +82,12 @@ public class Character_Controller : MonoBehaviourPun
 
 
 
-       
-        
+
+
 
     }
 
-    
+
 
     private void Movement()
     {
@@ -131,16 +122,42 @@ public class Character_Controller : MonoBehaviourPun
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
     private void FixedUpdate()
     {
-        
+
     }
-   
+
     void Dead()
     {
         Debug.Log("�ld�n");
     }
 
-   
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        //if (stream.IsWriting)
+        //{
+        //    stream.SendNext(transform.position);
+        //    stream.SendNext(transform.rotation);
+        //}
+        //else if (stream.IsReading)
+        //{
+        //    transform.position = (Vector3)stream.ReceiveNext();
+        //    transform.rotation = (Quaternion)stream.ReceiveNext();
+        //}
+    }
 }

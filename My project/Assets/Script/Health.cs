@@ -3,41 +3,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviourPunCallbacks, IPunObservable 
+public class Health : MonoBehaviourPunCallbacks, IPunObservable
 {
-    
-    public int localHealth = 5;
-    public int enemyHealth=5;
-
-    PhotonView pw;
-
-    GameObject player;
-
-
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
-    private void Update()
-    {
-        
-    }
-
-
-    void dead()
-    {
-
-    }
-
+    public int health = 2;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(localHealth);
+            stream.SendNext(health);
         }
         else
         {
-            localHealth = (int)stream.ReceiveNext();
+            health = (int)stream.ReceiveNext();
+        }
+
+    }
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+    }
+    IEnumerator Respawn()
+    {
+        health = 2;
+        GetComponent<Character_Controller>().enabled = false;
+        transform.position = new Vector3(0, 0, 0);
+        yield return new WaitForSeconds(2);
+        GetComponent<Character_Controller>().enabled = true;
+       
+
+
+    }
+    private void Update()
+    {
+        if (health<=0)
+        {
+            StartCoroutine(Respawn());
         }
     }
 }

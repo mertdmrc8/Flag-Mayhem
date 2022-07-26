@@ -12,6 +12,8 @@ TagManager:
   - House
   - Bullet
   - Enemy
+  - RedHouse
+  - BlueHouse
   layers:
   - Default
   - TransparentFX
