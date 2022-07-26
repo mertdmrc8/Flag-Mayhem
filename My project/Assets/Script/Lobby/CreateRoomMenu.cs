@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CreateRoomMenu : MonoBehaviourPunCallbacks
@@ -50,7 +51,8 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom()
     { 
         print("CreateRoon Succesfuly ");
-        _roomsCanvases.CurrentRoomsCanvas.Show();
+        SceneManager.LoadScene(2);
+        //_roomsCanvases.CurrentRoomsCanvas.Show();
 
     }
 
