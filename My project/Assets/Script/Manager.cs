@@ -7,19 +7,46 @@ public class Manager : MonoBehaviourPun
 {
     
    public GameObject _player;
+    Transform spawnPoint_player1;
+    Transform spawnPoint_player2;
+    Transform spawnPoint_Flag;
 
-    private void Start()
+    
+    void Start()
     {
+        spawnPoint_player1 = GameObject.Find("HouseBlue").transform;
+        spawnPoint_player2 = GameObject.Find("HouseRed").transform;
+    }
+
+
+
+
+    public void GameStart()
+    {
+        SpawnPlayer();
+        SpawnFlag();
+    }
+    public void Restart()
+    {
+        SpawnPlayer();
+        SpawnFlag();
 
     }
-   
-    public void SpawnPlayer()
+     public void SpawnPlayer()
     {
-        GameObject Player = PhotonNetwork.Instantiate("Ordinary", Vector3.zero, Quaternion.identity, 0, null) as GameObject;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameObject Player = PhotonNetwork.Instantiate("Ordinary", spawnPoint_player1.transform.position, spawnPoint_player1.transform.rotation, 0, null) as GameObject;
+        }
+        else
+        {
+            GameObject Player = PhotonNetwork.Instantiate("Ordinary", spawnPoint_player2.transform.position, spawnPoint_player2.transform.rotation, 0, null) as GameObject;
+        }
+       
     }
      public void SpawnFlag() {
 
-        GameObject Flag = PhotonNetwork.Instantiate("Flag", Vector3.zero, Quaternion.identity, 0, null) as GameObject;
+        GameObject Flag = PhotonNetwork.Instantiate("Flag",new Vector3(0,3,0), Quaternion.identity, 0, null) as GameObject;
     }
      public void Win() {
 
@@ -30,7 +57,7 @@ public class Manager : MonoBehaviourPun
 
     }
     
-
+    
 
     
 }

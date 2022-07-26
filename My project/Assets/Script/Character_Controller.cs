@@ -123,29 +123,13 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
     private void FixedUpdate()
     {
 
     }
 
-    void Dead()
-    {
-        Debug.Log("öldün");
-    }
+  
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Flag : MonoBehaviourPun,IPunObservable
+public class Flag : MonoBehaviourPun, IPunObservable
 {
     PhotonView pw;
+    GameObject mng;
     
+    int score = 0;
+    int opScore = 0;
 
+    GameObject _player;
     private void Start()
     {
-        
+        mng = GameObject.Find("Manager");
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
 
 
@@ -20,25 +25,33 @@ public class Flag : MonoBehaviourPun,IPunObservable
         if (collision.tag == "Player")
         {
             Player = collision.gameObject;
-              
+
             this.transform.parent = Player.transform;
 
+            transform.position = new Vector3(0, 1, 0);
         }
         else if (collision.tag == "BlueHouse")
         {
+            transform.parent = null;
             Destroy(gameObject);
-            Debug.Log("maviye 1 yaz");
+            Destroy(_player);
+
+            score++;
+            Debug.Log(score + ":" + opScore);
+            mng.GetComponent<Manager>().Restart();
+
 
         }
         else if (collision.tag == "RedHouse")
         {
+            transform.parent = null;
             Destroy(gameObject);
-            Debug.Log("kýrmýzýya 1 yaz");
+            Destroy(_player);
+            opScore++;
+            Debug.Log(score + ":" + opScore);
+            mng.GetComponent<Manager>().Restart();
         }
-        if (collision.tag=="Bullet")
-        {
-            this.transform.parent = null;
-        }
+
 
 
     }
@@ -48,12 +61,12 @@ public class Flag : MonoBehaviourPun,IPunObservable
         //if (stream.IsWriting)
         //{
         //    stream.SendNext(transform.position);
-           
+
         //}
         //else if (stream.IsReading)
         //{
         //    transform.position = (Vector3)stream.ReceiveNext();
-            
+
         //}
     }
 }
