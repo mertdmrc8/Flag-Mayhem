@@ -45,6 +45,7 @@ public class Network : MonoBehaviourPunCallbacks
 
         PhotonNetwork.JoinOrCreateRoom("oda", new RoomOptions { MaxPlayers = 4, IsOpen = true, IsVisible = true }, TypedLobby.Default);
     }
+    
     public override void OnJoinedRoom()
     {
         Debug.Log("odaya girildi");
@@ -61,7 +62,7 @@ public class Network : MonoBehaviourPunCallbacks
         {
             GameObject Player = PhotonNetwork.Instantiate("Ordinary", spawnPoint_player2.transform.position, spawnPoint_player2.transform.rotation, 0, null) as GameObject;
             
-            GameObject Flag = PhotonNetwork.Instantiate("Flag", Vector3.zero, Quaternion.identity, 0, null) as GameObject;
+            GameObject Flag = PhotonNetwork.Instantiate("Flag", new Vector3(0,2,0), Quaternion.identity, 0, null) as GameObject;
         }
         
 
