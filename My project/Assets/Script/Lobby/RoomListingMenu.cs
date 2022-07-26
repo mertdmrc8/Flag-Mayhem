@@ -38,7 +38,7 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
             {
                 print("else ");
                 Roomlisting listing = Instantiate(_roomlisting, _content);
-                listing.transform.eulerAngles = new Vector3(listing.transform.eulerAngles.x, listing.transform.eulerAngles.y, listing.transform.eulerAngles.z - 90f);
+               
                 if (listing != null)
                 {
                     listing.SetRoomInfo(info);
