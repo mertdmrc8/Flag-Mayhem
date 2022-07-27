@@ -4,18 +4,32 @@ using UnityEngine;
 
 public class CurrentRoom : MonoBehaviour
 {
-      private RoomsCanvases _roomsCanvases; 
- 
-    public void FirstInitialize(RoomsCanvases canvases){
 
-    _roomsCanvases=canvases;
+    [SerializeField]
+    private PlayerListingsMenu _playerListingsMenu;
+    [SerializeField]
+    private LeaveRoomMenu _leaveRoomMenu;
+
+    private RoomsCanvases _roomsCanvases;
+
+    public void FirstInitialize(RoomsCanvases canvases)
+    {
+
+        //Sahne Canvas        
+        _roomsCanvases = canvases;
+        _playerListingsMenu.FirstInitialize(canvases);
+        _leaveRoomMenu.FirstInitialize(canvases);
+
+        
     }
 
-    public void Show(){
+    public void Show()
+    {
         gameObject.SetActive(true);
 
     }
-    private void Hide(){
-        gameObject.SetActive(false); 
+    public void Hide()
+    {
+        gameObject.SetActive(false);
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class RoomsCanvases : MonoBehaviour
 {
     
+    //Canvas
+
     [SerializeField]
     private CreateRooms _createRoomsCanvas;
     public CreateRooms  CreateRoomsCanvas {get { return _createRoomsCanvas ;}}  

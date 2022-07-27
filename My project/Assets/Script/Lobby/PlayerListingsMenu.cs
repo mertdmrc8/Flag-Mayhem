@@ -14,19 +14,47 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     private PlayerListing _playerlisting;
 
     private List<PlayerListing> _listings = new List<PlayerListing>();
+    private RoomsCanvases _roomsCanvases;
+
+    private void Awake(){
+
+        GetCurrentRoomPlayers();
+    }
+
+     public void FirstInitialize(RoomsCanvases canvases){
+
+            _roomsCanvases=canvases; 
+    } 
 
 
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        
-          print("else ");
-                PlayerListing listing = Instantiate(_playerlisting, _content);
+    public override void OnLeftRoom(){
+        _content.DestroyChildren();
+    }  
+    private void GetCurrentRoomPlayers(){
+        foreach (KeyValuePair <int , Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
+        {
+                AddPlayerListing(playerInfo.Value);
+        }
+         
+    }
+
+    private void AddPlayerListing(Player player){
+
+         PlayerListing listing = Instantiate(_playerlisting, _content);
                
                 if (listing != null)
                 {
-                    listing.SetPlayerInfo(newPlayer);
+                    listing.SetPlayerInfo(player);
                     _listings.Add(listing);
-                }
+                } 
+
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+                AddPlayerListing(newPlayer); 
+        
+               
     }
     public override void OnPlayerLeftRoom(Player otherPlayer)
     { 

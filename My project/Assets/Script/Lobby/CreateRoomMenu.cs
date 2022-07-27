@@ -10,10 +10,6 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     private Text _roomName;
-
-
-
- 
     private RoomsCanvases _roomsCanvases; 
  
     public void FirstInitialize(RoomsCanvases canvases){
@@ -30,7 +26,10 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        PhotonNetwork.JoinLobby();
+        
+        if(!PhotonNetwork.InLobby){
+            PhotonNetwork.JoinLobby();
+        }
         print("joined lobby  ");
 
     }
@@ -52,7 +51,8 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     { 
         print("CreateRoon Succesfuly ");
         SceneManager.LoadScene(2);
-        //_roomsCanvases.CurrentRoomsCanvas.Show();
+        _roomsCanvases.CurrentRoomsCanvas.Show();//Büyük canvalsın leave roomunu göster
+
 
     }
 
