@@ -16,6 +16,7 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     private List<PlayerListing> _listings = new List<PlayerListing>();
     private RoomsCanvases _roomsCanvases;
 
+
     private void Awake(){
 
         GetCurrentRoomPlayers();
@@ -49,6 +50,7 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
                 } 
 
     }
+
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {

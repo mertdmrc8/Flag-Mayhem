@@ -7,6 +7,8 @@ using Photon.Pun;
 public class Roomlisting : MonoBehaviour
 {
 
+    //room
+    
     [SerializeField]
     private Text _text;
 

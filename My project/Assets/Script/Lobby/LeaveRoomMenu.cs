@@ -6,6 +6,8 @@ using UnityEngine;
 public class LeaveRoomMenu : MonoBehaviour
 { 
 
+//Room leave 
+
      private RoomsCanvases _roomsCanvases;
 
     public void FirstInitialize(RoomsCanvases canvases){

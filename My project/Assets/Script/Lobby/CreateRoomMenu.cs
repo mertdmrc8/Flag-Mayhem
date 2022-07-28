@@ -18,22 +18,6 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     } 
 
 
-    void Start()
-    {
-        PhotonNetwork.ConnectUsingSettings();
-        
-    }
-
-    public override void OnConnectedToMaster()
-    {
-        
-        if(!PhotonNetwork.InLobby){
-            PhotonNetwork.JoinLobby();
-        }
-        print("joined lobby  ");
-
-    }
-    
     public void onClick_CreateRoom(){
 
         if(!PhotonNetwork.IsConnected)
@@ -51,7 +35,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     { 
         print("CreateRoon Succesfuly ");
         SceneManager.LoadScene(2);
-        _roomsCanvases.CurrentRoomsCanvas.Show();//Büyük canvalsın leave roomunu göster
+        //_roomsCanvases.CurrentRoomsCanvas.Show();//Büyük canvalsın leave roomunu göster
 
 
     }

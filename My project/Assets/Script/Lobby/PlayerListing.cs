@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerListing : MonoBehaviour
 {
-
+    //Player
     [SerializeField]
     private Text _text;
      

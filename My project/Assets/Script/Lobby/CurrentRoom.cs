@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CurrentRoom : MonoBehaviour
 {
+    //mevcut oda
 
     [SerializeField]
     private PlayerListingsMenu _playerListingsMenu;
