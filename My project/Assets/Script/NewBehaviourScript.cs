@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Base : MonoBehaviour
+public class NewBehaviourScript : MonoBehaviour
 {
     PhotonView pw;
     private void Start()

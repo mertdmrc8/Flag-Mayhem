@@ -1446,12 +1446,12 @@ GameObject:
   - component: {fileID: 1286724239}
   - component: {fileID: 1286724240}
   m_Layer: 0
-  m_Name: GameManagerObject
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1286724239
 Transform:
   m_ObjectHideFlags: 0
