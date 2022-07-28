@@ -6,6 +6,7 @@ using UnityEngine;
 public class Health : MonoBehaviourPunCallbacks, IPunObservable
 {
     public int health = 2;
+    
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -22,11 +23,19 @@ public class Health : MonoBehaviourPunCallbacks, IPunObservable
     {
         health -= damage;
     }
-    IEnumerator Respawn()
+    public IEnumerator Respawn()
     {
         health = 2;
         GetComponent<Character_Controller>().enabled = false;
-        transform.position = new Vector3(0, 0, 0);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            transform.position = new Vector3(9, 0.5f, 0);
+        }
+        else
+        {
+            transform.position = new Vector3(-9, 0.5f, 0);
+        }
+        //transform.position = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(2);
         GetComponent<Character_Controller>().enabled = true;
        

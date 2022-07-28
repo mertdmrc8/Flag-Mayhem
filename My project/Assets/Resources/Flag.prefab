@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1067949193435563699}
   - component: {fileID: 2992261823746724289}
   - component: {fileID: -4263953921571399367}
-  - component: {fileID: 2349900445322068015}
   m_Layer: 0
   m_Name: Flag
   m_TagString: Flag
@@ -168,7 +167,7 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 4
+    InterpolateOption: 3
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 5
     ExtrapolateOption: 1
@@ -185,21 +184,6 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &2349900445322068015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1067949193435563702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 177bddf229f8d8445a70c0652f03b7df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DisconnectAfterKeepAlive: 0
-  KeepAliveInBackground: 60000
-  ApplyDontDestroyOnLoad: 1
 --- !u!1 &4267340622033604205
 GameObject:
   m_ObjectHideFlags: 0

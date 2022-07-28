@@ -5,13 +5,12 @@ using Photon.Pun;
 
 public class Flag : MonoBehaviourPun, IPunObservable
 {
-    PhotonView pw;
-    GameObject mng;
     
-    int score = 0;
-    int opScore = 0;
-
+    GameObject mng;
     GameObject _player;
+
+
+
     private void Start()
     {
         mng = GameObject.Find("Manager");
@@ -22,34 +21,42 @@ public class Flag : MonoBehaviourPun, IPunObservable
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject Player = null;
+       
         if (collision.tag == "Player")
         {
             Player = collision.gameObject;
 
             this.transform.parent = Player.transform;
 
-            transform.position = new Vector3(0, 1, 0);
+            transform.position = Player.transform.position;
         }
         else if (collision.tag == "BlueHouse")
         {
             transform.parent = null;
-            Destroy(gameObject);
-            Destroy(_player);
-
-            score++;
-            Debug.Log(score + ":" + opScore);
-            mng.GetComponent<Manager>().Restart();
+            
+            mng.GetComponent<Manager>().Score++;
+            Debug.Log(mng.GetComponent<Manager>().Score + ":" + mng.GetComponent<Manager>().opScore);
+            transform.position = new Vector3(0, 3f, 0);
+            _player.GetComponent<Health>().Respawn();
+            
+            //Destroy(gameObject);
+            //mng.GetComponent<PhotonView>().RPC("Restart", RpcTarget.All, null);
+            //mng.GetComponent <Manager>().Restart();
 
 
         }
         else if (collision.tag == "RedHouse")
         {
             transform.parent = null;
-            Destroy(gameObject);
-            Destroy(_player);
-            opScore++;
-            Debug.Log(score + ":" + opScore);
-            mng.GetComponent<Manager>().Restart();
+            mng.GetComponent<Manager>().opScore++;
+            Debug.Log(mng.GetComponent<Manager>().Score + ":" + mng.GetComponent<Manager>().opScore);
+            transform.position = new Vector3(0 ,3f ,0 );
+            StartCoroutine(_player.GetComponent<Health>().Respawn());
+            
+
+            //Destroy(gameObject);
+            // mng.GetComponent<PhotonView>().RPC("Restart",RpcTarget.All,null);
+            //mng.GetComponent<Manager>().Restart();
         }
 
 

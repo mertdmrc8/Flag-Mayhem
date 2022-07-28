@@ -9,6 +9,7 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
 {
     public Animator anim;
     Rigidbody2D rb;
+    ParticleSystem part;
 
 
     public float speed = 7f;
@@ -49,7 +50,7 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
 
         }
 
-
+       
 
     }
 
@@ -59,7 +60,7 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
         if (pw.IsMine)
         {
             isTouchingGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckRadius, groundLayer);
-
+           //gameObject.GetComponent<PhotonView>().RPC("Movement",RpcTarget.All,null);
             Movement();
 
             //Animation
@@ -88,7 +89,7 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
     }
 
 
-
+    [PunRPC]
     private void Movement()
     {
         direction = Input.GetAxisRaw("Horizontal");

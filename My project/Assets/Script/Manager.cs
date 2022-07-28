@@ -10,29 +10,55 @@ public class Manager : MonoBehaviourPun
     Transform spawnPoint_player1;
     Transform spawnPoint_player2;
     Transform spawnPoint_Flag;
+    public int Score=0, opScore=0;
+
 
     
     void Start()
     {
         spawnPoint_player1 = GameObject.Find("HouseBlue").transform;
         spawnPoint_player2 = GameObject.Find("HouseRed").transform;
+
+        
     }
 
+    private void Update()
+    {
+       
+    }
 
-
-
+    [PunRPC]
     public void GameStart()
     {
-        SpawnPlayer();
+        var clones = GameObject.FindGameObjectsWithTag("Player");
+
+
+       
+
+        GetComponent<PhotonView>().RPC("SpawnPlayer", RpcTarget.All, null);
+        //GetComponent<PhotonView>().RPC("SpawnFlag", RpcTarget.All, null);
+        //SpawnPlayer();
         SpawnFlag();
     }
+    [PunRPC]
     public void Restart()
     {
-        SpawnPlayer();
-        SpawnFlag();
+        var clones = GameObject.FindGameObjectsWithTag("Player");
+        foreach (var clone in clones)
+        {
+            Destroy(clone.gameObject);
+        }
+        Destroy(_player.gameObject);
+
+        GetComponent<PhotonView>().RPC("SpawnPlayer", RpcTarget.All, null);
+        GetComponent<PhotonView>().RPC("SpawnFlag", RpcTarget.All, null);
+
+        //SpawnPlayer();
+        //SpawnFlag();
 
     }
-     public void SpawnPlayer()
+    [PunRPC]
+    public void SpawnPlayer()
     {
         if (PhotonNetwork.IsMasterClient)
         {
@@ -44,15 +70,18 @@ public class Manager : MonoBehaviourPun
         }
        
     }
-     public void SpawnFlag() {
+    [PunRPC]
+    public void SpawnFlag() {
 
         GameObject Flag = PhotonNetwork.Instantiate("Flag",new Vector3(0,3,0), Quaternion.identity, 0, null) as GameObject;
     }
-     public void Win() {
+    [PunRPC]
+    public void Win() {
 
 
     }
-     public void Lose()
+    [PunRPC]
+    public void Lose()
     {
 
     }

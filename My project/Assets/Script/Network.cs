@@ -42,34 +42,43 @@ public class Network : MonoBehaviourPunCallbacks
 
 
 
-        PhotonNetwork.JoinOrCreateRoom("oda", new RoomOptions { MaxPlayers = 4, IsOpen = true, IsVisible = true }, TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom("oda", new RoomOptions { MaxPlayers = 2, IsOpen = true, IsVisible = true }, TypedLobby.Default);
+
+      
     }
 
     public override void OnJoinedRoom()
     {
         Debug.Log("odaya girildi");
 
-        
+        if (!PhotonNetwork.IsMasterClient)
+        {
             manager.GetComponent<Manager>().GameStart();
-
-       
-        //if (PhotonNetwork.IsMasterClient)
-        //{
-        //    //GameObject Player = PhotonNetwork.Instantiate("Ordinary", Vector3.zero, Quaternion.identity, 0, null) as GameObject;
-        //    GameObject Player = PhotonNetwork.Instantiate("Ordinary",spawnPoint_player1.transform.position,spawnPoint_player1.transform.rotation,0,null) as GameObject;
-        //}
-        //else
-        //{
-        //    GameObject Player = PhotonNetwork.Instantiate("Ordinary", spawnPoint_player2.transform.position, spawnPoint_player2.transform.rotation, 0, null) as GameObject;
-
-        //    GameObject Flag = PhotonNetwork.Instantiate("Flag", new Vector3(0,2,0), Quaternion.identity, 0, null) as GameObject;
-        //}
-
-
-
-
+            //manager.GetComponent<PhotonView>().RPC("GameStart", RpcTarget.All, null);
+        }
+        //manager.GetComponent<PhotonView>().RPC("GameStart", RpcTarget.All, null);
 
     }
 
 
+
+    //if (PhotonNetwork.IsMasterClient)
+    //{
+    //    //GameObject Player = PhotonNetwork.Instantiate("Ordinary", Vector3.zero, Quaternion.identity, 0, null) as GameObject;
+    //    GameObject Player = PhotonNetwork.Instantiate("Ordinary",spawnPoint_player1.transform.position,spawnPoint_player1.transform.rotation,0,null) as GameObject;
+    //}
+    //else
+    //{
+    //    GameObject Player = PhotonNetwork.Instantiate("Ordinary", spawnPoint_player2.transform.position, spawnPoint_player2.transform.rotation, 0, null) as GameObject;
+
+    //    GameObject Flag = PhotonNetwork.Instantiate("Flag", new Vector3(0,2,0), Quaternion.identity, 0, null) as GameObject;
+    //}
+
+
+
+
+
 }
+
+
+
