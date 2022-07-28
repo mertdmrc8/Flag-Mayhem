@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - groundLayer
-  - PlayerCamera
   - Flag
   - Blue T
   - Red T
@@ -14,6 +13,7 @@ TagManager:
   - Enemy
   - RedHouse
   - BlueHouse
+  - Endgame
   layers:
   - Default
   - TransparentFX

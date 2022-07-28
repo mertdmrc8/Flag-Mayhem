@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class Manager : MonoBehaviourPun
 {
     
    public GameObject _player;
+    public GameObject endGame;
     Transform spawnPoint_player1;
     Transform spawnPoint_player2;
-    Transform spawnPoint_Flag;
+    public Text gameScore;
     public int Score=0, opScore=0;
 
 
@@ -19,7 +21,7 @@ public class Manager : MonoBehaviourPun
         spawnPoint_player1 = GameObject.Find("HouseBlue").transform;
         spawnPoint_player2 = GameObject.Find("HouseRed").transform;
 
-        
+       // endGame = GameObject.FindGameObjectWithTag("EndGame");
     }
 
     private void Update()
@@ -43,15 +45,21 @@ public class Manager : MonoBehaviourPun
     [PunRPC]
     public void Restart()
     {
-        var clones = GameObject.FindGameObjectsWithTag("Player");
-        foreach (var clone in clones)
-        {
-            Destroy(clone.gameObject);
-        }
-        Destroy(_player.gameObject);
 
-        GetComponent<PhotonView>().RPC("SpawnPlayer", RpcTarget.All, null);
-        GetComponent<PhotonView>().RPC("SpawnFlag", RpcTarget.All, null);
+       
+        if (PhotonNetwork.IsMasterClient)
+        {
+            _player.transform.position = new Vector3(9, 0.5f, 0);
+        }
+        else
+        {
+           _player.transform.position = new Vector3(-9, 0.5f, 0);
+        }
+        endGame.SetActive(false);
+        Score = 0;
+        opScore = 0;
+        //GetComponent<PhotonView>().RPC("SpawnPlayer", RpcTarget.All, null);
+        //GetComponent<PhotonView>().RPC("SpawnFlag", RpcTarget.All, null);
 
         //SpawnPlayer();
         //SpawnFlag();
@@ -77,13 +85,14 @@ public class Manager : MonoBehaviourPun
     }
     [PunRPC]
     public void Win() {
-
+        endGame.SetActive(true);
 
     }
     [PunRPC]
-    public void Lose()
+    public void EndGame()
     {
-
+        gameScore.text = "BlueTeam: " + Score.ToString() + "Red Team: " + opScore.ToString();
+        endGame.SetActive(true);
     }
     
     
