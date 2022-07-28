@@ -32,6 +32,14 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
         _content.DestroyChildren();
     }  
     private void GetCurrentRoomPlayers(){
+
+        if(!PhotonNetwork.IsConnected){
+            return;
+        }
+        if(PhotonNetwork.CurrentRoom==null|| PhotonNetwork.PlayerList==null){
+            return;
+        }
+
         foreach (KeyValuePair <int , Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
                 AddPlayerListing(playerInfo.Value);
@@ -49,6 +57,13 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
                     _listings.Add(listing);
                 } 
 
+    }
+
+    public  void OnClickStart(){
+        if(PhotonNetwork.IsMasterClient)
+            PhotonNetwork.CurrentRoom.IsOpen=false;
+            PhotonNetwork.CurrentRoom.IsVisible=false;
+            PhotonNetwork.LoadLevel(2);
     }
 
 

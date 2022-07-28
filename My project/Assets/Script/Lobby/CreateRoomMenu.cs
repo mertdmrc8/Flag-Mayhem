@@ -34,7 +34,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom()
     { 
         print("CreateRoon Succesfuly ");
-        SceneManager.LoadScene(2);
+        //SceneManager.LoadScene(2);
         //_roomsCanvases.CurrentRoomsCanvas.Show();//Büyük canvalsın leave roomunu göster
 
 

@@ -6,8 +6,6 @@ using UnityEngine.Networking;
 
 public class GameManager : MonoBehaviour
 {
-
-
      [SerializeField]
     private GameObject Rooms ;
     

@@ -20,7 +20,7 @@ public class GameSettings : ScriptableObject
 
          get{
             int value = Random.Range(0,9999);
-            return _nicName = _nicName+value.ToString();
+            return _nicName ="Punfish"+value.ToString();
          }
     }
 

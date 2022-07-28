@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: New Game Settings
   m_EditorClassIdentifier: 
   _gameVersion: 0.0.0
+  _nicName: Punfish
