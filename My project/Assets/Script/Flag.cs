@@ -82,12 +82,6 @@ public class Flag : MonoBehaviourPun, IPunObservable
     }
     private void Update()
     {
-        if (mng.GetComponent<Manager>().Score >= 3 || mng.GetComponent<Manager>().opScore >= 3)
-        {
-            //gameScore.text = "BlueTeam: " + mng.GetComponent<Manager>().Score.ToString() + "Red Team" + mng.GetComponent<Manager>().opScore.ToString();
-            //endGame.GetComponentInChildren<TextMesh>().text = "BlueTeam: " + mng.GetComponent<Manager>().Score + "Red Team" + mng.GetComponent<Manager>().opScore
-
-            mng.GetComponent<Manager>().EndGame();
-        }
+       
     }
 }

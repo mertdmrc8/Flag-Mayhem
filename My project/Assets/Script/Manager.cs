@@ -26,7 +26,13 @@ public class Manager : MonoBehaviourPun
 
     private void Update()
     {
-       
+        if (Score >= 3 || opScore >= 3)
+        {
+            //gameScore.text = "BlueTeam: " + mng.GetComponent<Manager>().Score.ToString() + "Red Team" + mng.GetComponent<Manager>().opScore.ToString();
+            //endGame.GetComponentInChildren<TextMesh>().text = "BlueTeam: " + mng.GetComponent<Manager>().Score + "Red Team" + mng.GetComponent<Manager>().opScore
+
+           EndGame();
+        }
     }
 
     [PunRPC]
