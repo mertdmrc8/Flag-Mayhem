@@ -33,6 +33,7 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     }  
     private void GetCurrentRoomPlayers(){
 
+
         if(!PhotonNetwork.IsConnected){
             return;
         }
@@ -54,17 +55,21 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
                 if (listing != null)
                 {
                     listing.SetPlayerInfo(player);
+                    print(listing.name);
                     _listings.Add(listing);
                 } 
 
     }
 
     public  void OnClickStart(){
-        if(PhotonNetwork.IsMasterClient)
+        if(PhotonNetwork.IsMasterClient){
             PhotonNetwork.CurrentRoom.IsOpen=false;
             PhotonNetwork.CurrentRoom.IsVisible=false;
+            }
             PhotonNetwork.LoadLevel(2);
+        
     }
+    
 
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -73,12 +78,22 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
         
                
     }
+    //baska biri odadan çıkınca 
     public override void OnPlayerLeftRoom(Player otherPlayer)
-    { 
-                print("if "); 
+    {           
+                print("0nplayerleftroom index"); 
+                print(_listings.Count);
+                foreach (var item in _listings)
+                {   
+                    print(item);
+                }
+
                 int index=_listings.FindIndex(x=>x.Player ==otherPlayer );
+            
+                //çıkann indexi listede olmuor sebeb
                 if(index!=-1)
-                {
+                {   //sıkıntı burda
+                    print("0nplayerleftroom");
                     Destroy(_listings[index].gameObject);
                     _listings.RemoveAt(index);
                 } 
