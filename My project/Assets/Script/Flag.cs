@@ -10,11 +10,13 @@ public class Flag : MonoBehaviourPun, IPunObservable
     GameObject _player;
     GameObject endGame;
     TextMesh gameScore;
+    GameObject flagHandle;
 
     private void Start()
     {
         mng = GameObject.Find("Manager");
         _player = GameObject.FindGameObjectWithTag("Player");
+        flagHandle = GameObject.Find("flaghandle");
         //endGame = GameObject.FindGameObjectWithTag("Endgame");
         //gameScore = endGame.GetComponentInChildren<text>();
 
@@ -31,8 +33,9 @@ public class Flag : MonoBehaviourPun, IPunObservable
             Player = collision.gameObject;
 
             this.transform.parent = Player.transform;
+           
 
-            transform.position = new Vector3(0,2,0);
+            transform.position = flagHandle.GetComponent<Transform>().position;
         }
         else if (collision.tag == "BlueHouse")
         {
@@ -55,7 +58,8 @@ public class Flag : MonoBehaviourPun, IPunObservable
             mng.GetComponent<Manager>().opScore++;
             Debug.Log(mng.GetComponent<Manager>().Score + ":" + mng.GetComponent<Manager>().opScore);
             transform.position = new Vector3(0, 3f, 0);
-            StartCoroutine(_player.GetComponent<Health>().Respawn());
+            _player.GetComponent<Health>().Respawn();
+            //StartCoroutine(_player.GetComponent<Health>().Respawn());
 
 
             //Destroy(gameObject);

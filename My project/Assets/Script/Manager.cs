@@ -64,6 +64,7 @@ public class Manager : MonoBehaviourPun
         endGame.SetActive(false);
         Score = 0;
         opScore = 0;
+        //_player.GetComponent<Character_Controller>().enabled = true;
         //GetComponent<PhotonView>().RPC("SpawnPlayer", RpcTarget.All, null);
         //GetComponent<PhotonView>().RPC("SpawnFlag", RpcTarget.All, null);
 
@@ -97,6 +98,7 @@ public class Manager : MonoBehaviourPun
     [PunRPC]
     public void EndGame()
     {
+       // _player.GetComponent<Character_Controller>().enabled = false;
         gameScore.text = "BlueTeam: " + Score.ToString() + "Red Team: " + opScore.ToString();
         endGame.SetActive(true);
     }
