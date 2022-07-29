@@ -5,10 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 public class Roomlisting : MonoBehaviour
-{
-
-    //room
-    
+{ 
     [SerializeField]
     private Text _text;
 
@@ -21,7 +18,6 @@ public class Roomlisting : MonoBehaviour
  
     }
     public void OnClick_Button(){
-
         PhotonNetwork.JoinRoom(RoomInfo.Name);
     }
 }

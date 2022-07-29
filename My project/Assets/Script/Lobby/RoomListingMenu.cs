@@ -39,10 +39,9 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
         print("onroomlist update");
         foreach (RoomInfo info in roomList)
         {
-             print("for ");
+              
             if (info.RemovedFromList)
-            {
-                print("if "); 
+            { 
                 int index=_listings.FindIndex(x=>x.RoomInfo.Name ==info.Name );
                 if(index!=-1)
                 {
@@ -53,8 +52,7 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
 
             }
             else
-            {
-                print("else ");
+            { 
                 int index = _listings.FindIndex(x=>x.RoomInfo.Name==info.Name);
                 if(index==-1){
                     Roomlisting listing = Instantiate(_roomlisting, _content);

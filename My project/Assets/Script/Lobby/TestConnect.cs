@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.UI;
 
 public class TestConnect : MonoBehaviourPunCallbacks
 {
@@ -10,7 +11,7 @@ public class TestConnect : MonoBehaviourPunCallbacks
     private void Start()
     {
         print("connecting to server");
-        PhotonNetwork.AutomaticallySyncScene=false;
+        PhotonNetwork.AutomaticallySyncScene=true;
         PhotonNetwork.NickName=MasterManager.GameSettings.NicName;
         PhotonNetwork.GameVersion=MasterManager.GameSettings.GameVersion;
         PhotonNetwork.ConnectUsingSettings();
@@ -21,7 +22,8 @@ public class TestConnect : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         print("Connected to server");
-        print(PhotonNetwork.LocalPlayer.NickName);
+       // MasterManager.DebugConsole.AddText("deneme",this);
+       // print(PhotonNetwork.LocalPlayer.NickName);
 
 
         if(!PhotonNetwork.InLobby){

@@ -16,7 +16,7 @@ public class LeaveRoomMenu : MonoBehaviour
     } 
 
 public void Onclick_LeaveRoom(){
-
+    print("leave room by button");
     PhotonNetwork.LeaveRoom(true);
     _roomsCanvases.CurrentRoomsCanvas.Hide();
 }
