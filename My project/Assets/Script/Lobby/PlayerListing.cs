@@ -8,13 +8,16 @@ public class PlayerListing : MonoBehaviour
 {
     //Player
     [SerializeField]
-    private Text _text;
-     
+    private Text  nick_name;
+    
     public Player Player {get; private set ;}   
  
    public void SetPlayerInfo(Player player){
     Player=player;
-    _text.text = player.NickName;
+    nick_name.text = player.NickName;
+    
+    
+
      
 
     }

@@ -26,6 +26,8 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom(){
         _roomsCanvases.CurrentRoomsCanvas.Show();
         //Büyük canvalsın leave roomunu göster
+        PlayerProperties.in_room_=true;
+        //PlayerProperties.roomid_=PhotonNetwork.CurrentRoom
         _content.DestroyChildren();
         print("joined room ");
         _listings.Clear();

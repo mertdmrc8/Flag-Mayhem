@@ -20,26 +20,11 @@ public class GameSettings : ScriptableObject
 
          get{
             int value = Random.Range(0,9999);
-            return _nicName ="Punfish"+value.ToString();
+            _nicName ="Punfish"+value.ToString();
+            PlayerProperties.nickname_=_nicName;
+            return _nicName ;
+
          }
     }
 
-
-
-
-
-
-    
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

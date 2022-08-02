@@ -1,19 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine; 
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class ButtonController : MonoBehaviour
-{      void Start()
-    {
-        
-    }
- 
-    void Update()
-    {
-        
-    }
+{     
 
+  
 
     public void startbutton(){
         SceneManager.LoadScene(1);
@@ -22,11 +16,11 @@ public class ButtonController : MonoBehaviour
     public void quitbutton(){
       Application.Quit();
     }
+    public void Onclick_LeaveGame(){
 
-    public void JoinButton(){
+        PhotonNetwork.LeaveRoom(true);
+       
 
-      
     }
-  
 
 }

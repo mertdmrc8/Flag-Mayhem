@@ -40,6 +40,7 @@ public class DatabeseScript : MonoBehaviour
         form.AddField("password", password);
  
         UnityWebRequest www = UnityWebRequest.Post(login_posturl,form);
+        var response = UnityWebRequest.Result.Success;
 
         yield return www.SendWebRequest();
 
@@ -71,18 +72,9 @@ public class DatabeseScript : MonoBehaviour
 
 
         if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
-        {
-
-
-            print(www.error);
-
-        }
-        else
-        {
-
-            print("gonderildi");
-        }
-
+        { 
+            print(www.error); 
+        } 
 
     }
 

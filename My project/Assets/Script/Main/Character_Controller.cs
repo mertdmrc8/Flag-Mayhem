@@ -22,6 +22,11 @@ public class Character_Controller : MonoBehaviourPun
     public LayerMask groundLayer;
     public Transform groundcheck;
 
+
+     
+
+
+
     [HideInInspector] public bool isFacingRight = true;
 
     PhotonView pw;
@@ -110,15 +115,7 @@ public class Character_Controller : MonoBehaviourPun
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
 
         }
-    }
-    private void FixedUpdate()
-    {
-        
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-    }
+    } 
 
 
 }
