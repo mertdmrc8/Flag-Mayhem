@@ -81,6 +81,8 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     //baska biri odadan çıkınca 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {           
+
+        
                 print("0nplayerleftroom index"); 
                 print(_listings.Count);
                 foreach (var item in _listings)

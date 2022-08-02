@@ -95,7 +95,8 @@ namespace Photon.Realtime
                     this.SetPlayerNameProperty();
                 }
             }
-        }
+        } 
+
 
         /// <summary>UserId of the player, available when the room got created with RoomOptions.PublishUserId = true.</summary>
         /// <remarks>Useful for <see cref="LoadBalancingClient.OpFindFriends"/> and blocking slots in a room for expected players (e.g. in <see cref="LoadBalancingClient.OpCreateRoom"/>).</remarks>
