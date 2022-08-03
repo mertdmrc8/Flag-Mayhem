@@ -5248,7 +5248,7 @@ GameObject:
   - component: {fileID: 3403300580991621947}
   m_Layer: 7
   m_Name: flaghandle
-  m_TagString: Untagged
+  m_TagString: FlagHandle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

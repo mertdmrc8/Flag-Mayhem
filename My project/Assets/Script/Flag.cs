@@ -8,6 +8,7 @@ public class Flag : MonoBehaviourPun, IPunObservable
 
     GameObject mng;
     GameObject _player;
+    GameObject Enemy;
     GameObject endGame;
     TextMesh gameScore;
     GameObject flagHandle;
@@ -17,6 +18,7 @@ public class Flag : MonoBehaviourPun, IPunObservable
         mng = GameObject.Find("Manager");
         _player = GameObject.FindGameObjectWithTag("Player");
         flagHandle = GameObject.Find("flaghandle");
+
         //endGame = GameObject.FindGameObjectWithTag("Endgame");
         //gameScore = endGame.GetComponentInChildren<text>();
 
@@ -33,9 +35,9 @@ public class Flag : MonoBehaviourPun, IPunObservable
             Player = collision.gameObject;
 
             this.transform.parent = Player.transform;
-           
+            this.transform.position = Player.GetComponent<Transform>().position;
 
-            transform.position = flagHandle.GetComponent<Transform>().position;
+            //transform.position = flagHandle.GetComponent<Transform>().position;
         }
         else if (collision.tag == "BlueHouse")
         {
@@ -73,19 +75,19 @@ public class Flag : MonoBehaviourPun, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        //if (stream.IsWriting)
-        //{
-        //    stream.SendNext(transform.position);
+        if (stream.IsWriting)
+        {
+            stream.SendNext(gameObject.transform.position);
 
-        //}
-        //else if (stream.IsReading)
-        //{
-        //    transform.position = (Vector3)stream.ReceiveNext();
+        }
+        else if (stream.IsReading)
+        {
+            gameObject.transform.position = (Vector3)stream.ReceiveNext();
 
-        //}
+        }
     }
     private void Update()
     {
-       
+        Enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 }

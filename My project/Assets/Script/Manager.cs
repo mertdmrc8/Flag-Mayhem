@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 
-public class Manager : MonoBehaviourPun
+public class Manager : MonoBehaviourPun,IPunObservable
 {
     
    public GameObject _player;
@@ -12,6 +12,7 @@ public class Manager : MonoBehaviourPun
     Transform spawnPoint_player1;
     Transform spawnPoint_player2;
     public Text gameScore;
+    public Text gameScoreInGame;
     public int Score=0, opScore=0;
 
 
@@ -31,8 +32,10 @@ public class Manager : MonoBehaviourPun
             //gameScore.text = "BlueTeam: " + mng.GetComponent<Manager>().Score.ToString() + "Red Team" + mng.GetComponent<Manager>().opScore.ToString();
             //endGame.GetComponentInChildren<TextMesh>().text = "BlueTeam: " + mng.GetComponent<Manager>().Score + "Red Team" + mng.GetComponent<Manager>().opScore
 
+            GetComponent<PhotonView>().RPC("EndGame",RpcTarget.All,null);
            EndGame();
         }
+        gameScoreInGame.text = "Blue Team : " + Score.ToString()+ "\n" + "Red Team : " + opScore.ToString();
     }
 
     [PunRPC]
@@ -82,6 +85,7 @@ public class Manager : MonoBehaviourPun
         else
         {
             GameObject Player = PhotonNetwork.Instantiate("Ordinary", spawnPoint_player2.transform.position, spawnPoint_player2.transform.rotation, 0, null) as GameObject;
+           
         }
        
     }
@@ -100,10 +104,14 @@ public class Manager : MonoBehaviourPun
     {
        // _player.GetComponent<Character_Controller>().enabled = false;
         gameScore.text = "BlueTeam: " + Score.ToString() + "Red Team: " + opScore.ToString();
-        endGame.SetActive(true);
-    }
-    
-    
+       
 
-    
+        endGame.SetActive(true);
+
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+     
+    }
 }
