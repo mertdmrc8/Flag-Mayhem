@@ -11,15 +11,14 @@ public class PlayerDatabase : MonoBehaviourPunCallbacks
 
     readonly string saved_posturl = "http://localhost:8080/UserArchive/GameScores";
 
-     void Start()
+    void Start()
     {
         print("onjoined room");
         GameObject Player = PhotonNetwork.Instantiate("Ordinary", Vector3.zero, Quaternion.identity, 0, null) as GameObject;
         GameObject Bullet = PhotonNetwork.Instantiate("Bullet", Vector3.zero, Quaternion.identity, 0, null);
-  
-  
-    }
 
+
+    }
 
     private void SavedPlayerGameInfo()
     {
@@ -30,17 +29,20 @@ public class PlayerDatabase : MonoBehaviourPunCallbacks
         form.AddField("death", PlayerProperties.death_);
 
 
-        UnityWebRequest www = UnityWebRequest.Post(saved_posturl , form); 
+        UnityWebRequest www = UnityWebRequest.Post(saved_posturl, form);
+        www.SetRequestHeader("token", PlayerProperties.token_);
+
         www.SendWebRequest();
-         
-  
+
+
     }
-    public override void OnLeftRoom (){
-           print("onleftroom");
-           SavedPlayerGameInfo();
-           SceneManager.LoadScene(1);  
+    public override void OnLeftRoom()
+    {
+        print("onleftroom");
+        SavedPlayerGameInfo();
+        SceneManager.LoadScene(1);
     }
 
 
- 
+
 }
