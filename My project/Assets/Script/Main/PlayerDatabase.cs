@@ -8,15 +8,21 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDatabase : MonoBehaviourPunCallbacks
 {
-
+ 
     readonly string saved_posturl = "http://localhost:8080/UserArchive/GameScores";
+
+    [SerializeField]
+    private TeamManager TeamRed;
+     [SerializeField]
+    private TeamManager TeamBlue;
+
 
     void Start()
     {
         print("onjoined room");
         GameObject Player = PhotonNetwork.Instantiate("Ordinary", Vector3.zero, Quaternion.identity, 0, null) as GameObject;
         GameObject Bullet = PhotonNetwork.Instantiate("Bullet", Vector3.zero, Quaternion.identity, 0, null);
-
+        
 
     }
 

@@ -6,7 +6,7 @@ using Photon.Pun;
 public class Flag : MonoBehaviour
 {
     PhotonView pw;
-
+    public  Character_Controller player ;
  
 
     private void Start()
@@ -25,7 +25,7 @@ public class Flag : MonoBehaviour
             GameObject Flag = GameObject.Find("Flag");
         
             this.transform.parent = Player.transform;
-
+            player=Player.GetComponent<Character_Controller>();
         }
 
     }

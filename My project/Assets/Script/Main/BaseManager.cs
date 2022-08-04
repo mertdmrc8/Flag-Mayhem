@@ -23,8 +23,9 @@ public class BaseManager : MonoBehaviour
 
 
         Flag flag = collision.gameObject.transform.GetComponent<Flag>();
-        if(flag!=null){
+        TeamManager Team = gameObject.transform.parent.GetComponent<TeamManager>();
 
+        if(flag!=null&& flag.player==Team.Player){
             Destroy(flag.gameObject);            
         }
     }
