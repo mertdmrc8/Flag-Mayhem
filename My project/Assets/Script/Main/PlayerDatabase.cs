@@ -6,20 +6,18 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-public class PlayerDatabase : MonoBehaviourPunCallbacks
+public class PlayerDatabase : MonoBehaviourPunCallbacks,IPunObservable
 {
  
     readonly string saved_posturl = "http://localhost:8080/UserArchive/GameScores";
+ 
+    public TeamManager TeamRed; 
+    public TeamManager TeamBlue;
 
-    [SerializeField]
-    private TeamManager TeamRed;
-     [SerializeField]
-    private TeamManager TeamBlue;
-
-
+    public int sayi =0;
     void Start()
     {
-        print("onjoined room");
+        print("onjoined main");
         GameObject Player = PhotonNetwork.Instantiate("Ordinary", Vector3.zero, Quaternion.identity, 0, null) as GameObject;
         GameObject Bullet = PhotonNetwork.Instantiate("Bullet", Vector3.zero, Quaternion.identity, 0, null);
         
@@ -49,6 +47,12 @@ public class PlayerDatabase : MonoBehaviourPunCallbacks
         SceneManager.LoadScene(1);
     }
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if( stream.IsWriting){
+            stream.SendNext(sayi);
+            
+        } 
 
-
+    }
 }

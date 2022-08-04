@@ -7,6 +7,8 @@ using System;
 
 public class Character_Controller : MonoBehaviourPun
 {
+
+    public int Playerid ;
     public Animator anim;
     Rigidbody2D rb;
     public float speed = 7f;
