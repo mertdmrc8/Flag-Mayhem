@@ -10,12 +10,14 @@ public class playerShoot : MonoBehaviour
     public GameObject bullet;
     float timeUntilFire;
     Character_Controller cc;
-
     
 
     private void Start()
     {
         cc = gameObject.GetComponent<Character_Controller>();
+
+        ParticleSystem part = GetComponentInChildren <ParticleSystem>();
+
     }
     private void Update()
     {
@@ -23,7 +25,9 @@ public class playerShoot : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) && timeUntilFire < Time.time)
             {
+                //gameObject.GetComponent<PhotonView>().RPC("Shoot", RpcTarget.All, null);
                 Shoot();
+              
                 timeUntilFire = Time.time + fireRate;
             }
         }
@@ -31,11 +35,18 @@ public class playerShoot : MonoBehaviour
 
 
     }
-
-    void Shoot()
+    [PunRPC]
+    void  Shoot()
     {
+        var part = GetComponentInChildren<ParticleSystem>();
+        part.Play();
+
         float angle = cc.isFacingRight ? 0f : 180f;
         PhotonNetwork.Instantiate("Bullet", firingPoint.position, Quaternion.Euler(new Vector3(0f, 0f, angle)));
+        
+        
+        
+        
 
     }
 
