@@ -6,20 +6,27 @@ using Photon.Pun;
 public class Base : MonoBehaviour
 {
     PhotonView pw;
+
     private void Start()
     {
+        ParticleSystem part = GetComponentInChildren<ParticleSystem>();
+        
 
     }
+    private void Update()
+    {
+        
+    }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
 
 
-    //    GameObject Flag = null;
-    //    if (collision.tag == ("Flag"))
-    //    {
-    //        Flag = collision.gameObject;
-    //        print(Flag.name);
-    //    }
-    //}
+
+        if (collision.tag == ("Flag"))
+        {
+            var part = GetComponentInChildren<ParticleSystem>();
+            part.Play();
+        }
+    }
 }

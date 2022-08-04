@@ -17,12 +17,9 @@ public class Flag : MonoBehaviourPun, IPunObservable
     {
         mng = GameObject.Find("Manager");
         _player = GameObject.FindGameObjectWithTag("Player");
-        flagHandle = GameObject.Find("flaghandle");
+      
 
-        //endGame = GameObject.FindGameObjectWithTag("Endgame");
-        //gameScore = endGame.GetComponentInChildren<text>();
-
-
+        
     }
 
 
@@ -35,59 +32,64 @@ public class Flag : MonoBehaviourPun, IPunObservable
             Player = collision.gameObject;
 
             this.transform.parent = Player.transform;
-            this.transform.position = Player.GetComponent<Transform>().position;
-
-            //transform.position = flagHandle.GetComponent<Transform>().position;
+            this.transform.position = new Vector3(0, 3, 0);                       
         }
+
         else if (collision.tag == "BlueHouse")
         {
-            transform.parent = null;
-
             mng.GetComponent<Manager>().Score++;
+            GetComponent<PhotonView>().RPC("TakeFlag", RpcTarget.All, null);
+
             Debug.Log(mng.GetComponent<Manager>().Score + ":" + mng.GetComponent<Manager>().opScore);
-            transform.position = new Vector3(0, 3f, 0);
-            _player.GetComponent<Health>().Respawn();
-
-            //Destroy(gameObject);
-            //mng.GetComponent<PhotonView>().RPC("Restart", RpcTarget.All, null);
-            //mng.GetComponent <Manager>().Restart();
-
+           
+            
 
         }
+
         else if (collision.tag == "RedHouse")
         {
-            transform.parent = null;
             mng.GetComponent<Manager>().opScore++;
+
+            GetComponent<PhotonView>().RPC("TakeFlag", RpcTarget.All, null);
+
+            //transform.parent = null;
+            //transform.position = new Vector3(0, 3f, 0);
+            //_player.GetComponent<Health>().Respawn();
+
+
             Debug.Log(mng.GetComponent<Manager>().Score + ":" + mng.GetComponent<Manager>().opScore);
-            transform.position = new Vector3(0, 3f, 0);
-            _player.GetComponent<Health>().Respawn();
-            //StartCoroutine(_player.GetComponent<Health>().Respawn());
-
-
-            //Destroy(gameObject);
-            // mng.GetComponent<PhotonView>().RPC("Restart",RpcTarget.All,null);
-            //mng.GetComponent<Manager>().Restart();
+           
+           
+            
         }
-
-
-
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(gameObject.transform.position);
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+
 
         }
         else if (stream.IsReading)
         {
-            gameObject.transform.position = (Vector3)stream.ReceiveNext();
+            transform.position = (Vector3)stream.ReceiveNext();
+            transform.rotation = (Quaternion)stream.ReceiveNext();
+           
 
         }
+
     }
-    private void Update()
+    [PunRPC]
+    private void TakeFlag()
     {
-        Enemy = GameObject.FindGameObjectWithTag("Enemy");
+        transform.parent = null;
+        transform.position = new Vector3(0, 3f, 0);
+        _player.GetComponent<Health>().Respawn();
     }
+
+    
+
 }

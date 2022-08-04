@@ -33,7 +33,7 @@ public class Manager : MonoBehaviourPun,IPunObservable
             //endGame.GetComponentInChildren<TextMesh>().text = "BlueTeam: " + mng.GetComponent<Manager>().Score + "Red Team" + mng.GetComponent<Manager>().opScore
 
             GetComponent<PhotonView>().RPC("EndGame",RpcTarget.All,null);
-           EndGame();
+           //EndGame();
         }
         gameScoreInGame.text = "Blue Team : " + Score.ToString()+ "\n" + "Red Team : " + opScore.ToString();
     }
