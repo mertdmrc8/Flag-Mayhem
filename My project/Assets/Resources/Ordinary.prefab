@@ -212,7 +212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28166b130eae2f64db7f1bd5ce39cf24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Playerid: 0
   anim: {fileID: 106363938236644778}
   speed: 5
   jumpSpeed: 7
@@ -222,6 +221,8 @@ MonoBehaviour:
     m_Bits: 64
   groundcheck: {fileID: 4683667195974394568}
   Team: {fileID: 0}
+  nickname: 
+  PlayerController: {fileID: 0}
   isFacingRight: 1
 --- !u!114 &9064606459168794967
 MonoBehaviour:

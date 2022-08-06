@@ -7,6 +7,7 @@ public class TeamManager : MonoBehaviour
     private BaseManager Base_;
  
     public Character_Controller Player;
+    public Material Color;
     void Start()
     {
         Base_= transform.GetChild(0).GetComponent<BaseManager>();

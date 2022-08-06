@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using Photon.Pun;
 
-public class GameManager : MonoBehaviourPunCallbacks
+public class GameManager : MonoBehaviour ,IPunInstantiateMagicCallback
 {
     //  [SerializeField]
     // private GameObject Rooms ;
@@ -14,16 +14,28 @@ public class GameManager : MonoBehaviourPunCallbacks
     // private GameObject Canvas; 
 
 
-
+void IPunInstantiateMagicCallback.OnPhotonInstantiate(PhotonMessageInfo info)
+    { 
+        
+        print("OnPhotonInstantiate  de");
+        object[] instantiationData = info.photonView.InstantiationData;
+        print(instantiationData);
+    }
 
     void Awake()
     {
         //   Canvas = GameObject.Find("Canvas");
+        // GameObject playerc = GameObject.Find("PlayerController(Clone)");
 
-        GameObject GameOB = PhotonNetwork.Instantiate("PlayerController", Vector3.zero, Quaternion.identity); 
-        PlayerDatabase PlayerContr=GameOB.GetComponent<PlayerDatabase>();
-        PlayerContr.TeamBlue = GameObject.Find("TeamBlue").GetComponent<TeamManager>();
-        PlayerContr.TeamRed = GameObject.Find("TeamRed").GetComponent<TeamManager>();
+        // if (playerc==null)
+        // {   
+        //     print("gameman");
+        //     GameObject GameOB = PhotonNetwork.Instantiate("PlayerController", Vector3.zero, Quaternion.identity);
+        //     PlayerDatabase PlayerContr = GameOB.GetComponent<PlayerDatabase>();
+        //     PlayerContr.TeamBlue = GameObject.Find("TeamBlue").GetComponent<TeamManager>();
+        //     PlayerContr.TeamRed = GameObject.Find("TeamRed").GetComponent<TeamManager>();
+
+        // }
     }
 
     void Start()

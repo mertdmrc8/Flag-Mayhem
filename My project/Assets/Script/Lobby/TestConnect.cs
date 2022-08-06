@@ -29,7 +29,7 @@ public class TestConnect : MonoBehaviourPunCallbacks
         print("Connected to server");
         //PlayerProperties.nickname_
         // MasterManager.DebugConsole.AddText("deneme",this);
-        print(PhotonNetwork.LocalPlayer.NickName);
+        print("my nick"+PhotonNetwork.LocalPlayer.NickName);
         if (!PhotonNetwork.InLobby)
         {
             PhotonNetwork.JoinLobby();

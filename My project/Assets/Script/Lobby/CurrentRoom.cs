@@ -16,7 +16,9 @@ public class CurrentRoom : MonoBehaviour
     public void FirstInitialize(RoomsCanvases canvases)
     {
 
-        //Sahne Canvas        
+        //Sahne Canvas   
+             print("current room first initialize");
+     
         _roomsCanvases = canvases;
         _playerListingsMenu.FirstInitialize(canvases);
         _leaveRoomMenu.FirstInitialize(canvases);
@@ -25,12 +27,12 @@ public class CurrentRoom : MonoBehaviour
     }
 
     public void Show()
-    {
-        gameObject.SetActive(true);
+    {  
+        this.gameObject.SetActive(true);
 
     }
     public void Hide()
     {
-        gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 }

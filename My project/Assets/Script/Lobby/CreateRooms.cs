@@ -16,6 +16,7 @@ public class CreateRooms : MonoBehaviour
     public void FirstInitialize(RoomsCanvases canvases){
 
      //Sahne Canvas 
+     print("create room first initialize");
     _roomsCanvases=canvases;
     _createRoomMenu.FirstInitialize(canvases);
      _roomListingsMenu.FirstInitialize(canvases);
