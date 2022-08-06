@@ -3,30 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseManager : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-
-        
-    }
-
-
+{ 
+    [SerializeField]
+    private Flagbase flagbase;
     private void OnTriggerEnter2D(Collider2D collision){
 
 
         Flag flag = collision.gameObject.transform.GetComponent<Flag>();
         TeamManager Team = gameObject.transform.parent.GetComponent<TeamManager>();
 
-        if(flag!=null&& flag.player==Team.Player){
-            Destroy(flag.gameObject);            
+        if(flag!=null&& flag.player==Team.Player){ 
+            Destroy(flag.gameObject);    
+            flagbase.CreateFlag();
+
         }
     }
 }

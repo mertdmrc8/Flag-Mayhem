@@ -7,13 +7,8 @@ public class Flag : MonoBehaviour
 {
     PhotonView pw;
     public  Character_Controller player ;
- 
 
-    private void Start()
-    {
-        
-    }
-
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,5 +23,5 @@ public class Flag : MonoBehaviour
             player=Player.GetComponent<Character_Controller>();
         }
 
-    }
+    } 
 }
