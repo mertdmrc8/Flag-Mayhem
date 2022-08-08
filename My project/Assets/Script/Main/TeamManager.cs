@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class TeamManager : MonoBehaviour
 {
-    private BaseManager Base_;
- 
-    public Character_Controller Player;
+    public BaseManager Base_; 
     public Material Color;
+    public List<Character_Controller> team_players;
+
+    public string TeamName;
     void Start()
     {
         Base_= transform.GetChild(0).GetComponent<BaseManager>();
+        TeamName=gameObject.name;
 
     }
 

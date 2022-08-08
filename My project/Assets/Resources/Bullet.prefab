@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 2344732480813817810}
   - component: {fileID: 2344732480813817813}
   - component: {fileID: 2344732480813817812}
-  - component: {fileID: 2344732480813817815}
   - component: {fileID: 7551796738920270832}
   - component: {fileID: 6296524397730854833}
   - component: {fileID: -1830448543848051228}
+  - component: {fileID: 2314311918250494141}
   m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
@@ -153,22 +153,6 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
---- !u!70 &2344732480813817815
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2344732480813817814}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0072875796, y: -0.000000089300684}
-  m_Size: {x: 0.75222176, y: 0.8525989}
-  m_Direction: 1
 --- !u!114 &7551796738920270832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 10
   rb: {fileID: 2344732480813817813}
+  ordinary: {fileID: 0}
 --- !u!114 &6296524397730854833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,3 +200,19 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 1
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!70 &2314311918250494141
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2344732480813817814}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.0000001, y: 0.99999994}
+  m_Direction: 1

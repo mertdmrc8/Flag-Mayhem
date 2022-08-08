@@ -7,19 +7,20 @@ using System;
 
 public class Character_Controller : MonoBehaviourPun
 {
- 
+
     public Animator anim;
     Rigidbody2D rb;
     public float speed = 7f;
     public float jumpSpeed = 5f;
     private float direction = 0f;
-    public GameObject flag; 
+    public GameObject flag;
     private bool isTouchingGround;
     float groundcheckRadius = 0.1f;
     public LayerMask groundLayer;
-    public Transform groundcheck; 
+    public Transform groundcheck;
     public TeamManager Team;
- 
+
+    public int health = 100;
     public string nickname;
 
     public PlayersController PlayerController;
@@ -28,30 +29,53 @@ public class Character_Controller : MonoBehaviourPun
 
     PhotonView pw;
 
+    private bool triggerbool = true;
 
 
-
-    void Awake(){
+    void Awake()
+    {
         pw = GetComponent<PhotonView>();
-        PlayerController=GameObject.Find("PlayerController").GetComponent<PlayersController>();
+        PlayerController = GameObject.Find("PlayerController").GetComponent<PlayersController>();
         PlayerController.photonViews.Add(pw);
     }
     void Start()
     {
         //bütün photon viewlere  odadaki bütün bilgiler gider  
-       
-       if (pw.IsMine  )
+
+        if (pw.IsMine)
         {
             rb = GetComponent<Rigidbody2D>();
             anim.SetBool("isWalking", false);
-            
+
         }
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    { 
+        Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+        
+        if (bullet != null && bullet.ordinary != this.gameObject )
+        {
+            print(bullet.ordinary.name+" "+this.gameObject.name);
+            health -= 50;
+             print(nickname+" health--:" + health);
+          //  Destroy(bullet.gameObject);
+        } 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (health <= 0)
+        {
+            print(this.gameObject.name+" , "+Team.Base_.gameObject.name);
+            this.gameObject.transform.position = Team.Base_.gameObject.transform.position;
+            print(nickname+" :base gitmeli");
+            health = 100;
+        }
+
         //Movement
         if (pw.IsMine)
         {
@@ -78,7 +102,9 @@ public class Character_Controller : MonoBehaviourPun
 
 
 
+
     }
+
 
 
 

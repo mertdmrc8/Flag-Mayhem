@@ -3179,7 +3179,7 @@ GameObject:
   - component: {fileID: 416560705}
   - component: {fileID: 416560704}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: red team text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10015,6 +10015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flagbase: {fileID: 700100289}
+  text: {fileID: 416560704}
 --- !u!1 &1198174731
 GameObject:
   m_ObjectHideFlags: 0
@@ -10331,6 +10332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flagbase: {fileID: 700100289}
+  text: {fileID: 1975155252515408767}
 --- !u!1 &1237921076
 GameObject:
   m_ObjectHideFlags: 0
@@ -12713,6 +12715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   Color: {fileID: 2100000, guid: 345fd9a31d2adc646ac31653a8a656c4, type: 2}
+  TeamName: 
 --- !u!1 &1506931987
 GameObject:
   m_ObjectHideFlags: 0
@@ -13922,6 +13925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   Color: {fileID: 2100000, guid: 203459cae7b931645abe4e96291adecb, type: 2}
+  TeamName: 
 --- !u!1 &1684241282
 GameObject:
   m_ObjectHideFlags: 0
@@ -18274,7 +18278,7 @@ GameObject:
   - component: {fileID: 1975155252515408766}
   - component: {fileID: 1975155252515408767}
   m_Layer: 5
-  m_Name: Text
+  m_Name: blue team text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
