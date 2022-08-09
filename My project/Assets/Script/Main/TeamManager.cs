@@ -5,25 +5,37 @@ using UnityEngine.UI;
 
 public class TeamManager : MonoBehaviour
 {
-    public BaseManager Base_; 
+    public BaseManager Base_;
     public Material Color;
     public List<Character_Controller> team_players;
 
 
     [SerializeField]
-    public Image healthbar ;
+    public Image healthbar;
 
     public string TeamName;
     void Start()
     {
-        Base_= transform.GetChild(0).GetComponent<BaseManager>();
-        TeamName=gameObject.name;
+        Base_ = transform.GetChild(0).GetComponent<BaseManager>();
+        TeamName = gameObject.name;
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayerSetBase(Character_Controller ordinary_)
     {
-        
+        ordinary_.gameObject.SetActive(false);
+        print(name +" aktif değil health 100");
+        ordinary_.health=100;
+        ordinary_.transform.position = Base_.gameObject.transform.position;
+        StartCoroutine(wait(ordinary_));
+
+    }
+
+    IEnumerator wait(Character_Controller ordinary_){
+
+        yield return new WaitForSeconds(1f);
+        print(name +" aktif");
+        ordinary_.gameObject.SetActive(true);
+
     }
 }

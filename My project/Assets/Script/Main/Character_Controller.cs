@@ -20,7 +20,7 @@ public class Character_Controller : MonoBehaviourPun
     float groundcheckRadius = 0.1f;
     public LayerMask groundLayer;
     public Transform groundcheck;
-    public TeamManager Team; 
+    public TeamManager Team;
 
     public int health = 100;
     public string nickname;
@@ -32,10 +32,10 @@ public class Character_Controller : MonoBehaviourPun
     PhotonView pw;
 
     private bool triggerbool = true;
-     
+
 
     void Awake()
-    { 
+    {
         pw = GetComponent<PhotonView>();
         PlayerController = GameObject.Find("PlayerController").GetComponent<PlayersController>();
         PlayerController.photonViews.Add(pw);
@@ -49,7 +49,7 @@ public class Character_Controller : MonoBehaviourPun
             rb = GetComponent<Rigidbody2D>();
             anim.SetBool("isWalking", false);
         }
-         
+
 
     }
 
@@ -58,12 +58,13 @@ public class Character_Controller : MonoBehaviourPun
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
 
         if (bullet != null && bullet.ordinary != this.gameObject)
-        {
+        { 
             print("merminin carptığı karakter ");
-            print("takım ismi "+Team.name);
-            health -= 50;
-            print(nickname + " health--:" + health);
-            //  Destroy(bullet.gameObject);
+            print("takım ismi " + Team.name);
+            Destroy(bullet.gameObject);
+
+            health -= 50; 
+
         }
     }
 
@@ -71,21 +72,20 @@ public class Character_Controller : MonoBehaviourPun
     void Update()
     {
 
-        Team.healthbar.fillAmount=health/100f;
+        Team.healthbar.fillAmount = health / 100f;
 
         if (health <= 0)
-        {
-               if (flag != null)
+        {     print(Team.name+"health 0 ");
+            if (flag != null)
             { 
-                print("deneme");
                 flag.transform.SetParent(flag.flagbase.transform);
-                flag=null;
-               // flag.transform.position = flagbase.transform.position;
+                flag = null;
+                print(Team.name+" bayrak ayarlandi ");
+                // flag.transform.position = flagbase.transform.position;
             }
             // print(this.gameObject.name + " , " + Team.Base_.gameObject.name);
-            this.gameObject.transform.position = Team.Base_.gameObject.transform.position;
-            print(nickname + " :base gitmeli");
-            health = 100;
+            Team.PlayerSetBase(this.transform.GetComponent<Character_Controller>());
+            
         }
 
         //Movement

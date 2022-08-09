@@ -40,6 +40,7 @@ public class Bullet : MonoBehaviour
     public void destroybullet(int ordinaryid){
         //PhotonNetwork.GetPhotonView(ordinaryid);
         GameObject ordinary_=PhotonNetwork.GetPhotonView(ordinaryid).gameObject;
+        this.ordinary = ordinary_.gameObject ;
         StartCoroutine(wait(ordinary_));
     }
     
@@ -48,7 +49,6 @@ public class Bullet : MonoBehaviour
     public IEnumerator wait(GameObject ordinary_)
     {
 
-        ordinary = ordinary_.gameObject ;
         //burda atıyor karşıda nasıl atama yapıcak 
          yield return new WaitForSeconds(1f);
         try
