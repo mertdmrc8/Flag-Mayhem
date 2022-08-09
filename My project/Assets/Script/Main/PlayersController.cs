@@ -18,6 +18,7 @@ public class PlayersController : MonoBehaviour, IPunInstantiateMagicCallback
         object[] PlayerData = {
              PlayerProperties.roomid_   };
         GameObject Gameob = PhotonNetwork.Instantiate("Ordinary", Vector3.zero, Quaternion.identity, 0, PlayerData);
+        Gameob.GetComponent<Character_Controller>().roomid_=PlayerProperties.roomid_;
         StartCoroutine(SetTeams());
 
 
@@ -31,8 +32,7 @@ public class PlayersController : MonoBehaviour, IPunInstantiateMagicCallback
         int i = 0;
         foreach (PhotonView item in photonViews)
         {
-            print(i);
-
+            print(i); 
             item.gameObject.transform.parent = players.transform;
             i++;
         }

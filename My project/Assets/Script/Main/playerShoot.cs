@@ -35,18 +35,15 @@ public class playerShoot : MonoBehaviour
 
 
     }
-    [PunRPC]
+    
     void Shoot()
     {
         var part = GetComponentInChildren<ParticleSystem>();
         part.Play();
         float angle = cc.isFacingRight ? 0f : 180f;
         GameObject gameob = PhotonNetwork.Instantiate("Bullet", firingPoint.position, Quaternion.Euler(new Vector3(0f, 0f, angle)));
-        Bullet bullet_ = gameob.GetComponent<Bullet>();
-        StartCoroutine(bullet_.DestroyBullet());
-    }
-
-     
-  
+        gameob.GetComponent<PhotonView>().RPC("deneme",RpcTarget.All,this.transform.gameObject.GetComponent<PhotonView>().ViewID);
+         
+    } 
 
 }

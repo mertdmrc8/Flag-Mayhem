@@ -10,8 +10,11 @@ public class Bullet : MonoBehaviour
     PhotonView pw_b;
 
     public GameObject ordinary;
+ 
+    private void Awake(){ 
 
-
+        
+    }
     private void Start()
     {
         pw_b = GetComponent<PhotonView>();
@@ -31,10 +34,27 @@ public class Bullet : MonoBehaviour
 
 
     }
-    public IEnumerator DestroyBullet()
+
+
+    [PunRPC]
+    public void deneme(int ordinaryid){
+        //PhotonNetwork.GetPhotonView(ordinaryid);
+        GameObject ordinary_=PhotonNetwork.GetPhotonView(ordinaryid).gameObject;
+        StartCoroutine(DestroyBullet(ordinary_));
+    }
+    
+
+    [PunRPC]
+    public void asd( ){
+
+    }
+
+
+    
+    public IEnumerator DestroyBullet(GameObject ordinary_)
     {
 
-        ordinary = this.gameObject;
+        ordinary = ordinary_.gameObject ;
         //burda atıyor karşıda nasıl atama yapıcak 
         print(ordinary);
         yield return new WaitForSeconds(0.5f);

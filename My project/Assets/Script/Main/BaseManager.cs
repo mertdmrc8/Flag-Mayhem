@@ -27,7 +27,7 @@ public class BaseManager : MonoBehaviour
         Flag flag = collision.gameObject.transform.GetComponent<Flag>();
         TeamManager Team = gameObject.transform.parent.GetComponent<TeamManager>();
 
-        if(flag!=null&& flag.player==flag.player.Team==Team){ 
+        if(flag!=null &&  flag.player.Team==Team){ 
             Destroy(flag.gameObject);    
             flagbase.CreateFlag();
             team_score++;
