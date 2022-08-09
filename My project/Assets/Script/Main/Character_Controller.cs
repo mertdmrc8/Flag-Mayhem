@@ -73,8 +73,9 @@ public class Character_Controller : MonoBehaviourPun
         {
                if (flag != null)
             { 
+                print("deneme");
                 flag.transform.SetParent(flag.flagbase.transform);
-                // flag=null;
+                flag=null;
                // flag.transform.position = flagbase.transform.position;
             }
             // print(this.gameObject.name + " , " + Team.Base_.gameObject.name);

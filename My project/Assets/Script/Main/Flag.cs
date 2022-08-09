@@ -22,6 +22,7 @@ public class Flag : MonoBehaviour
             Player = collision.gameObject;
             GameObject Flag = GameObject.Find("Flag");   
             this.transform.parent = Player.transform;
+            Player.GetComponent<Character_Controller>().flag=this.gameObject.transform.GetComponent<Flag>();
             player = Player.GetComponent<Character_Controller>();
         }
 
