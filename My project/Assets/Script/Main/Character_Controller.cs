@@ -32,8 +32,7 @@ public class Character_Controller : MonoBehaviourPun
     PhotonView pw;
 
     private bool triggerbool = true;
-
-    public Image healthbar ;
+     
 
     void Awake()
     { 
@@ -50,15 +49,7 @@ public class Character_Controller : MonoBehaviourPun
             rb = GetComponent<Rigidbody2D>();
             anim.SetBool("isWalking", false);
         }
-
-        if(){
-
-        }
-        else{
-
-        }
-
-
+         
 
     }
 
@@ -79,6 +70,8 @@ public class Character_Controller : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+
+        Team.healthbar.fillAmount=health/100f;
 
         if (health <= 0)
         {
