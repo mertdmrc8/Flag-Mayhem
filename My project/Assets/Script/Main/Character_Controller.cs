@@ -58,7 +58,8 @@ public class Character_Controller : MonoBehaviourPun
 
         if (bullet != null && bullet.ordinary != this.gameObject)
         {
-            print(bullet.ordinary.name + " " + this.gameObject.name);
+            print("merminin carptığı karakter ");
+            print("takım ismi "+Team.name);
             health -= 50;
             print(nickname + " health--:" + health);
             //  Destroy(bullet.gameObject);
@@ -80,7 +81,6 @@ public class Character_Controller : MonoBehaviourPun
             }
             // print(this.gameObject.name + " , " + Team.Base_.gameObject.name);
             this.gameObject.transform.position = Team.Base_.gameObject.transform.position;
-
             print(nickname + " :base gitmeli");
             health = 100;
         }

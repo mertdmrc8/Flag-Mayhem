@@ -37,15 +37,15 @@ public class Bullet : MonoBehaviour
 
 
     [PunRPC]
-    public void deneme(int ordinaryid){
+    public void destroybullet(int ordinaryid){
         //PhotonNetwork.GetPhotonView(ordinaryid);
         GameObject ordinary_=PhotonNetwork.GetPhotonView(ordinaryid).gameObject;
-        StartCoroutine(DestroyBullet(ordinary_));
+        StartCoroutine(wait(ordinary_));
     }
     
 
     
-    public IEnumerator DestroyBullet(GameObject ordinary_)
+    public IEnumerator wait(GameObject ordinary_)
     {
 
         ordinary = ordinary_.gameObject ;

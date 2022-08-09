@@ -42,7 +42,7 @@ public class playerShoot : MonoBehaviour
         part.Play();
         float angle = cc.isFacingRight ? 0f : 180f;
         GameObject gameob = PhotonNetwork.Instantiate("Bullet", firingPoint.position, Quaternion.Euler(new Vector3(0f, 0f, angle)));
-        gameob.GetComponent<PhotonView>().RPC("deneme",RpcTarget.All,this.transform.gameObject.GetComponent<PhotonView>().ViewID);
+        gameob.GetComponent<PhotonView>().RPC("destroybullet",RpcTarget.All,this.transform.gameObject.GetComponent<PhotonView>().ViewID);
          
     } 
 
