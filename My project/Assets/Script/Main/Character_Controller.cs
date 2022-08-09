@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Realtime;
 using Photon.Pun;
 using System;
+using UnityEngine.UI;
 
 public class Character_Controller : MonoBehaviourPun
 {
@@ -32,6 +33,7 @@ public class Character_Controller : MonoBehaviourPun
 
     private bool triggerbool = true;
 
+    public Image healthbar ;
 
     void Awake()
     { 
@@ -47,8 +49,16 @@ public class Character_Controller : MonoBehaviourPun
         {
             rb = GetComponent<Rigidbody2D>();
             anim.SetBool("isWalking", false);
+        }
+
+        if(){
 
         }
+        else{
+
+        }
+
+
 
     }
 

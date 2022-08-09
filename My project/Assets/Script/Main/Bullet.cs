@@ -50,17 +50,13 @@ public class Bullet : MonoBehaviour
 
         ordinary = ordinary_.gameObject ;
         //burda atıyor karşıda nasıl atama yapıcak 
-        print(ordinary);
-        yield return new WaitForSeconds(1f);
+         yield return new WaitForSeconds(1f);
         try
         {
-            Destroy(gameObject);
-            print("destroy with corretine");
-
+            Destroy(gameObject); 
         }
         catch
-        {
-            print("destroy catch");
+        { 
 
         }
     }
