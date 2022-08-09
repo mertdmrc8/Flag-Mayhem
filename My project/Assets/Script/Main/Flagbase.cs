@@ -8,7 +8,6 @@ public class Flagbase : MonoBehaviour
     private GameObject prefabflag;
 
 
-
     void Start()
     {
         Instantiate(prefabflag, this.transform);

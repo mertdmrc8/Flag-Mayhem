@@ -8,17 +8,19 @@ public class Flag : MonoBehaviour
     PhotonView pw;
     public Character_Controller player;
 
+    public GameObject flagbase;
 
-
+    void Awake()
+    {
+        flagbase = this.gameObject.transform.parent.gameObject;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject Player = null;
         if (collision.tag == "Player")
         {
             Player = collision.gameObject;
-            GameObject Flag = GameObject.Find("Flag");
-            print(Player.GetComponent<Character_Controller>().flagbase);
-           // Player.GetComponent<Character_Controller>().flagbase = Flag.GetComponentInParent<Flagbase>().gameObject;
+            GameObject Flag = GameObject.Find("Flag");   
             this.transform.parent = Player.transform;
             player = Player.GetComponent<Character_Controller>();
         }
