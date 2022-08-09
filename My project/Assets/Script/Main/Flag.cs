@@ -6,9 +6,9 @@ using Photon.Pun;
 public class Flag : MonoBehaviour
 {
     PhotonView pw;
-    public  Character_Controller player ;
+    public Character_Controller player;
 
-    
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,12 +16,12 @@ public class Flag : MonoBehaviour
         if (collision.tag == "Player")
         {
             Player = collision.gameObject;
-            
             GameObject Flag = GameObject.Find("Flag");
-        
+            print(Player.GetComponent<Character_Controller>().flagbase);
+           // Player.GetComponent<Character_Controller>().flagbase = Flag.GetComponentInParent<Flagbase>().gameObject;
             this.transform.parent = Player.transform;
-            player=Player.GetComponent<Character_Controller>();
+            player = Player.GetComponent<Character_Controller>();
         }
 
-    } 
+    }
 }

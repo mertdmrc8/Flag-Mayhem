@@ -20,6 +20,7 @@ public class Character_Controller : MonoBehaviourPun
     public LayerMask groundLayer;
     public Transform groundcheck;
     public TeamManager Team;
+    public GameObject flagbase;
 
     public int health = 100;
     public string nickname;
@@ -35,6 +36,7 @@ public class Character_Controller : MonoBehaviourPun
 
     void Awake()
     {
+        flagbase = null;
         pw = GetComponent<PhotonView>();
         PlayerController = GameObject.Find("PlayerController").GetComponent<PlayersController>();
         PlayerController.photonViews.Add(pw);
@@ -53,16 +55,16 @@ public class Character_Controller : MonoBehaviourPun
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    { 
+    {
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-        
-        if (bullet != null && bullet.ordinary != this.gameObject )
+
+        if (bullet != null && bullet.ordinary != this.gameObject)
         {
-            print(bullet.ordinary.name+" "+this.gameObject.name);
+            print(bullet.ordinary.name + " " + this.gameObject.name);
             health -= 50;
-             print(nickname+" health--:" + health);
-          //  Destroy(bullet.gameObject);
-        } 
+            print(nickname + " health--:" + health);
+            //  Destroy(bullet.gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -71,9 +73,23 @@ public class Character_Controller : MonoBehaviourPun
 
         if (health <= 0)
         {
-            print(this.gameObject.name+" , "+Team.Base_.gameObject.name);
-            this.gameObject.transform.position = Team.Base_.gameObject.transform.position;
-            print(nickname+" :base gitmeli");
+               if (flag != null)
+            { 
+                flag.transform.parent=null;
+                flag=null;
+               // flag.transform.position = flagbase.transform.position;
+
+            }
+
+            // print(this.gameObject.name + " , " + Team.Base_.gameObject.name);
+            // this.gameObject.transform.position = Team.Base_.gameObject.transform.position;
+
+            print(nickname + " :base gitmeli");
+
+         
+
+
+
             health = 100;
         }
 

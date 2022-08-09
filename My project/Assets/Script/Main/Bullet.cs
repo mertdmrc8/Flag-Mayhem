@@ -44,12 +44,6 @@ public class Bullet : MonoBehaviour
     }
     
 
-    [PunRPC]
-    public void asd( ){
-
-    }
-
-
     
     public IEnumerator DestroyBullet(GameObject ordinary_)
     {
@@ -57,7 +51,7 @@ public class Bullet : MonoBehaviour
         ordinary = ordinary_.gameObject ;
         //burda atıyor karşıda nasıl atama yapıcak 
         print(ordinary);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         try
         {
             Destroy(gameObject);
