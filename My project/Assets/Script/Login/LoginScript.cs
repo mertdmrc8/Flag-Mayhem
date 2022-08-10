@@ -55,7 +55,7 @@ public class LoginScript : MonoBehaviour
         WWWForm form = new WWWForm(); 
         form.AddField("id", PlayerProperties.id_);
         UnityWebRequest www = UnityWebRequest.Post(info_geturl, form);
-        www.SetRequestHeader("token", PlayerProperties.token_);
+        www.SetRequestHeader("Authorization", "Bearer " + PlayerProperties.token_);
         //Authorization
         var operation = www.SendWebRequest();
         yield return operation;

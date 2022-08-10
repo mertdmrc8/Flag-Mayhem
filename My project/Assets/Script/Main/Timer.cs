@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -28,46 +29,28 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            this.gameObject.SetActive(false);
-            StartCoroutine(UserSaved());
-            //nesne sahnede bulunabiliyor
+            // this.gameObject.SetActive(false);
+
+            PhotonNetwork.LeaveRoom(true);
+            if (PlayerProperties.OnLogin_)
+            {
+                StartCoroutine(UserSaved());
+            }
         }
 
     }
     IEnumerator UserSaved()
     {
+        WWWForm form = new WWWForm();
+        form.AddField("id", PlayerProperties.id_);
+        form.AddField("score", PlayerProperties.score_);
+        form.AddField("kill", PlayerProperties.kill_);
+        form.AddField("death", PlayerProperties.death_);
 
-        yield return new WaitForSeconds(1);
-    //     WWWForm form = new WWWForm();
-    //     form.AddField("email", email);
-    //     form.AddField("password", password);
+        UnityWebRequest www = UnityWebRequest.Post(saved_gameScore, form);
+        www.SetRequestHeader("Authorization", "Bearer " + PlayerProperties.token_);
+        var operation = www.SendWebRequest();
+        yield return operation;
+    }
 
-    //     UnityWebRequest www = UnityWebRequest.Post(saved_gameScore, form);
-
-    //     var operation = www.SendWebRequest();
-    //     yield return operation;
-
-    //     if (www.result == UnityWebRequest.Result.Success)
-    //     {
-    //         print("login den donen");
-    //         Debug.Log($"response: {www.downloadHandler.text}");
-
-    //         Data stuff = JsonConvert.DeserializeObject<Data>($"{www.downloadHandler.text}");
-    //         PlayerProperties.token_ = stuff.token;
-    //         PlayerProperties.id_ = stuff.id;
-    //         print("token ve id kayıt ");
-    //         print("token:" + PlayerProperties.token_);
-    //         print("id:" + PlayerProperties.id_);
-    //     }
-    //     else
-    //         Debug.Log("response failed");
-
-
-    //     if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
-    //     {
-
-    //         print(www.error);
-    //     }
-     }
-    
 }
