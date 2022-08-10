@@ -168,6 +168,7 @@ MonoBehaviour:
   bulletSpeed: 10
   rb: {fileID: 2344732480813817813}
   ordinary: {fileID: 0}
+  incoming_id: 0
 --- !u!114 &6296524397730854833
 MonoBehaviour:
   m_ObjectHideFlags: 0

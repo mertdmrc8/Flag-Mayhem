@@ -25,6 +25,8 @@ public class Character_Controller : MonoBehaviourPun
     public int health = 100;
     public string nickname;
 
+    private bool health_bool = true;
+
     public PlayersController PlayerController;
 
     [HideInInspector] public bool isFacingRight = true;
@@ -52,7 +54,7 @@ public class Character_Controller : MonoBehaviourPun
 
 
     }
- 
+
 
     IEnumerator waitflag()
     {
@@ -68,27 +70,50 @@ public class Character_Controller : MonoBehaviourPun
 
 
     [PunRPC]
-     public void Imdead( int killer_id){
-        GameObject ordinary_=PhotonNetwork.GetPhotonView(killer_id).gameObject;
-        ordinary_.GetComponent<PlayerDatabase>().UpdateAndAddData(0,1,0);
-        print(" im dead :"+Team.name);
+    public void FindKiller(int killer_id)
+    {
+        print("find killer :::"+Team.name);
+        GameObject ordinary_ = PhotonNetwork.GetPhotonView(killer_id).gameObject;
+        if (this.gameObject == ordinary_.gameObject )
+        {
+            //2 ıere dönüyor niye
+            print(" killer" + Team.name);
+            ordinary_.transform.GetComponent<PlayerDatabase>().UpdateAndAddData(0, 0, 1);
+             
 
-     }
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
 
-        if (bullet != null && bullet.ordinary!=this.gameObject)
+        if (bullet != null && bullet.ordinary != this.gameObject)
         {
-            print("merminin carptığı karakter ");
-            print("takım ismi " + Team.name);
             health -= 50;
-            if(health<=0){
+            if (health <= 0)
+            {
                 //BURASI RPC OLMALI MI?
-            transform.GetComponent<PhotonView>().RPC("Imdead",RpcTarget.All,bullet.incoming_id);
+                PlayerProperties.death_++;
+                print(Team.name + "health 0 ");
+                if (flag != null)
+                {
+                    print("bayrak " + Team.name + "di");
+                    flag.transform.parent = flag.flagbase.transform;
+                    flag.transform.position = flag.flagbase.transform.position;
+                    flag = null;
+                }
+                // print(this.gameObject.name + " , " + Team.Base_.gameObject.name);
+
+                if (pw.IsMine)
+                {
+                    transform.GetComponent<PhotonView>().RPC("FindKiller", RpcTarget.All, bullet.incoming_id);
+
+                    Team.PlayerSetBase(this.transform.GetComponent<Character_Controller>());
+                }
+                health = 100;
             }
-             Destroy(bullet.gameObject);
+            Destroy(bullet.gameObject);
         }
     }
 
@@ -96,33 +121,15 @@ public class Character_Controller : MonoBehaviourPun
 
     void Update()
     {
-        if(Team!=null){
-            
-        Team.healthbar.fillAmount = health / 100f;
-        }
-  
-        if (health <= 0)
+        if (Team != null)
         {
-            PlayerProperties.death_++;
-            print(Team.name + "health 0 ");
-            if (flag != null)
-            {
 
-                print("bayrak " + Team.name + "di");
-                flag.transform.parent=flag.flagbase.transform;
+            Team.healthbar.fillAmount = health / 100f;
+        }
 
-                flag.transform.position = flag.flagbase.transform.position;
-                
-                flag = null;
+        if (health <= 0 && health_bool)
+        {
 
-                // StartCoroutine(waitflag());
-                // flag.transform.position = flagbase.transform.position;
-            }
-            // print(this.gameObject.name + " , " + Team.Base_.gameObject.name);
-             
-            //gameObject.GetComponent<PhotonView>().RPC( );    
-            Team.PlayerSetBase(this.transform.GetComponent<Character_Controller>() );
-            
 
         }
         //Movement

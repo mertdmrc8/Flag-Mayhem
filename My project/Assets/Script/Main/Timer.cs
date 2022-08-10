@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
@@ -12,8 +13,9 @@ public class Timer : MonoBehaviour
     //Bu obje static olabilir.
 
     private Text countdownText;
-    float countdownTo = 60.0F;
+    float countdownTo = 6.0F;
 
+    private
     readonly string saved_gameScore = "http://localhost:8080/UserArchive/GameScores";
 
     private void Start()
@@ -30,14 +32,13 @@ public class Timer : MonoBehaviour
             countdownText.text = countdownTo.ToString().Substring(0, 2);
         }
         else
-        {
-            // this.gameObject.SetActive(false);
-
-            PhotonNetwork.LeaveRoom(true);
+        { 
             if (PlayerProperties.OnLogin_)
             {
                 StartCoroutine(UserSaved());
-            }
+            } 
+            // SceneManager.LoadScene(1);
+            // this.gameObject.SetActive(false);
         }
 
     }

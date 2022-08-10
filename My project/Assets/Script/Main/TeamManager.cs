@@ -27,10 +27,11 @@ public class TeamManager : MonoBehaviour
     {
         ordinary_.gameObject.SetActive(false);
         print(name +" aktif değil health 100");
-
         ordinary_.health=100;
         ordinary_.transform.position = Base_.gameObject.transform.position;
-        StartCoroutine(wait(ordinary_));
+        ordinary_.gameObject.SetActive(true);
+
+      //  StartCoroutine(wait(ordinary_));
 
     }
 
@@ -38,7 +39,6 @@ public class TeamManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         print(name +" aktif");
-        ordinary_.gameObject.SetActive(true);
 
     }
 }

@@ -13,10 +13,11 @@ public class PlayerDatabase : MonoBehaviourPunCallbacks
     readonly string saved_posturl = "http://localhost:8080/UserArchive/GameScores";
 
 
-
-    [PunRPC]
+ 
     public void UpdateAndAddData(int score, int death, int kill)
     {
+       // print("team name player database"+ this.gameObject.GetComponent<Character_Controller>().Team.name);
+       
         PlayerProperties.score_ += score;
         PlayerProperties.death_ += death;
         PlayerProperties.kill_ += kill;
@@ -28,7 +29,7 @@ public class PlayerDatabase : MonoBehaviourPunCallbacks
         PlayerProperties.win_ += win;
         PlayerProperties.lose_ += lose; 
  
- 
+
     }
 
     private void SavedPlayerGameInfo()
