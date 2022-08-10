@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
 
+    //Bu obje static olabilir.
+
     private Text countdownText;
     float countdownTo = 60.0F;
 
@@ -46,6 +48,8 @@ public class Timer : MonoBehaviour
         form.AddField("score", PlayerProperties.score_);
         form.AddField("kill", PlayerProperties.kill_);
         form.AddField("death", PlayerProperties.death_);
+        form.AddField("lose", PlayerProperties.lose_);
+        form.AddField("win", PlayerProperties.win_);
 
         UnityWebRequest www = UnityWebRequest.Post(saved_gameScore, form);
         www.SetRequestHeader("Authorization", "Bearer " + PlayerProperties.token_);

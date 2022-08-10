@@ -28,6 +28,7 @@ public class BaseManager : MonoBehaviour
         TeamManager Team = gameObject.transform.parent.GetComponent<TeamManager>();
 
         if(flag!=null &&  flag.player.Team==Team){ 
+            
             Destroy(flag.gameObject);    
             flagbase.CreateFlag();
             team_score++;

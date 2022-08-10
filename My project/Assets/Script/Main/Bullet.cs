@@ -8,8 +8,8 @@ public class Bullet : MonoBehaviour
     public float bulletSpeed = 10f;
     public Rigidbody2D rb;
     PhotonView pw_b;
-
     public GameObject ordinary;
+    public int incoming_id ;
  
     private void Awake(){ 
 
@@ -39,6 +39,7 @@ public class Bullet : MonoBehaviour
     [PunRPC]
     public void destroybullet(int ordinaryid){
         //PhotonNetwork.GetPhotonView(ordinaryid);
+        this.incoming_id=ordinaryid;
         GameObject ordinary_=PhotonNetwork.GetPhotonView(ordinaryid).gameObject;
         this.ordinary = ordinary_.gameObject ;
         StartCoroutine(wait(ordinary_));

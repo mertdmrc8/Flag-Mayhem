@@ -52,6 +52,7 @@ public class Character_Controller : MonoBehaviourPun
 
 
     }
+ 
 
     IEnumerator waitflag()
     {
@@ -64,6 +65,16 @@ public class Character_Controller : MonoBehaviourPun
 
     }
     //burda değil karşıda doru çalışıyor 
+
+
+    [PunRPC]
+     public void Imdead( int killer_id){
+        GameObject ordinary_=PhotonNetwork.GetPhotonView(killer_id).gameObject;
+        ordinary_.GetComponent<PlayerDatabase>().UpdateAndAddData(0,1,0);
+        print(" im dead :"+Team.name);
+
+     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
@@ -72,10 +83,12 @@ public class Character_Controller : MonoBehaviourPun
         {
             print("merminin carptığı karakter ");
             print("takım ismi " + Team.name);
-            Destroy(bullet.gameObject);
-
             health -= 50;
-
+            if(health<=0){
+                //BURASI RPC OLMALI MI?
+            transform.GetComponent<PhotonView>().RPC("Imdead",RpcTarget.All,bullet.incoming_id);
+            }
+             Destroy(bullet.gameObject);
         }
     }
 
@@ -90,9 +103,11 @@ public class Character_Controller : MonoBehaviourPun
   
         if (health <= 0)
         {
+            PlayerProperties.death_++;
             print(Team.name + "health 0 ");
             if (flag != null)
             {
+
                 print("bayrak " + Team.name + "di");
                 flag.transform.parent=flag.flagbase.transform;
 

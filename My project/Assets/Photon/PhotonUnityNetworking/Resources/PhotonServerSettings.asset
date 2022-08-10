@@ -45,6 +45,10 @@ MonoBehaviour:
   - asd
   - destroybullet
   - PlayerSetBase
+  - Imdead
+  - UpdateData
+  - UpdateAndAddData
+  - UpdateMatchData
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
