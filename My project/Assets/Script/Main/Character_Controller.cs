@@ -53,43 +53,67 @@ public class Character_Controller : MonoBehaviourPun
 
     }
 
+    IEnumerator waitflag()
+    {
+
+
+        print(Team.name + " bayrak ayarlandi ");
+        flag.enabled = false;
+        yield return new WaitForSeconds(1);
+        flag.enabled = true;
+
+    }
+    //burda değil karşıda doru çalışıyor 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
 
-        if (bullet != null && bullet.ordinary != this.gameObject)
-        { 
+        if (bullet != null && bullet.ordinary!=this.gameObject)
+        {
             print("merminin carptığı karakter ");
             print("takım ismi " + Team.name);
             Destroy(bullet.gameObject);
 
-            health -= 50; 
+            health -= 50;
 
         }
     }
 
     // Update is called once per frame
+
     void Update()
     {
-
+        if(Team!=null){
+            
         Team.healthbar.fillAmount = health / 100f;
-
+        }
+  
         if (health <= 0)
-        {     print(Team.name+"health 0 ");
+        {
+            print(Team.name + "health 0 ");
             if (flag != null)
-            { 
-                flag.transform.SetParent(flag.flagbase.transform);
+            {
+                print("bayrak " + Team.name + "di");
+                flag.transform.parent=flag.flagbase.transform;
+
+                flag.transform.position = flag.flagbase.transform.position;
+                
                 flag = null;
-                print(Team.name+" bayrak ayarlandi ");
+
+                // StartCoroutine(waitflag());
                 // flag.transform.position = flagbase.transform.position;
             }
             // print(this.gameObject.name + " , " + Team.Base_.gameObject.name);
-            Team.PlayerSetBase(this.transform.GetComponent<Character_Controller>());
+             
+            //gameObject.GetComponent<PhotonView>().RPC( );    
+            Team.PlayerSetBase(this.transform.GetComponent<Character_Controller>() );
             
-        }
 
+        }
         //Movement
-        if (pw.IsMine)
+
+        if (pw.IsMine)//karşıda da burda da karşı clientler çalışmaz
+                      //karşıda da burda da bu kod o nesnede çalışır 
         {
             isTouchingGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckRadius, groundLayer);
 

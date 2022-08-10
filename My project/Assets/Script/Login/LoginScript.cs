@@ -34,6 +34,7 @@ public class LoginScript : MonoBehaviour
 
         connection_button.onClick.AddListener(delegate
         {
+            print("conection button ");
             StartCoroutine(LoginPostRequest(email.text, password.text));
 
             //cevap a göre sahne yükle 
@@ -65,14 +66,14 @@ public class LoginScript : MonoBehaviour
             try
             {
                 Data stuff = JsonConvert.DeserializeObject<Data>($"{www.downloadHandler.text}");
-
+                print("response :"+$"{www.downloadHandler.text}");
                 if (stuff.OnLogin == true)
                 {
-
                     PlayerProperties.id_ = stuff.id;
                     PlayerProperties.OnLogin_ = true;
                     PlayerProperties.nickname_ = stuff.NickName;
                     SceneManager.LoadScene(1);
+                    print("login succes");
                 }
                 else
                 {

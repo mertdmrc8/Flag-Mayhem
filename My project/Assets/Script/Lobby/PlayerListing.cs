@@ -15,6 +15,7 @@ public class PlayerListing : MonoBehaviour
  
    public void SetPlayerInfo(Player player){
     Player=player;
+    print("nickname:::"+ player.NickName);
     nick_name.text = player.NickName;
     userid =player.UserId;
 

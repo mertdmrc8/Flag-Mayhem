@@ -29,7 +29,6 @@ public class TestConnect : MonoBehaviourPunCallbacks
         print("Connected to server");
         //PlayerProperties.nickname_
         // MasterManager.DebugConsole.AddText("deneme",this);
-        print("my nick"+PhotonNetwork.LocalPlayer.NickName);
         if (!PhotonNetwork.InLobby)
         {
             PhotonNetwork.JoinLobby();
@@ -38,6 +37,10 @@ public class TestConnect : MonoBehaviourPunCallbacks
             {
                 PhotonNetwork.LocalPlayer.NickName = PlayerProperties.nickname_;
             }
+    
+            print("my nick__"+PlayerProperties.nickname_);
+
+        print("my nick"+PhotonNetwork.LocalPlayer.NickName);
         }
 
     }

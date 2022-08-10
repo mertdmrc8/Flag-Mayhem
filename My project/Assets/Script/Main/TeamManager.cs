@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,10 +22,12 @@ public class TeamManager : MonoBehaviour
 
     }
 
-    public void PlayerSetBase(Character_Controller ordinary_)
+   [PunRPC]
+    public void PlayerSetBase(Character_Controller ordinary_ )
     {
         ordinary_.gameObject.SetActive(false);
         print(name +" aktif değil health 100");
+
         ordinary_.health=100;
         ordinary_.transform.position = Base_.gameObject.transform.position;
         StartCoroutine(wait(ordinary_));
