@@ -70,16 +70,22 @@ public class Character_Controller : MonoBehaviourPun
 
 
     [PunRPC]
+    //rpc her 2 yerde de çağırılır 
+    //karşıdaki kendi görüntüsünde çağırıyor
+    //yani ölen kişi
     public void FindKiller(int killer_id)
     {
-        print("find killer :::"+Team.name);
-        GameObject ordinary_ = PhotonNetwork.GetPhotonView(killer_id).gameObject;
-        if (this.gameObject == ordinary_.gameObject )
+        print("find killer :::" + Team.name);
+
+        print("view id " + this.transform.gameObject.GetComponent<PhotonView>().ViewID);
+        print("killerid  " + killer_id);
+
+        if (this.transform.gameObject.GetComponent<PhotonView>().ViewID == killer_id)
         {
             //2 ıere dönüyor niye
             print(" killer" + Team.name);
-            ordinary_.transform.GetComponent<PlayerDatabase>().UpdateAndAddData(0, 0, 1);
-             
+            this.transform.GetComponent<PlayerDatabase>().UpdateAndAddData(0, 0, 1);
+
 
         }
     }
@@ -107,8 +113,8 @@ public class Character_Controller : MonoBehaviourPun
 
                 if (pw.IsMine)
                 {
-                    transform.GetComponent<PhotonView>().RPC("FindKiller", RpcTarget.All, bullet.incoming_id);
-
+                    print("bullet :" + bullet.incoming_id);
+                    transform.GetComponent<PhotonView>().RPC("FindKiller", RpcTarget.All, bullet.ordinary.GetComponent<PhotonView>().ViewID);
                     Team.PlayerSetBase(this.transform.GetComponent<Character_Controller>());
                 }
                 health = 100;
