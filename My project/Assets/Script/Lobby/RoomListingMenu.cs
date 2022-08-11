@@ -15,19 +15,25 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
 
     private List<Roomlisting> _listings = new List<Roomlisting>();
 
-    
-    private RoomsCanvases _roomsCanvases; 
- 
-    public void FirstInitialize(RoomsCanvases canvases){
 
-    _roomsCanvases=canvases; 
-    } 
+    private RoomsCanvases _roomsCanvases;
 
-    public override void OnJoinedRoom(){
+    public void FirstInitialize(RoomsCanvases canvases)
+    {
+
+        _roomsCanvases = canvases;
+    }
+
+    public override void OnJoinedRoom()
+    {
         _roomsCanvases.CurrentRoomsCanvas.Show();
         //Büyük canvalsın leave roomunu göster
+        PlayerProperties.in_room_ = true;
+        //PlayerProperties.roomid_=PhotonNetwork.CurrentRoom
+        
         _content.DestroyChildren();
-        print("joined room ");
+        print("joined room "); 
+
         _listings.Clear();
     }
 
@@ -39,11 +45,11 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
         print("onroomlist update");
         foreach (RoomInfo info in roomList)
         {
-              
+
             if (info.RemovedFromList)
-            { 
-                int index=_listings.FindIndex(x=>x.RoomInfo.Name ==info.Name );
-                if(index!=-1)
+            {
+                int index = _listings.FindIndex(x => x.RoomInfo.Name == info.Name);
+                if (index != -1)
                 {
                     Destroy(_listings[index].gameObject);
                     _listings.RemoveAt(index);
@@ -52,16 +58,19 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
 
             }
             else
-            { 
-                int index = _listings.FindIndex(x=>x.RoomInfo.Name==info.Name);
-                if(index==-1){
-                    Roomlisting listing = Instantiate(_roomlisting, _content);
-               
-                if (listing != null)
+            {
+                int index = _listings.FindIndex(x => x.RoomInfo.Name == info.Name);
+                if (index == -1)
                 {
-                    listing.SetRoomInfo(info);
-                    _listings.Add(listing);
-                }
+                    Roomlisting listing = Instantiate(_roomlisting, _content);
+                    print("oda sahneye eklendi");
+
+                    if (listing != null)
+                    {
+                        listing.SetRoomInfo(info);
+                        print("oda listeye eklendi");
+                        _listings.Add(listing);
+                    }
                 }
                 else
                 {
@@ -70,9 +79,8 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
             }
 
 
-        }
+        } 
 
     }
-
 
 }
