@@ -4948,6 +4948,7 @@ GameObject:
   - component: {fileID: 619696006}
   - component: {fileID: 619696005}
   - component: {fileID: 619696004}
+  - component: {fileID: 619696007}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5021,6 +5022,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &619696007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619696003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b0c4af23402214ebaf5d82455e2b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 106363938236644776, guid: 670bbd11762713547b8f3336b745a3bf, type: 3}
+  smoothSpeed: 0.125
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &630084856
 GameObject:
   m_ObjectHideFlags: 0
@@ -5844,8 +5860,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186ab5b60f56a9e4290af61a96ed8e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Team_red: {fileID: 1654592345}
-  Team_blue: {fileID: 1477320742}
+  TeamRed: {fileID: 0}
+  TeamBlue: {fileID: 0}
 --- !u!4 &696816908
 Transform:
   m_ObjectHideFlags: 0
@@ -13148,6 +13164,7 @@ MonoBehaviour:
   Color: {fileID: 2100000, guid: 345fd9a31d2adc646ac31653a8a656c4, type: 2}
   team_players: []
   TeamScore: 0
+  boolWon: 0
   healthbar: {fileID: 342009995}
   TeamName: 
 --- !u!1 &1506931987
@@ -14441,6 +14458,7 @@ MonoBehaviour:
   Color: {fileID: 2100000, guid: 203459cae7b931645abe4e96291adecb, type: 2}
   team_players: []
   TeamScore: 0
+  boolWon: 0
   healthbar: {fileID: 1333234236}
   TeamName: 
 --- !u!1 &1684241282
