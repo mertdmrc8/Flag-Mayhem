@@ -39,8 +39,7 @@ public class Bullet : MonoBehaviour
     [PunRPC]
     public void destroybullet(int ordinaryid){
         //PhotonNetwork.GetPhotonView(ordinaryid);
-        this.incoming_id=ordinaryid;
-        print("shoot ordinary id" +ordinaryid);
+        this.incoming_id=ordinaryid; 
         GameObject ordinary_=PhotonNetwork.GetPhotonView(ordinaryid).gameObject;
         this.ordinary = ordinary_.gameObject ;
         StartCoroutine(wait(ordinary_));

@@ -36,7 +36,7 @@ public class Character_Controller : MonoBehaviourPun
     private bool triggerbool = true;
 
     public int varib = 0;
-    public int flagscore=0;
+    public int flagscore = 0;
 
     public Timer timer;
     void Awake()
@@ -54,7 +54,7 @@ public class Character_Controller : MonoBehaviourPun
         {
             rb = GetComponent<Rigidbody2D>();
             anim.SetBool("isWalking", false);
-            timer.thisplayer=this.transform.gameObject;
+            timer.thisplayer = this.transform.gameObject;
         }
 
     }
@@ -102,7 +102,6 @@ public class Character_Controller : MonoBehaviourPun
             if (health <= 0)
             {
                 //BURASI RPC OLMALI MI?
-                PlayerProperties.death_++;
                 print(Team.name + "health 0 ");
                 if (flag != null)
                 {
@@ -118,6 +117,7 @@ public class Character_Controller : MonoBehaviourPun
                 if (pw.IsMine)
                 {
 
+                    PlayerProperties.death_++;
                     print("bullet :" + bullet.incoming_id);
                     //rpc gereksiz olabilr karşıdaki istemciden bir şey çalışsın isteniyor ama sadece ölenlerde çalışıyor 
                     // o kişiyi bulup rpcsini çalıştırmak daha doru 

@@ -838,8 +838,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1583251631}
-        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+      - m_Target: {fileID: 696816907}
+        m_TargetAssemblyTypeName: Timer, Assembly-CSharp
         m_MethodName: Onclick_LeaveGame
         m_Mode: 1
         m_Arguments:
@@ -5844,6 +5844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186ab5b60f56a9e4290af61a96ed8e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisplayer: {fileID: 0}
   TeamRed: {fileID: 1654592345}
   TeamBlue: {fileID: 1477320742}
 --- !u!4 &696816908

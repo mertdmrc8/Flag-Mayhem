@@ -14,7 +14,7 @@ public class Timer : MonoBehaviour
     //Bu obje static olabilir.
 
     private Text countdownText;
-    float countdownTo = 1000.0F;
+    float countdownTo = 60.0F;
     public GameObject thisplayer;
 
     [SerializeField]
@@ -34,9 +34,12 @@ public class Timer : MonoBehaviour
     private void Update()
     {
 
-        // if(Input.GetKeyDown(KeyCode.T)){
-        //     deneme();
-        // }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            WonOrLost();
+            saved_score();
+            show_data();
+        }
 
         countdownTo -= Time.deltaTime;
 
@@ -46,11 +49,15 @@ public class Timer : MonoBehaviour
         }
         else
         {
+
+            PhotonNetwork.LeaveRoom(true);
             if (PlayerProperties.OnLogin_)
             {
                 WonOrLost();
                 saved_score();
                 StartCoroutine(UserSaved());
+                SceneManager.LoadScene(1);
+
             }
         }
     }
@@ -63,6 +70,7 @@ public class Timer : MonoBehaviour
             WonOrLost();
             saved_score();
             StartCoroutine(UserSaved());
+            SceneManager.LoadScene(1);
         }
 
     }
@@ -72,10 +80,14 @@ public class Timer : MonoBehaviour
         {
             TeamBlue.boolWon = true;
         }
+        else if (TeamBlue.TeamScore == TeamRed.TeamScore)
+        {
+            TeamRed.boolWon = false;
+        }
         else
         {
-            TeamRed.boolWon = true;
-        };
+            TeamRed.boolWon = false;
+        }
     }
     private void saved_score()
     {
@@ -94,13 +106,13 @@ public class Timer : MonoBehaviour
 
 
     }
-    private void deneme()
+    private void show_data()
     {
-        print(thisplayer.GetComponent<Character_Controller>().Team.TeamName + " t ye basıldı isminesız");
-
-        if (thisplayer.GetComponent<PhotonView>().IsMine)
-            print(thisplayer.GetComponent<Character_Controller>().Team.TeamName + " t ye basıldı ismine ile ");
-
+        print("score:" + PlayerProperties.score_);
+        print("kill:" + PlayerProperties.kill_);
+        print("death:" + PlayerProperties.death_);
+        print("lose:" + PlayerProperties.lose_);
+        print("win:" + PlayerProperties.win_);
 
     }
 
