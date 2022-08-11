@@ -23,14 +23,7 @@ public class PlayerDatabase : MonoBehaviourPunCallbacks
         PlayerProperties.kill_ += kill;
 
     } 
-    public void UpdateMatchData()
-    {
-
-        PlayerProperties.win_ = 1;
-        PlayerProperties.lose_ =1; 
- 
-
-    }
+  
 
     private void SavedPlayerGameInfo()
     {

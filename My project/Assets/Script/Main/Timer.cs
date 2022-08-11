@@ -33,6 +33,11 @@ public class Timer : MonoBehaviour
 
     private void Update()
     {
+
+        if(Input.GetKeyDown(KeyCode.T)){
+
+        }
+
         countdownTo -= Time.deltaTime;
 
         if (countdownTo > 0)
@@ -43,10 +48,21 @@ public class Timer : MonoBehaviour
         {
             if (PlayerProperties.OnLogin_)
             {
-
+                WonOrLost();
                 saved_score();
                 StartCoroutine(UserSaved());
             }
+        }
+    }
+    public void Onclick_LeaveGame()
+    {
+
+        PhotonNetwork.LeaveRoom(true);
+        if (PlayerProperties.OnLogin_)
+        {
+            WonOrLost();
+            saved_score();
+            StartCoroutine(UserSaved());
         }
 
     }
@@ -65,26 +81,24 @@ public class Timer : MonoBehaviour
     {
         if (thisplayer.GetComponent<PhotonView>().IsMine)
         {
-            thisplayer.GetComponent<PlayerDatabase>().UpdateMatchData();
-            PlayerProperties.win_=1;
+            if (thisplayer.GetComponent<Character_Controller>().Team.boolWon)
+            {
+ 
+                PlayerProperties.win_ = 1;
+            }
+            else
+            {
+                PlayerProperties.lose_ = 1;
+            }
         }
-        else{
 
-        }
 
     }
-
-    public void Onclick_LeaveGame()
-    {
-
-        PhotonNetwork.LeaveRoom(true);
-        if (PlayerProperties.OnLogin_)
-        {
-            saved_score();
-            StartCoroutine(UserSaved());
-        }
-
+    private void deneme(){
+        print(thisplayer.GetComponent<Character_Controller>().Team.TeamName+" t ye basıldı");
     }
+
+
     IEnumerator UserSaved()
     {
         WWWForm form = new WWWForm();
