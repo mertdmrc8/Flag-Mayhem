@@ -8,8 +8,7 @@ public static class PlayerProperties
     // private static string password="";
     private static string token = "";
     private static bool OnLogin = false;
-    private static string id = "";
-    private static int network_id = -1;
+    private static string id = ""; 
     private static string nickname = "";
     private static bool in_room = false;
     private static int roomid = -1;

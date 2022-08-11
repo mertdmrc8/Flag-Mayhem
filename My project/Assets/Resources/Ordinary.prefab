@@ -276,6 +276,7 @@ MonoBehaviour:
   nickname: 
   PlayerController: {fileID: 0}
   isFacingRight: 1
+  varib: 0
 --- !u!114 &9064606459168794967
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5844,6 +5844,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186ab5b60f56a9e4290af61a96ed8e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Team_red: {fileID: 1654592345}
+  Team_blue: {fileID: 1477320742}
 --- !u!4 &696816908
 Transform:
   m_ObjectHideFlags: 0
@@ -13145,6 +13147,7 @@ MonoBehaviour:
   Base_: {fileID: 0}
   Color: {fileID: 2100000, guid: 345fd9a31d2adc646ac31653a8a656c4, type: 2}
   team_players: []
+  TeamScore: 0
   healthbar: {fileID: 342009995}
   TeamName: 
 --- !u!1 &1506931987
@@ -14437,6 +14440,7 @@ MonoBehaviour:
   Base_: {fileID: 0}
   Color: {fileID: 2100000, guid: 203459cae7b931645abe4e96291adecb, type: 2}
   team_players: []
+  TeamScore: 0
   healthbar: {fileID: 1333234236}
   TeamName: 
 --- !u!1 &1684241282

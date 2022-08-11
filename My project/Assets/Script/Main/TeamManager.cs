@@ -9,7 +9,8 @@ public class TeamManager : MonoBehaviour
     public BaseManager Base_;
     public Material Color;
     public List<Character_Controller> team_players;
-
+    public int TeamScore =0;
+    public bool boolWon=false;
 
     [SerializeField]
     public Image healthbar;

@@ -23,13 +23,13 @@ public class BaseManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision){
 
-
         Flag flag = collision.gameObject.transform.GetComponent<Flag>();
         TeamManager Team = gameObject.transform.parent.GetComponent<TeamManager>();
 
         if(flag!=null &&  flag.player.Team==Team){ 
-            
-            Destroy(flag.gameObject);    
+            Character_Controller player =flag.player;
+            player.Team.TeamScore++;
+            Destroy(flag.gameObject);   
             flagbase.CreateFlag();
             team_score++;
             text.text=Team.TeamName+"\n"+ team_score.ToString();

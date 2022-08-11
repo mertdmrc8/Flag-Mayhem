@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
@@ -14,8 +15,11 @@ public class Timer : MonoBehaviour
 
     private Text countdownText;
     float countdownTo = 6.0F;
+    GameObject thisplayer;
+    private TeamManager TeamRed;
+    private TeamManager TeamBlue;
 
-    private
+
     readonly string saved_gameScore = "http://localhost:8080/UserArchive/GameScores";
 
     private void Start()
@@ -32,13 +36,35 @@ public class Timer : MonoBehaviour
             countdownText.text = countdownTo.ToString().Substring(0, 2);
         }
         else
-        { 
+        {
             if (PlayerProperties.OnLogin_)
             {
+
+                saved_score();
                 StartCoroutine(UserSaved());
-            } 
-            // SceneManager.LoadScene(1);
-            // this.gameObject.SetActive(false);
+            }
+        }
+
+    }
+    private void WonOrLost()
+    {
+        if ()
+    }
+    private void saved_score()
+    {
+        if (thisplayer.GetComponent<PhotonView>().IsMine)
+            thisplayer.GetComponent<Character_Controller>().Team.TeamScore;
+
+    }
+
+    public void Onclick_LeaveGame()
+    {
+
+        PhotonNetwork.LeaveRoom(true);
+        if (PlayerProperties.OnLogin_)
+        {
+            saved_score();
+            StartCoroutine(UserSaved());
         }
 
     }
