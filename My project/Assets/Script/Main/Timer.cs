@@ -16,7 +16,11 @@ public class Timer : MonoBehaviour
     private Text countdownText;
     float countdownTo = 6.0F;
     GameObject thisplayer;
+
+    [SerializeField]
     private TeamManager TeamRed;
+
+    [SerializeField]
     private TeamManager TeamBlue;
 
 
@@ -29,6 +33,11 @@ public class Timer : MonoBehaviour
 
     private void Update()
     {
+
+        if(Input.GetKeyDown(KeyCode.T)){
+
+        }
+
         countdownTo -= Time.deltaTime;
 
         if (countdownTo > 0)
@@ -39,35 +48,57 @@ public class Timer : MonoBehaviour
         {
             if (PlayerProperties.OnLogin_)
             {
-
+                WonOrLost();
                 saved_score();
                 StartCoroutine(UserSaved());
             }
         }
-
     }
-    private void WonOrLost()
-    {
-        if ()
-    }
-    private void saved_score()
-    {
-        if (thisplayer.GetComponent<PhotonView>().IsMine)
-            thisplayer.GetComponent<Character_Controller>().Team.TeamScore;
-
-    }
-
     public void Onclick_LeaveGame()
     {
 
         PhotonNetwork.LeaveRoom(true);
         if (PlayerProperties.OnLogin_)
         {
+            WonOrLost();
             saved_score();
             StartCoroutine(UserSaved());
         }
 
     }
+    private void WonOrLost()
+    {
+        if (TeamBlue.TeamScore > TeamRed.TeamScore)
+        {
+            TeamBlue.boolWon = true;
+        }
+        else
+        {
+            TeamRed.boolWon = true;
+        };
+    }
+    private void saved_score()
+    {
+        if (thisplayer.GetComponent<PhotonView>().IsMine)
+        {
+            if (thisplayer.GetComponent<Character_Controller>().Team.boolWon)
+            {
+ 
+                PlayerProperties.win_ = 1;
+            }
+            else
+            {
+                PlayerProperties.lose_ = 1;
+            }
+        }
+
+
+    }
+    private void deneme(){
+        print(thisplayer.GetComponent<Character_Controller>().Team.TeamName+" t ye basıldı");
+    }
+
+
     IEnumerator UserSaved()
     {
         WWWForm form = new WWWForm();
