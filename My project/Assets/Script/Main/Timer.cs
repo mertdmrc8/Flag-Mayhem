@@ -14,8 +14,8 @@ public class Timer : MonoBehaviour
     //Bu obje static olabilir.
 
     private Text countdownText;
-    float countdownTo = 6.0F;
-    GameObject thisplayer;
+    float countdownTo = 1000.0F;
+    public GameObject thisplayer;
 
     [SerializeField]
     private TeamManager TeamRed;
@@ -34,9 +34,9 @@ public class Timer : MonoBehaviour
     private void Update()
     {
 
-        if(Input.GetKeyDown(KeyCode.T)){
-
-        }
+        // if(Input.GetKeyDown(KeyCode.T)){
+        //     deneme();
+        // }
 
         countdownTo -= Time.deltaTime;
 
@@ -79,23 +79,29 @@ public class Timer : MonoBehaviour
     }
     private void saved_score()
     {
-        if (thisplayer.GetComponent<PhotonView>().IsMine)
+        if (thisplayer.GetComponent<Character_Controller>().Team.boolWon)
         {
-            if (thisplayer.GetComponent<Character_Controller>().Team.boolWon)
-            {
- 
-                PlayerProperties.win_ = 1;
-            }
-            else
-            {
-                PlayerProperties.lose_ = 1;
-            }
+
+            PlayerProperties.win_ = 1;
+            PlayerProperties.score_ += 1000;
         }
+        else
+        {
+            PlayerProperties.lose_ = 1;
+        }
+        PlayerProperties.score_ += thisplayer.GetComponent<Character_Controller>().flagscore;
+
 
 
     }
-    private void deneme(){
-        print(thisplayer.GetComponent<Character_Controller>().Team.TeamName+" t ye basıldı");
+    private void deneme()
+    {
+        print(thisplayer.GetComponent<Character_Controller>().Team.TeamName + " t ye basıldı isminesız");
+
+        if (thisplayer.GetComponent<PhotonView>().IsMine)
+            print(thisplayer.GetComponent<Character_Controller>().Team.TeamName + " t ye basıldı ismine ile ");
+
+
     }
 
 

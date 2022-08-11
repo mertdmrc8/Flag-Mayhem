@@ -36,8 +36,9 @@ public class Character_Controller : MonoBehaviourPun
     private bool triggerbool = true;
 
     public int varib = 0;
+    public int flagscore=0;
 
-
+    public Timer timer;
     void Awake()
     {
         pw = GetComponent<PhotonView>();
@@ -48,20 +49,19 @@ public class Character_Controller : MonoBehaviourPun
     {
         //bütün photon viewlere  odadaki bütün bilgiler gider  
 
+        timer = GameObject.Find("Timer").GetComponent<Timer>();
         if (pw.IsMine)
         {
             rb = GetComponent<Rigidbody2D>();
             anim.SetBool("isWalking", false);
+            timer.thisplayer=this.transform.gameObject;
         }
-
 
     }
 
 
     IEnumerator waitflag()
     {
-
-
         print(Team.name + " bayrak ayarlandi ");
         flag.enabled = false;
         yield return new WaitForSeconds(1);
@@ -83,10 +83,10 @@ public class Character_Controller : MonoBehaviourPun
             print("find killer :::" + Team.name);
 
             print("view id " + this.transform.gameObject.GetComponent<PhotonView>().ViewID);
-            
+
 
             if (this.transform.gameObject.GetComponent<PhotonView>().ViewID == killer_id)
-            { 
+            {
                 this.transform.GetComponent<PlayerDatabase>().UpdateAndAddData(100, 0, 1);
             }
         }
@@ -107,10 +107,10 @@ public class Character_Controller : MonoBehaviourPun
                 if (flag != null)
                 {
                     print("bayrak " + Team.name + "di");
-                    
+
                     flag.transform.parent = flag.flagbase.transform;
                     flag.transform.position = flag.flagbase.transform.position;
-                    flag.player=null;
+                    flag.player = null;
                     flag = null;
                 }
                 // print(this.gameObject.name + " , " + Team.Base_.gameObject.name);

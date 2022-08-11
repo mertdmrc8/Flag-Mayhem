@@ -27,8 +27,10 @@ public class BaseManager : MonoBehaviour
         TeamManager Team = gameObject.transform.parent.GetComponent<TeamManager>();
 
         if(flag!=null &&  flag.player.Team==Team){ 
+            //takım arkadası ise ,bu localclient değilse ??
             Character_Controller player =flag.player;
             player.Team.TeamScore++;
+            player.flagscore+=50;
             Destroy(flag.gameObject);   
             flagbase.CreateFlag();
             team_score++;
