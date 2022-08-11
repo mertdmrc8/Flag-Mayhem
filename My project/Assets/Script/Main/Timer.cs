@@ -16,7 +16,11 @@ public class Timer : MonoBehaviour
     private Text countdownText;
     float countdownTo = 6.0F;
     GameObject thisplayer;
+
+    [SerializeField]
     private TeamManager TeamRed;
+
+    [SerializeField]
     private TeamManager TeamBlue;
 
 
@@ -48,12 +52,25 @@ public class Timer : MonoBehaviour
     }
     private void WonOrLost()
     {
-        if ()
+        if (TeamBlue.TeamScore > TeamRed.TeamScore)
+        {
+            TeamBlue.boolWon = true;
+        }
+        else
+        {
+            TeamRed.boolWon = true;
+        };
     }
     private void saved_score()
     {
         if (thisplayer.GetComponent<PhotonView>().IsMine)
-            thisplayer.GetComponent<Character_Controller>().Team.TeamScore;
+        {
+            thisplayer.GetComponent<PlayerDatabase>().UpdateMatchData();
+            PlayerProperties.win_=1;
+        }
+        else{
+
+        }
 
     }
 

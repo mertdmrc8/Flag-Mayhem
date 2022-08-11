@@ -22,12 +22,12 @@ public class PlayerDatabase : MonoBehaviourPunCallbacks
         PlayerProperties.death_ += death;
         PlayerProperties.kill_ += kill;
 
-    }
-    [PunRPC]
-    private void UpdateMatchData(int win, int lose)
+    } 
+    public void UpdateMatchData()
     {
-        PlayerProperties.win_ += win;
-        PlayerProperties.lose_ += lose; 
+
+        PlayerProperties.win_ = 1;
+        PlayerProperties.lose_ =1; 
  
 
     }
@@ -58,7 +58,7 @@ public class PlayerDatabase : MonoBehaviourPunCallbacks
         SavedPlayerGameInfo();
         SceneManager.LoadScene(1);
     }
-
+     
     // public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     // {
     //     if( stream.IsWriting){
