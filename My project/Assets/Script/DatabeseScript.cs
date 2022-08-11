@@ -6,8 +6,6 @@ using UnityEngine.Networking;
 
 public class DatabeseScript : MonoBehaviour
 {
-
-
     [SerializeField]
     private GameObject authenticationPrefab;
 
@@ -16,7 +14,7 @@ public class DatabeseScript : MonoBehaviour
 
     private int postcode =0;
     readonly string login_posturl = "http://localhost:8080/auth/Login";
-    readonly string signin_posturl = "http://localhost:8080/auth/Sign-in";
+    readonly string signin_posturl = "http://localhost:8080/auth/sign-in";
 
 
     // Start is called before the first frame update
@@ -38,7 +36,8 @@ public class DatabeseScript : MonoBehaviour
 
         
         WWWForm form = new WWWForm();
-        form.AddField(email, password);
+        form.AddField("email", email);
+        form.AddField("password", password);
  
         UnityWebRequest www = UnityWebRequest.Post(login_posturl,form);
 
@@ -52,11 +51,13 @@ public class DatabeseScript : MonoBehaviour
         }
     }
 
-    IEnumerator SigninPosrRequest(string email, string password)
+    IEnumerator SigninPostRequest(string email, string password)
     {
         WWWForm form = new WWWForm();
-        form.AddField(email, password);
-
+        print("sign in de ");
+        form.AddField("email", email);
+        form.AddField("password", password);
+        print(signin_posturl);
 
         UnityWebRequest www = UnityWebRequest.Post(signin_posturl, form);
 
@@ -87,20 +88,18 @@ public class DatabeseScript : MonoBehaviour
 
     public void loginbutton()
     { 
-        Authentication(1);
+        Authentication(2);
 
 
     }
 
     public void signinbutton()
     { 
-        Authentication(2);
+        Authentication(1);
     }
 
     private void Authentication(int number)
     {
-
-
         postcode = number;
         GameObject cloneprefab = Instantiate(authenticationPrefab, new Vector3(Canvals.transform.position.x, Canvals.transform.position.y, Canvals.transform.position.z), Quaternion.identity);
 
@@ -120,7 +119,7 @@ public class DatabeseScript : MonoBehaviour
             case 1: 
                 print(input1.text);
                 print(input2.text);  
-                StartCoroutine(SigninPosrRequest(input1.text,input2.text)); 
+                StartCoroutine(SigninPostRequest(input1.text,input2.text)); 
 
                 break;
             case 2: 
@@ -141,5 +140,7 @@ public class DatabeseScript : MonoBehaviour
         });
     }
 
+
+  
 
 }
