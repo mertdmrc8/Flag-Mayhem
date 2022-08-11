@@ -24,7 +24,7 @@ public class Timer : MonoBehaviour
     private TeamManager TeamBlue;
 
 
-    readonly string saved_gameScore = "http://localhost:8080/UserArchive/GameScores";
+    readonly string saved_gameScore = "http://10.16.0.78:8080/UserArchive/GameScores";
 
     private void Start()
     {

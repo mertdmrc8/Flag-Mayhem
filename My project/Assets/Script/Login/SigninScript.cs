@@ -13,7 +13,7 @@ public class SigninScript : MonoBehaviour
     [SerializeField]
     private GameObject Canvals;
 
-    readonly string signin_posturl = "http://localhost:8080/auth/sign-in";
+    readonly string signin_posturl = "http://10.16.0.78:8080/auth/sign-in";
 
     public void signinbutton(){
         GameObject cloneprefab = Instantiate(prefab, new Vector3(Canvals.transform.position.x, Canvals.transform.position.y, Canvals.transform.position.z), Quaternion.identity);
