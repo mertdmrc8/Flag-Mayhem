@@ -79,14 +79,17 @@ public class Timer : MonoBehaviour
         if (TeamBlue.TeamScore > TeamRed.TeamScore)
         {
             TeamBlue.boolWon = true;
+            TeamRed.boolWon = false;
         }
         else if (TeamBlue.TeamScore == TeamRed.TeamScore)
         {
             TeamRed.boolWon = false;
+            TeamBlue.boolWon = false;
         }
         else
         {
-            TeamRed.boolWon = false;
+            TeamRed.boolWon = true;
+            TeamBlue.boolWon = false;
         }
     }
     private void saved_score()
