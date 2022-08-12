@@ -50,28 +50,27 @@ public class Timer : MonoBehaviour
         else
         {
 
-            PhotonNetwork.LeaveRoom(true);
+       //     PhotonNetwork.LeaveRoom(true);
             if (PlayerProperties.OnLogin_)
             {
                 WonOrLost();
                 saved_score();
                 StartCoroutine(UserSaved());
-                SceneManager.LoadScene(1);
-
             }
+          //  SceneManager.LoadScene(1);
         }
     }
     public void Onclick_LeaveGame()
     {
 
-        PhotonNetwork.LeaveRoom(true);
+      //  PhotonNetwork.LeaveRoom(true);
         if (PlayerProperties.OnLogin_)
         {
             WonOrLost();
             saved_score();
             StartCoroutine(UserSaved());
-            SceneManager.LoadScene(1);
         }
+      //  SceneManager.LoadScene(1);
 
     }
     private void WonOrLost()

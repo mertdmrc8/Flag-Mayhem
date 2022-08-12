@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class Character_Controller : MonoBehaviourPun
 {
-
-    public int roomid_;
     public Animator anim;
     Rigidbody2D rb;
     public float speed = 7f;
@@ -23,28 +21,41 @@ public class Character_Controller : MonoBehaviourPun
     public TeamManager Team;
 
     public int health = 100;
-    public string nickname;
 
-    private bool health_bool = true;
-
-    public PlayersController PlayerController;
+    public Players_Controller PlayerController;
 
     [HideInInspector] public bool isFacingRight = true;
 
     PhotonView pw;
-
-    private bool triggerbool = true;
-
-    public int varib = 0;
     public int flagscore = 0;
 
     public Timer timer;
+
+    private GameObject Ordinary_go;
+    private Image bar;
+    private Text Nickname;
+
+
     void Awake()
     {
         pw = GetComponent<PhotonView>();
-        PlayerController = GameObject.Find("PlayerController").GetComponent<PlayersController>();
+        PlayerController = GameObject.Find("PlayerController").GetComponent<Players_Controller>();
         PlayerController.photonViews.Add(pw);
+        this.gameObject.transform.parent = PlayerController.transform;
+        GameObject healthbar = this.gameObject.transform.Find("Canvas").gameObject.transform.Find("healthbar").gameObject;
+        bar = healthbar.transform.Find("bar_").GetComponent<Image>();
+        float R = UnityEngine.Random.Range(0, 226 / 255f);
+        float G = UnityEngine.Random.Range(0, 226 / 255f);
+        float B = UnityEngine.Random.Range(0, 226 / 255f);
+        Color ColorToBeGenerate = new Color(R, G, B);
+        bar.color= ColorToBeGenerate;
+       // print(new Color((float)UnityEngine.Random.Range(0, 255), (float)UnityEngine.Random.Range(0, 255), (float)UnityEngine.Random.Range(0, 255)));
+        Nickname = this.gameObject.transform.Find("Canvas").gameObject.transform.Find("NickName").gameObject.GetComponent<Text>();
+        Nickname.text = PlayerProperties.nickname_;
+
     }
+
+
     void Start()
     {
         //bütün photon viewlere  odadaki bütün bilgiler gider  
@@ -59,6 +70,19 @@ public class Character_Controller : MonoBehaviourPun
 
     }
 
+    [PunRPC]
+    private void SetTeam()
+    {
+        TeamManager CurrentTeam = PlayerController.getCurrentTeam();
+
+        this.transform.parent = CurrentTeam.transform;
+        // this.transform.position = CurrentTeam.Base_.transform.position;
+        this.GetComponent<Character_Controller>().Team = CurrentTeam;
+        CurrentTeam.team_players.Add(this.GetComponent<Character_Controller>());
+        this.transform.GetComponent<SpriteRenderer>().color = CurrentTeam.Color.color;
+
+
+    } 
 
     IEnumerator waitflag()
     {
@@ -140,7 +164,7 @@ public class Character_Controller : MonoBehaviourPun
         if (Team != null)
         {
 
-            Team.healthbar.fillAmount = health / 100f;
+            bar.fillAmount = health / 100f;
         }
 
         //Movement
