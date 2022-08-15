@@ -121,6 +121,8 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
         int i = 0;
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {     
+
+            print( "i degeri"+playerInfo.Key);
             if (playerInfo.Value.UserId == PhotonNetwork.LocalPlayer.UserId)
             { 
                     PlayerProperties.roomid_=playerInfo.Value.ActorNumber-1;

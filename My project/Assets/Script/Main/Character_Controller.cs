@@ -40,7 +40,7 @@ public class Character_Controller : MonoBehaviourPun
     {
         pw = GetComponent<PhotonView>();
         PlayerController = GameObject.Find("PlayerController").GetComponent<Players_Controller>();
-        PlayerController.photonViews.Add(pw);
+       
         this.gameObject.transform.parent = PlayerController.transform;
         GameObject healthbar = this.gameObject.transform.Find("Canvas").gameObject.transform.Find("healthbar").gameObject;
         bar = healthbar.transform.Find("bar_").GetComponent<Image>();
@@ -59,7 +59,7 @@ public class Character_Controller : MonoBehaviourPun
     void Start()
     {
         //bütün photon viewlere  odadaki bütün bilgiler gider  
-
+     
         timer = GameObject.Find("Timer").GetComponent<Timer>();
         if (pw.IsMine)
         {
@@ -72,12 +72,14 @@ public class Character_Controller : MonoBehaviourPun
 
     [PunRPC]
     private void SetTeam()
-    {
+    {   
+        
         TeamManager CurrentTeam = PlayerController.getCurrentTeam();
 
         this.transform.parent = CurrentTeam.transform;
         // this.transform.position = CurrentTeam.Base_.transform.position;
         this.GetComponent<Character_Controller>().Team = CurrentTeam;
+        print(Team.name +"den üretildi");
         CurrentTeam.team_players.Add(this.GetComponent<Character_Controller>());
         this.transform.GetComponent<SpriteRenderer>().color = CurrentTeam.Color.color;
 
