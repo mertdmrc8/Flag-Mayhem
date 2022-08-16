@@ -46,7 +46,7 @@ public class Players_Controller : MonoBehaviourPun
 
         object[] PlayerData = { PlayerProperties.roomid_ };
 
-        self_Ordinary = PhotonNetwork.Instantiate("Ordinary_", Vector3.zero, Quaternion.identity, 0, PlayerData);
+        self_Ordinary = PhotonNetwork.Instantiate("Ordinary", Vector3.zero, Quaternion.identity, 0, PlayerData);
         Camera.Ordinary=self_Ordinary;
         self_viewİd = self_Ordinary.GetComponent<PhotonView>().ViewID;
         photonviewlist.Add(self_Ordinary.GetComponent<PhotonView>());
