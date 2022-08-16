@@ -265,7 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 106363938236644778}
   speed: 5
-  jumpSpeed: 7
+  jumpSpeed: 8
   flag: {fileID: 0}
   groundLayer:
     serializedVersion: 2

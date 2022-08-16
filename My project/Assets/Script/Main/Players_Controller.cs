@@ -17,6 +17,7 @@ public class Players_Controller : MonoBehaviourPun
     private GameObject self_Ordinary;
     private int self_viewİd;
     private bool SetTeam = true;
+    private CameraManager Camera;
     public List<PhotonView> photonviewlist;
     public TeamManager getCurrentTeam()
     {
@@ -33,6 +34,12 @@ public class Players_Controller : MonoBehaviourPun
             return TeamBlue;
         }
     }
+    void Awake()
+    {
+        Camera= GameObject.Find("Camera").gameObject.GetComponent<CameraManager>();
+        
+    }
+
 
     void Start()
     {
@@ -40,6 +47,7 @@ public class Players_Controller : MonoBehaviourPun
         object[] PlayerData = { PlayerProperties.roomid_ };
 
         self_Ordinary = PhotonNetwork.Instantiate("Ordinary", Vector3.zero, Quaternion.identity, 0, PlayerData);
+        Camera.Ordinary=self_Ordinary;
         self_viewİd = self_Ordinary.GetComponent<PhotonView>().ViewID;
         photonviewlist.Add(self_Ordinary.GetComponent<PhotonView>());
         get_next_player();
