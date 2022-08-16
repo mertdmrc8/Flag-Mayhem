@@ -16,8 +16,8 @@ public class LoginScript : MonoBehaviour
     [SerializeField]
     private GameObject Canvals;
 
-    readonly string login_posturl = "http://10.16.0.78:8080/auth/Login";
-    readonly string info_geturl = "http://10.16.0.78:8080/UserArchive/user-info";
+    readonly string login_posturl = "http://10.16.0.74:8080/auth/Login";
+    readonly string info_geturl = "http://10.16.0.74:8080/UserArchive/user-info";
 
 
     public void loginbutton()

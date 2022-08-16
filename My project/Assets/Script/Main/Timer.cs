@@ -28,7 +28,7 @@ public class Timer : MonoBehaviour
 
     private Image TimerImage;
 
-    readonly string saved_gameScore = "http://10.16.0.78:8080/UserArchive/GameScores";
+    readonly string saved_gameScore = "http://10.16.0.74:8080/UserArchive/GameScores";
 
     private void Start()
     {
@@ -61,27 +61,27 @@ public class Timer : MonoBehaviour
         else
         {
 
-            //     PhotonNetwork.LeaveRoom(true);
+              PhotonNetwork.LeaveRoom(true);
             if (PlayerProperties.OnLogin_)
             {
                 WonOrLost();
                 saved_score();
                 StartCoroutine(UserSaved());
             }
-            //  SceneManager.LoadScene(1);
+              SceneManager.LoadScene(1);
         }
     }
     public void Onclick_LeaveGame()
     {
 
-        //  PhotonNetwork.LeaveRoom(true);
+           PhotonNetwork.LeaveRoom(true);
         if (PlayerProperties.OnLogin_)
         {
             WonOrLost();
             saved_score();
             StartCoroutine(UserSaved());
         }
-        //  SceneManager.LoadScene(1);
+         SceneManager.LoadScene(1);
 
     }
     private void WonOrLost()

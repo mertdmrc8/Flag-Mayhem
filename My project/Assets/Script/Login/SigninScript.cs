@@ -13,7 +13,7 @@ public class SigninScript : MonoBehaviour
     [SerializeField]
     private GameObject Canvals;
 
-    readonly string signin_posturl = "http://10.16.0.78:8080/auth/sign-in";
+    readonly string signin_posturl = "http://10.16.0.74:8080/auth/sign-in";
 
     public void signinbutton()
     {

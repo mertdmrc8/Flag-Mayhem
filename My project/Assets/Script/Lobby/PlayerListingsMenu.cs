@@ -54,7 +54,7 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
             AddPlayerListing(playerInfo.Value);
-         }
+        }
         setroomid();
 
     }
@@ -77,13 +77,14 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     {
 
 
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient&& _listings.Count>1)
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
+            PhotonNetwork.LoadLevel(2);
+            print("starta basıldı ");
+
         }
-        PhotonNetwork.LoadLevel(2);
-        print("starta basıldı ");
 
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -121,14 +122,14 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     {
         int i = 0;
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
-        {     
+        {
 
-            print( "i degeri"+playerInfo.Key);
+            print("i degeri" + playerInfo.Key);
             if (playerInfo.Value.UserId == PhotonNetwork.LocalPlayer.UserId)
-            { 
-                    PlayerProperties.roomid_=playerInfo.Value.ActorNumber-1;
+            {
+                PlayerProperties.roomid_ = playerInfo.Value.ActorNumber - 1;
             }
-             
+
             i++;
         }
 
