@@ -8,7 +8,7 @@ public static class PlayerProperties
     // private static string password="";
     private static string token = "";
     private static bool OnLogin = false;
-    private static string id = ""; 
+    private static string id = "";
     private static string nickname = "";
     private static bool in_room = false;
     private static int roomid = -1;
@@ -25,7 +25,7 @@ public static class PlayerProperties
 
     public static string token_ { get { return token; } set { token = value; } }
     public static bool OnLogin_ { get { return OnLogin; } set { OnLogin = value; } }
-    public static string id_ { get { return id; } set { id = value; } } 
+    public static string id_ { get { return id; } set { id = value; } }
 
     public static string nickname_ { get { return nickname; } set { nickname = value; } }
     public static int kill_ { get { return kill; } set { kill = value; } }
@@ -35,5 +35,17 @@ public static class PlayerProperties
     public static int roomid_ { get { return roomid; } set { roomid = value; } }
     public static int win_ { get { return win; } set { win = value; } }
     public static int lose_ { get { return lose; } set { lose = value; } }
+
+
+    public static void resetdata()
+    {
+    in_room=false;
+    kill = 0;
+    death = 0;
+    score = 0;
+    win = 0;
+    lose = 0; 
+}
+      
 
 }

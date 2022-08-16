@@ -29,6 +29,7 @@ public class TeamManager : MonoBehaviour
         ordinary_.gameObject.SetActive(false);
         print(name +" aktif değil health 100");
         ordinary_.health=100;
+        print( this.transform.name+" "+Base_.name);
         ordinary_.transform.position = Base_.gameObject.transform.position;
         ordinary_.gameObject.SetActive(true);
 
