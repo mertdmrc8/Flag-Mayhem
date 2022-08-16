@@ -82,7 +82,8 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
         }
-        PhotonNetwork.LoadLevel(3);
+        PhotonNetwork.LoadLevel(2);
+        print("starta basıldı ");
 
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
