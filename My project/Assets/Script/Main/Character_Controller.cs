@@ -231,8 +231,7 @@ public class Character_Controller : MonoBehaviourPun
 
         if (Input.GetKeyDown(KeyCode.Space) && isTouchingGround)
         {
-
-            print("space e basıldı ");
+ 
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
 
         }
