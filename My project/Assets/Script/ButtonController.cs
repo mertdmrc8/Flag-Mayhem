@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-public class ButtonController : MonoBehaviour
+public class ButtonController : MonoBehaviourPunCallbacks
 {
 
 
@@ -21,5 +21,10 @@ public class ButtonController : MonoBehaviour
         Application.Quit();
     }
  
+    public void return_main(){
+        PhotonNetwork.LeaveLobby();
+        SceneManager.LoadScene(0);
+        
+    }
    
 }
