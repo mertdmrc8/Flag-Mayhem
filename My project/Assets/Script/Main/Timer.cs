@@ -13,8 +13,11 @@ public class Timer : MonoBehaviour
 
     //Bu obje static olabilir.
 
+    [SerializeField]
+    private GameObject countdown;
     private Text countdownText;
-    float countdownTo = 60.0F;
+    [SerializeField]
+    private float countdownTo = 60.0F;
     public GameObject thisplayer;
 
     [SerializeField]
@@ -23,16 +26,20 @@ public class Timer : MonoBehaviour
     [SerializeField]
     private TeamManager TeamBlue;
 
+    private Image TimerImage;
 
     readonly string saved_gameScore = "http://10.16.0.78:8080/UserArchive/GameScores";
 
     private void Start()
     {
-        countdownText = GameObject.Find("CountdownText").GetComponent<Text>();
+        countdownText = countdown.transform.Find("CountdownText").gameObject.transform.GetComponent<Text>();
+        TimerImage = countdown.GetComponent<Image>();
     }
 
     private void Update()
     {
+
+        TimerImage.fillAmount = countdownTo / 60f;
 
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -43,34 +50,38 @@ public class Timer : MonoBehaviour
 
         countdownTo -= Time.deltaTime;
 
-        if (countdownTo > 0)
+        if (countdownTo >= 10)
         {
             countdownText.text = countdownTo.ToString().Substring(0, 2);
+        }
+        else if (countdownTo > 0 && countdownTo < 10)
+        {
+            countdownText.text = countdownTo.ToString().Substring(0, 1);
         }
         else
         {
 
-       //     PhotonNetwork.LeaveRoom(true);
+            //     PhotonNetwork.LeaveRoom(true);
             if (PlayerProperties.OnLogin_)
             {
                 WonOrLost();
                 saved_score();
                 StartCoroutine(UserSaved());
             }
-          //  SceneManager.LoadScene(1);
+            //  SceneManager.LoadScene(1);
         }
     }
     public void Onclick_LeaveGame()
     {
 
-      //  PhotonNetwork.LeaveRoom(true);
+        //  PhotonNetwork.LeaveRoom(true);
         if (PlayerProperties.OnLogin_)
         {
             WonOrLost();
             saved_score();
             StartCoroutine(UserSaved());
         }
-      //  SceneManager.LoadScene(1);
+        //  SceneManager.LoadScene(1);
 
     }
     private void WonOrLost()

@@ -40,7 +40,7 @@ public class Character_Controller : MonoBehaviourPun
     {
         pw = GetComponent<PhotonView>();
         PlayerController = GameObject.Find("PlayerController").GetComponent<Players_Controller>();
-       
+
         this.gameObject.transform.parent = PlayerController.transform;
         GameObject healthbar = this.gameObject.transform.Find("Canvas").gameObject.transform.Find("healthbar").gameObject;
         bar = healthbar.transform.Find("bar_").GetComponent<Image>();
@@ -48,8 +48,8 @@ public class Character_Controller : MonoBehaviourPun
         float G = UnityEngine.Random.Range(0, 226 / 255f);
         float B = UnityEngine.Random.Range(0, 226 / 255f);
         Color ColorToBeGenerate = new Color(R, G, B);
-        bar.color= ColorToBeGenerate;
-       // print(new Color((float)UnityEngine.Random.Range(0, 255), (float)UnityEngine.Random.Range(0, 255), (float)UnityEngine.Random.Range(0, 255)));
+        bar.color = ColorToBeGenerate;
+        // print(new Color((float)UnityEngine.Random.Range(0, 255), (float)UnityEngine.Random.Range(0, 255), (float)UnityEngine.Random.Range(0, 255)));
         Nickname = this.gameObject.transform.Find("Canvas").gameObject.transform.Find("NickName").gameObject.GetComponent<Text>();
         Nickname.text = PlayerProperties.nickname_;
 
@@ -59,7 +59,7 @@ public class Character_Controller : MonoBehaviourPun
     void Start()
     {
         //bütün photon viewlere  odadaki bütün bilgiler gider  
-     
+
         timer = GameObject.Find("Timer").GetComponent<Timer>();
         if (pw.IsMine)
         {
@@ -72,19 +72,19 @@ public class Character_Controller : MonoBehaviourPun
 
     [PunRPC]
     private void SetTeam()
-    {   
-        
+    {
+
         TeamManager CurrentTeam = PlayerController.getCurrentTeam();
 
         this.transform.parent = CurrentTeam.transform;
         // this.transform.position = CurrentTeam.Base_.transform.position;
         this.GetComponent<Character_Controller>().Team = CurrentTeam;
-        print(Team.name +"den üretildi");
+        print(Team.name + "den üretildi");
         CurrentTeam.team_players.Add(this.GetComponent<Character_Controller>());
         this.transform.GetComponent<SpriteRenderer>().color = CurrentTeam.Color.color;
 
 
-    } 
+    }
 
     IEnumerator waitflag()
     {
@@ -227,8 +227,12 @@ public class Character_Controller : MonoBehaviourPun
         }
 
 
-        if (Input.GetButtonDown("Jump") && isTouchingGround)
+    
+
+        if (Input.GetKeyDown(KeyCode.Space) && isTouchingGround)
         {
+
+            print("space e basıldı ");
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
 
         }
