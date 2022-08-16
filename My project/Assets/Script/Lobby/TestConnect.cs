@@ -15,13 +15,15 @@ public class TestConnect : MonoBehaviourPunCallbacks
     {
         print("connecting to server");
         PhotonNetwork.AutomaticallySyncScene = true;
-        if(PlayerProperties.nickname_==""){
+        if (PlayerProperties.nickname_ == "")
+        {
             PhotonNetwork.NickName = MasterManager.GameSettings.NicName;
         }
         PhotonNetwork.GameVersion = MasterManager.GameSettings.GameVersion;
         PhotonNetwork.ConnectUsingSettings();
 
     }
+
 
 
     public override void OnConnectedToMaster()
@@ -31,16 +33,17 @@ public class TestConnect : MonoBehaviourPunCallbacks
         // MasterManager.DebugConsole.AddText("deneme",this);
         if (!PhotonNetwork.InLobby)
         {
+            PlayerProperties.resetdata();
             PhotonNetwork.JoinLobby();
             print("joined lobby  ");
             if (PlayerProperties.OnLogin_)
             {
                 PhotonNetwork.LocalPlayer.NickName = PlayerProperties.nickname_;
             }
-    
-            print("my nick__"+PlayerProperties.nickname_);
 
-        print("my nick"+PhotonNetwork.LocalPlayer.NickName);
+            print("my nick__" + PlayerProperties.nickname_);
+
+            print("my nick" + PhotonNetwork.LocalPlayer.NickName);
         }
 
     }

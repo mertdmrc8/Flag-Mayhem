@@ -13,16 +13,17 @@ public class SigninScript : MonoBehaviour
     [SerializeField]
     private GameObject Canvals;
 
-    readonly string signin_posturl = "http://localhost:8080/auth/sign-in";
+    readonly string signin_posturl = "http://10.16.0.78:8080/auth/sign-in";
 
-    public void signinbutton(){
+    public void signinbutton()
+    {
         GameObject cloneprefab = Instantiate(prefab, new Vector3(Canvals.transform.position.x, Canvals.transform.position.y, Canvals.transform.position.z), Quaternion.identity);
 
         cloneprefab.transform.eulerAngles = new Vector3(cloneprefab.transform.eulerAngles.x, cloneprefab.transform.eulerAngles.y, cloneprefab.transform.eulerAngles.z - 90f);
         cloneprefab.transform.parent = Canvals.transform;
-        Text  nick = GameObject.Find("Input0").GetComponent<Text>();
-        Text  email = GameObject.Find("Input1").GetComponent<Text>();
-        Text  password = GameObject.Find("Input2").GetComponent<Text>();
+        Text nick = GameObject.Find("Input0").GetComponent<Text>();
+        Text email = GameObject.Find("Input1").GetComponent<Text>();
+        Text password = GameObject.Find("Input2").GetComponent<Text>();
 
         Button connection_button = cloneprefab.transform.GetChild(0).GetComponent<Button>();
         Button exit_button = cloneprefab.transform.GetChild(1).GetComponent<Button>();
@@ -30,18 +31,19 @@ public class SigninScript : MonoBehaviour
 
         connection_button.onClick.AddListener(delegate
         {
-            StartCoroutine(SigninPostRequest(nick.text,email.text,password.text));
+            StartCoroutine(SigninPostRequest(nick.text, email.text, password.text));
+            Destroy(cloneprefab);
 
         });
 
-          exit_button.onClick.AddListener(delegate
-        {
-            Destroy(cloneprefab); 
-        });
+        exit_button.onClick.AddListener(delegate
+      {
+          Destroy(cloneprefab);
+      });
     }
 
 
-    IEnumerator SigninPostRequest(string nick,string email, string password)
+    IEnumerator SigninPostRequest(string nick, string email, string password)
     {
         WWWForm form = new WWWForm();
         print("sign in de ");
@@ -51,26 +53,27 @@ public class SigninScript : MonoBehaviour
         print(signin_posturl);
 
 
-        UnityWebRequest www = UnityWebRequest.Post(signin_posturl, form); 
+        UnityWebRequest www = UnityWebRequest.Post(signin_posturl, form);
 
 
-        var operation =www.SendWebRequest();
+        var operation = www.SendWebRequest();
         yield return operation;
 
         // while(!operation.isDone)
         //    await Task.Yield();
 
-        if(www.result==UnityWebRequest.Result.Success){
+        if (www.result == UnityWebRequest.Result.Success)
+        {
             print("ifte");
             Debug.Log($"response: {www.downloadHandler.text}");
         }
         else
             Debug.Log("failed");
-        
+
         if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
-        { 
-            print(www.error); 
-        } 
+        {
+            print(www.error);
+        }
 
     }
 

@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class Character_Controller : MonoBehaviourPun
 {
-
-    public int roomid_;
     public Animator anim;
     Rigidbody2D rb;
     public float speed = 7f;
@@ -23,45 +21,73 @@ public class Character_Controller : MonoBehaviourPun
     public TeamManager Team;
 
     public int health = 100;
-    public string nickname;
 
-    private bool health_bool = true;
-
-    public PlayersController PlayerController;
+    public Players_Controller PlayerController;
 
     [HideInInspector] public bool isFacingRight = true;
 
     PhotonView pw;
+    public int flagscore = 0;
 
-    private bool triggerbool = true;
+    public Timer timer;
 
-    public int varib = 0;
+    private GameObject Ordinary_go;
+    private Image bar;
+    private Text Nickname;
 
 
     void Awake()
     {
         pw = GetComponent<PhotonView>();
-        PlayerController = GameObject.Find("PlayerController").GetComponent<PlayersController>();
-        PlayerController.photonViews.Add(pw);
+        PlayerController = GameObject.Find("PlayerController").GetComponent<Players_Controller>();
+
+        this.gameObject.transform.parent = PlayerController.transform;
+        GameObject healthbar = this.gameObject.transform.Find("Canvas").gameObject.transform.Find("healthbar").gameObject;
+        bar = healthbar.transform.Find("bar_").GetComponent<Image>();
+        float R = UnityEngine.Random.Range(0, 226 / 255f);
+        float G = UnityEngine.Random.Range(0, 226 / 255f);
+        float B = UnityEngine.Random.Range(0, 226 / 255f);
+        Color ColorToBeGenerate = new Color(R, G, B);
+        bar.color = ColorToBeGenerate;
+        // print(new Color((float)UnityEngine.Random.Range(0, 255), (float)UnityEngine.Random.Range(0, 255), (float)UnityEngine.Random.Range(0, 255)));
+        Nickname = this.gameObject.transform.Find("Canvas").gameObject.transform.Find("NickName").gameObject.GetComponent<Text>();
+        Nickname.text = PlayerProperties.nickname_;
+
     }
+
+
     void Start()
     {
         //bütün photon viewlere  odadaki bütün bilgiler gider  
 
+        timer = GameObject.Find("Timer").GetComponent<Timer>();
         if (pw.IsMine)
         {
             rb = GetComponent<Rigidbody2D>();
             anim.SetBool("isWalking", false);
+            timer.thisplayer = this.transform.gameObject;
         }
+
+    }
+
+    [PunRPC]
+    private void SetTeam()
+    {
+
+        TeamManager CurrentTeam = PlayerController.getCurrentTeam();
+
+        this.transform.parent = CurrentTeam.transform;
+        // this.transform.position = CurrentTeam.Base_.transform.position;
+        this.GetComponent<Character_Controller>().Team = CurrentTeam;
+        print(Team.name + "den üretildi");
+        CurrentTeam.team_players.Add(this.GetComponent<Character_Controller>());
+        this.transform.GetComponent<SpriteRenderer>().color = CurrentTeam.Color.color;
 
 
     }
 
-
     IEnumerator waitflag()
     {
-
-
         print(Team.name + " bayrak ayarlandi ");
         flag.enabled = false;
         yield return new WaitForSeconds(1);
@@ -83,10 +109,10 @@ public class Character_Controller : MonoBehaviourPun
             print("find killer :::" + Team.name);
 
             print("view id " + this.transform.gameObject.GetComponent<PhotonView>().ViewID);
-            
+
 
             if (this.transform.gameObject.GetComponent<PhotonView>().ViewID == killer_id)
-            { 
+            {
                 this.transform.GetComponent<PlayerDatabase>().UpdateAndAddData(100, 0, 1);
             }
         }
@@ -102,15 +128,14 @@ public class Character_Controller : MonoBehaviourPun
             if (health <= 0)
             {
                 //BURASI RPC OLMALI MI?
-                PlayerProperties.death_++;
                 print(Team.name + "health 0 ");
                 if (flag != null)
                 {
                     print("bayrak " + Team.name + "di");
-                    
+
                     flag.transform.parent = flag.flagbase.transform;
                     flag.transform.position = flag.flagbase.transform.position;
-                    flag.player=null;
+                    flag.player = null;
                     flag = null;
                 }
                 // print(this.gameObject.name + " , " + Team.Base_.gameObject.name);
@@ -118,6 +143,7 @@ public class Character_Controller : MonoBehaviourPun
                 if (pw.IsMine)
                 {
 
+                    PlayerProperties.death_++;
                     print("bullet :" + bullet.incoming_id);
                     //rpc gereksiz olabilr karşıdaki istemciden bir şey çalışsın isteniyor ama sadece ölenlerde çalışıyor 
                     // o kişiyi bulup rpcsini çalıştırmak daha doru 
@@ -140,7 +166,7 @@ public class Character_Controller : MonoBehaviourPun
         if (Team != null)
         {
 
-            Team.healthbar.fillAmount = health / 100f;
+            bar.fillAmount = health / 100f;
         }
 
         //Movement
@@ -201,8 +227,12 @@ public class Character_Controller : MonoBehaviourPun
         }
 
 
-        if (Input.GetButtonDown("Jump") && isTouchingGround)
+    
+
+        if (Input.GetKeyDown(KeyCode.Space) && isTouchingGround)
         {
+
+            print("space e basıldı ");
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
 
         }

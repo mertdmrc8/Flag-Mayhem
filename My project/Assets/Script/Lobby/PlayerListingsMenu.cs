@@ -82,7 +82,7 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
         }
-        PhotonNetwork.LoadLevel(2);
+        PhotonNetwork.LoadLevel(3);
 
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -121,6 +121,8 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
         int i = 0;
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {     
+
+            print( "i degeri"+playerInfo.Key);
             if (playerInfo.Value.UserId == PhotonNetwork.LocalPlayer.UserId)
             { 
                     PlayerProperties.roomid_=playerInfo.Value.ActorNumber-1;
