@@ -15,6 +15,7 @@ TagManager:
   - BlueHouse
   - Endgame
   - FlagHandle
+  - Suply
   layers:
   - Default
   - TransparentFX

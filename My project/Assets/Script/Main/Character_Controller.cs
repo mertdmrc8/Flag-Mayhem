@@ -35,6 +35,10 @@ public class Character_Controller : MonoBehaviourPun
     private Image bar;
     private Text Nickname;
 
+    public enum weaponMod { mode1, mode2 };
+    public weaponMod wMod;
+
+
 
     void Awake()
     {
@@ -122,6 +126,7 @@ public class Character_Controller : MonoBehaviourPun
     {
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
 
+
         if (bullet != null && bullet.ordinary != this.gameObject)
         {
             health -= 50;
@@ -157,6 +162,26 @@ public class Character_Controller : MonoBehaviourPun
             }
             Destroy(bullet.gameObject);
         }
+        if (collision.tag == "Suply")
+        {
+            int modw;
+            modw = UnityEngine.Random.Range(1, 3);
+
+            if (modw==1)
+            {
+                modw = 1;
+            }
+            else if(modw==2)    
+            {
+                modw=2;
+            }
+            else
+            {
+
+                modw = default;
+            }
+        }
+
     }
 
     // Update is called once per frame
@@ -168,7 +193,7 @@ public class Character_Controller : MonoBehaviourPun
 
             bar.fillAmount = health / 100f;
         }
-
+        #region
         //Movement
 
         if (pw.IsMine)
@@ -194,6 +219,7 @@ public class Character_Controller : MonoBehaviourPun
             }
 
         }
+        
         if (isTouchingGround)
         {
             anim.SetBool("isGrounded", true);
@@ -203,10 +229,12 @@ public class Character_Controller : MonoBehaviourPun
         {
             anim.SetBool("isGrounded", false);
         }
+#endregion
+
 
     }
 
-
+    #region movement
     private void Movement()
     {
         direction = Input.GetAxisRaw("Horizontal");
@@ -244,6 +272,9 @@ public class Character_Controller : MonoBehaviourPun
             anim.SetBool("isJump", true);
         }
     }
+    #endregion
+   
 
+    
 
 }
