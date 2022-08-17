@@ -77,7 +77,7 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     {
 
 
-        if (PhotonNetwork.IsMasterClient&& _listings.Count>1)
+        if (PhotonNetwork.IsMasterClient&& _listings.Count>0)
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;

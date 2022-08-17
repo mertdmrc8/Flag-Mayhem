@@ -194,7 +194,15 @@ public class Character_Controller : MonoBehaviourPun
             }
 
         }
-
+        if (isTouchingGround)
+        {
+            anim.SetBool("isGrounded", true);
+            anim.SetBool("isJump", false);
+        }
+        else
+        {
+            anim.SetBool("isGrounded", false);
+        }
 
     }
 
@@ -227,13 +235,13 @@ public class Character_Controller : MonoBehaviourPun
         }
 
 
-    
+
 
         if (Input.GetKeyDown(KeyCode.Space) && isTouchingGround)
         {
- 
-            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
 
+            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            anim.SetBool("isJump", true);
         }
     }
 
