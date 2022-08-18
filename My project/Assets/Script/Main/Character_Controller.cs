@@ -35,7 +35,7 @@ public class Character_Controller : MonoBehaviourPun
     private Image bar;
     private Text Nickname;
 
-    public enum weaponMod { mode1, mode2 };
+    public enum weaponMod { mode1, mode2, mode3};
     public weaponMod wMod;
 
 
@@ -162,25 +162,7 @@ public class Character_Controller : MonoBehaviourPun
             }
             Destroy(bullet.gameObject);
         }
-        if (collision.tag == "Suply")
-        {
-            int modw;
-            modw = UnityEngine.Random.Range(1, 3);
-
-            if (modw==1)
-            {
-                modw = 1;
-            }
-            else if(modw==2)    
-            {
-                modw=2;
-            }
-            else
-            {
-
-                modw = default;
-            }
-        }
+       
 
     }
 

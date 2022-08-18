@@ -70,8 +70,8 @@ public class playerShoot : MonoBehaviour
         switch (cc.wMod)
         {
             case Character_Controller.weaponMod.mode1:
-                bulletType = multipleBullet;
-                GameObject gameob = PhotonNetwork.Instantiate("MultipleBullet", firingPoint.position, Quaternion.Euler(new Vector3(0f, 0f, angle))) as GameObject;
+                bulletType = bullet;
+                GameObject gameob = PhotonNetwork.Instantiate("Bullet", firingPoint.position, Quaternion.Euler(new Vector3(0f, 0f, angle))) as GameObject;
                 gameob.GetComponent<PhotonView>().RPC("destroybullet", RpcTarget.All, this.transform.gameObject.GetComponent<PhotonView>().ViewID);
 
                 break;
@@ -80,11 +80,16 @@ public class playerShoot : MonoBehaviour
                 GameObject gameob1 = PhotonNetwork.Instantiate("RapidBullet", firingPoint.position, Quaternion.Euler(new Vector3(0f, 0f, angle))) as GameObject;
                 gameob1.GetComponent<PhotonView>().RPC("destroybullet", RpcTarget.All, this.transform.gameObject.GetComponent<PhotonView>().ViewID);
                 break;
+
+            case Character_Controller.weaponMod.mode3:
+                bulletType = multipleBullet;
+                GameObject gameob2 = PhotonNetwork.Instantiate("MultipleBullet", firingPoint.position, Quaternion.Euler(new Vector3(0f, 0f, angle))) as GameObject;
+                gameob2.GetComponent<PhotonView>().RPC("destroybullet", RpcTarget.All, this.transform.gameObject.GetComponent<PhotonView>().ViewID);
+
+                break;
             
             default:
-                bulletType = bullet;
-                GameObject gameob2 = PhotonNetwork.Instantiate("Bullet", firingPoint.position, Quaternion.Euler(new Vector3(0f, 0f, angle))) as GameObject;
-                gameob2.GetComponent<PhotonView>().RPC("destroybullet", RpcTarget.All, this.transform.gameObject.GetComponent<PhotonView>().ViewID);
+               
                 break;
         }
 
