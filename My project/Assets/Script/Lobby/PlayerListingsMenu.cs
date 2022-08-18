@@ -77,14 +77,14 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     {
 
 
-        if (PhotonNetwork.IsMasterClient )
-        {
+        // if (PhotonNetwork.IsMasterClient )
+        // {
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
             PhotonNetwork.LoadLevel(2);
             print("starta basıldı ");
 
-        }
+        //}
 
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
