@@ -7,8 +7,7 @@ using UnityEngine;
 public class Players_Controller : MonoBehaviourPun
 {
     public TeamManager TeamRed;
-    public TeamManager TeamBlue;
-    public List<PhotonView> photonViews = new List<PhotonView>();
+    public TeamManager TeamBlue; 
     private Boolean youTurn = false;
     private int nextPlayerid;
     private int next_playerCount = 0;
@@ -51,6 +50,10 @@ public class Players_Controller : MonoBehaviourPun
         self_viewİd = self_Ordinary.GetComponent<PhotonView>().ViewID;
         photonviewlist.Add(self_Ordinary.GetComponent<PhotonView>());
         get_next_player();
+        foreach (PhotonView item in photonviewlist)
+        {
+            print(item.ViewID);
+        }
 
     }
 
@@ -91,6 +94,10 @@ public class Players_Controller : MonoBehaviourPun
 
     private void get_next_player()
     {
+        foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players )
+        {
+            print(playerInfo.Value);
+        }
 
         if (next_playerCount<PhotonNetwork.CurrentRoom.PlayerCount-1)
         {
