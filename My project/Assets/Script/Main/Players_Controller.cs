@@ -7,17 +7,99 @@ using UnityEngine;
 public class Players_Controller : MonoBehaviourPun
 {
     public TeamManager TeamRed;
-    public TeamManager TeamBlue; 
+    public TeamManager TeamBlue;
     private Boolean youTurn = false;
-    private int nextPlayerid;
-    private int next_playerCount = 0;
+    private int nextPlayerViewİd;
+    private int next_playerCount = -1;
     private int roomPLayer_count;
-    private int return_countinfo = 0;
-    private GameObject self_Ordinary;
+    private int return_countinfo = 0; 
     private int self_viewİd;
     private bool SetTeam = true;
     private CameraManager Camera;
     public List<PhotonView> photonviewlist;
+    private int PlayerCountInScene = 0;
+    private bool isChangePlayerCount = true;
+    private int sira = 0;
+
+    void Awake()
+    {
+        Camera = GameObject.Find("Camera").gameObject.GetComponent<CameraManager>();
+
+        int i = 0;
+        foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
+        {
+
+            if (playerInfo.Value.UserId == PhotonNetwork.LocalPlayer.UserId)
+            {
+                sira = i;
+            }
+            i++;
+
+        }
+    }
+
+    public void AddPlayerCountInScene()
+    {
+        PlayerCountInScene++;
+        isChangePlayerCount = true;
+
+
+    }
+    [PunRPC]
+    private void CreatePlayer()
+    {
+
+        if (PlayerCountInScene < PhotonNetwork.CurrentRoom.PlayerCount)
+        {
+            if (sira == PlayerCountInScene)
+            {
+                GameObject self_Soldier = PhotonNetwork.Instantiate("Player_Soldier", Vector3.zero, Quaternion.identity, 0, null);
+                self_Soldier.GetComponent<PhotonView>().RPC("SetTeam", RpcTarget.All, null);
+                Camera.Ordinary = self_Soldier;
+            }
+
+        }
+    }
+
+    void Update()
+    {
+        if (isChangePlayerCount)
+        {
+            isChangePlayerCount = false;
+            CreatePlayer();
+        };
+
+
+        // if (SetTeam)
+        // {
+        //     if (nextPlayerViewİd == self_viewİd)
+        //     {
+        //         print("youTurn");
+        //         youTurn = true;//sıradaki oyncu beniyim
+        //     }
+        //     else if (null != PhotonNetwork.GetPhotonView(nextPlayerViewİd).gameObject)// o oyuncu yu bul sahne de viewi
+        //     {
+        //         //değilsem bekle 
+        //         print("next player");
+        //         get_next_player();
+        //     }
+
+
+
+
+        //     if (youTurn)
+        //     {
+        //         youTurn = false;
+        //         self_Ordinary.GetComponent<PhotonView>().RPC("SetTeam", RpcTarget.All, null);
+
+        //         get_next_player();
+        //     }
+
+
+        // }
+
+    }
+
     public TeamManager getCurrentTeam()
     {
         if (TeamBlue.team_players.Count == TeamRed.team_players.Count)
@@ -33,88 +115,62 @@ public class Players_Controller : MonoBehaviourPun
             return TeamBlue;
         }
     }
-    void Awake()
-    {
-        Camera= GameObject.Find("Camera").gameObject.GetComponent<CameraManager>();
-        
-    }
+
 
 
     void Start()
     {
 
-        object[] PlayerData = { PlayerProperties.roomid_ };
+        // object[] PlayerData = { PlayerProperties.roomid_ };
 
-        self_Ordinary = PhotonNetwork.Instantiate("Player_Soldier", Vector3.zero, Quaternion.identity, 0, PlayerData);
-        Camera.Ordinary=self_Ordinary;
-        self_viewİd = self_Ordinary.GetComponent<PhotonView>().ViewID;
-        photonviewlist.Add(self_Ordinary.GetComponent<PhotonView>());
-        get_next_player();
-        foreach (PhotonView item in photonviewlist)
-        {
-            print(item.ViewID);
-        }
+        // self_Ordinary = PhotonNetwork.Instantiate("Player_Soldier", Vector3.zero, Quaternion.identity, 0, PlayerData);
+        // Camera.Ordinary = self_Ordinary;
+        // self_viewİd = self_Ordinary.GetComponent<PhotonView>().ViewID;
 
+        // get_next_player();
+        // foreach (PhotonView item in photonviewlist)
+        // {
+        //     print(item.ViewID);
+        // }
     }
+
+
 
 
     // Update is called once per frame
-    void Update()
-    {
-        if (SetTeam)
-        {
-            if (nextPlayerid == self_viewİd)
-            {
-                print("youTurn");
-                youTurn = true;//sıradaki oyncu beniyim
-            }
-            else if (null != PhotonNetwork.GetPhotonView(nextPlayerid))// o oyuncu yu bul sahne de viewi
-            {
-                next_playerCount++;//değilsem bekle 
-                print("next player");
-                get_next_player();
-            }
 
-
-
-
-            if (youTurn)
-            {
-                youTurn = false;
-                print("onjoined main");
-                self_Ordinary.GetComponent<PhotonView>().RPC("SetTeam", RpcTarget.All, null);
-                next_playerCount++;
-                get_next_player();
-            }
-
-
-        }
-
-    }
 
     private void get_next_player()
     {
-        foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players )
+        //     foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players )
+        //     {
+        //         print(playerInfo.Value);
+        //     }
+        next_playerCount++;
+        if (next_playerCount < PhotonNetwork.CurrentRoom.PlayerCount)
         {
-            print(playerInfo.Value);
-        }
-
-        if (next_playerCount<PhotonNetwork.CurrentRoom.PlayerCount-1)
-        {
-            int j=0;
+            int j = 0;
             foreach (PhotonView view in photonviewlist)
             {
 
                 if (next_playerCount == j)
                 {
-                    nextPlayerid = view.ViewID;
+                    nextPlayerViewİd = view.ViewID;
                     break;
                 }
                 j++;
             }
-        }else{
-            SetTeam=false;
         }
+        else
+        {
+            SetTeam = false;
+        }
+        foreach (PhotonView item in photonviewlist)
+        {
+            print("photon view id " + item.ViewID);
+        }
+
+
     }
 
 }

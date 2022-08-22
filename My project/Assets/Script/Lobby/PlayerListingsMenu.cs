@@ -54,6 +54,8 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
             AddPlayerListing(playerInfo.Value);
+
+            
         }
         setroomid();
 
@@ -71,6 +73,11 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
             print(listing.name);
             _listings.Add(listing);
         }
+
+
+
+
+
     }
 
     public void OnClickStart()
@@ -121,10 +128,13 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     private void setroomid()
     {
         int i = 0;
+
+        PlayerProperties.CurrentRoomİd_= PhotonNetwork.LocalPlayer.UserId;
+
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
+           
 
-            print("i degeri" + playerInfo.Key);
             if (playerInfo.Value.UserId == PhotonNetwork.LocalPlayer.UserId)
             {
                 PlayerProperties.roomid_ = playerInfo.Value.ActorNumber - 1;

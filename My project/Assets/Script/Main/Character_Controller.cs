@@ -40,7 +40,7 @@ public class Character_Controller : MonoBehaviourPun
     {
         pw = GetComponent<PhotonView>();
         PlayerController = GameObject.Find("PlayerController").GetComponent<Players_Controller>();
-
+         this.gameObject.GetComponent<PhotonView>().RPC("addlist", RpcTarget.All, null);
         this.gameObject.transform.parent = PlayerController.transform;
         GameObject healthbar = this.gameObject.transform.Find("Canvas").gameObject.transform.Find("healthbar").gameObject;
         bar = healthbar.transform.Find("bar_").GetComponent<Image>();
@@ -54,12 +54,18 @@ public class Character_Controller : MonoBehaviourPun
         Nickname.text = PlayerProperties.nickname_;
 
     }
-
+    [PunRPC]
+    public void addlist()
+    {
+ 
+        PlayerController.photonviewlist.Add(this.transform.GetComponent<PhotonView>());
+    }
 
     void Start()
     {
         //bütün photon viewlere  odadaki bütün bilgiler gider  
 
+        PlayerController.AddPlayerCountInScene();
         timer = GameObject.Find("Timer").GetComponent<Timer>();
         if (pw.IsMine)
         {
