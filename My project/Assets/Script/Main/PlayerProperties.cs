@@ -18,12 +18,14 @@ public static class PlayerProperties
     private static int score = 0;
     private static int win = 0;
     private static int lose = 0;
+    private static int sira=0;
 
 
 
     //  public static string email_  {   get   {   return email;   }    set    {  email = value;  }  }
     //  public static string password_  {   get   {   return password;   }    set    {  password = value;  }  }
 
+    public static int sira_ { get { return sira; } set { sira = value; } }
     public static string token_ { get { return token; } set { token = value; } }
     public static bool OnLogin_ { get { return OnLogin; } set { OnLogin = value; } }
     public static string id_ { get { return id; } set { id = value; } }

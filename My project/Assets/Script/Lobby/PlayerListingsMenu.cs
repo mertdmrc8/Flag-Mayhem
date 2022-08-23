@@ -19,7 +19,7 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
 
     [SerializeField]
     private Button button;
-
+    private int room_sira=-1;
 
     private void Awake()
     {
@@ -54,6 +54,7 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
             AddPlayerListing(playerInfo.Value);
+            room_sira++;
 
             
         }
@@ -129,7 +130,7 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     {
         int i = 0;
 
-        PlayerProperties.CurrentRoomİd_= PhotonNetwork.LocalPlayer.UserId;
+        PlayerProperties.sira_= room_sira;
 
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {

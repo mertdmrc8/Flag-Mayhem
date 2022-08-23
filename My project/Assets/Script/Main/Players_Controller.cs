@@ -12,7 +12,7 @@ public class Players_Controller : MonoBehaviourPun
     private int nextPlayerViewİd;
     private int next_playerCount = -1;
     private int roomPLayer_count;
-    private int return_countinfo = 0; 
+    private int return_countinfo = 0;
     private int self_viewİd;
     private bool SetTeam = true;
     private CameraManager Camera;
@@ -25,17 +25,8 @@ public class Players_Controller : MonoBehaviourPun
     {
         Camera = GameObject.Find("Camera").gameObject.GetComponent<CameraManager>();
 
-        int i = 0;
-        foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
-        {
-
-            if (playerInfo.Value.UserId == PhotonNetwork.LocalPlayer.UserId)
-            {
-                sira = i;
-            }
-            i++;
-
-        }
+        sira = PlayerProperties.sira_;
+        print("benim sira " +sira );
     }
 
     public void AddPlayerCountInScene()
@@ -70,33 +61,6 @@ public class Players_Controller : MonoBehaviourPun
         };
 
 
-        // if (SetTeam)
-        // {
-        //     if (nextPlayerViewİd == self_viewİd)
-        //     {
-        //         print("youTurn");
-        //         youTurn = true;//sıradaki oyncu beniyim
-        //     }
-        //     else if (null != PhotonNetwork.GetPhotonView(nextPlayerViewİd).gameObject)// o oyuncu yu bul sahne de viewi
-        //     {
-        //         //değilsem bekle 
-        //         print("next player");
-        //         get_next_player();
-        //     }
-
-
-
-
-        //     if (youTurn)
-        //     {
-        //         youTurn = false;
-        //         self_Ordinary.GetComponent<PhotonView>().RPC("SetTeam", RpcTarget.All, null);
-
-        //         get_next_player();
-        //     }
-
-
-        // }
 
     }
 
@@ -118,26 +82,6 @@ public class Players_Controller : MonoBehaviourPun
 
 
 
-    void Start()
-    {
-
-        // object[] PlayerData = { PlayerProperties.roomid_ };
-
-        // self_Ordinary = PhotonNetwork.Instantiate("Player_Soldier", Vector3.zero, Quaternion.identity, 0, PlayerData);
-        // Camera.Ordinary = self_Ordinary;
-        // self_viewİd = self_Ordinary.GetComponent<PhotonView>().ViewID;
-
-        // get_next_player();
-        // foreach (PhotonView item in photonviewlist)
-        // {
-        //     print(item.ViewID);
-        // }
-    }
-
-
-
-
-    // Update is called once per frame
 
 
     private void get_next_player()
@@ -173,4 +117,53 @@ public class Players_Controller : MonoBehaviourPun
 
     }
 
+    void Start()
+    {
+
+        // object[] PlayerData = { PlayerProperties.roomid_ };
+
+        // self_Ordinary = PhotonNetwork.Instantiate("Player_Soldier", Vector3.zero, Quaternion.identity, 0, PlayerData);
+        // Camera.Ordinary = self_Ordinary;
+        // self_viewİd = self_Ordinary.GetComponent<PhotonView>().ViewID;
+
+        // get_next_player();
+        // foreach (PhotonView item in photonviewlist)
+        // {
+        //     print(item.ViewID);
+        // }
+    }
+
+
+
+
+    // Update is called once per frame
+
+
+    // if (SetTeam)
+    // {
+    //     if (nextPlayerViewİd == self_viewİd)
+    //     {
+    //         print("youTurn");
+    //         youTurn = true;//sıradaki oyncu beniyim
+    //     }
+    //     else if (null != PhotonNetwork.GetPhotonView(nextPlayerViewİd).gameObject)// o oyuncu yu bul sahne de viewi
+    //     {
+    //         //değilsem bekle 
+    //         print("next player");
+    //         get_next_player();
+    //     }
+
+
+
+
+    //     if (youTurn)
+    //     {
+    //         youTurn = false;
+    //         self_Ordinary.GetComponent<PhotonView>().RPC("SetTeam", RpcTarget.All, null);
+
+    //         get_next_player();
+    //     }
+
+
+    // }
 }
