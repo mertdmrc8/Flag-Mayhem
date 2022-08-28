@@ -23,6 +23,7 @@ public class Character_Controller : MonoBehaviourPun
     public int health = 100;
 
     public Players_Controller PlayerController;
+    public ConsoleManager Console;
 
     [HideInInspector] public bool isFacingRight = true;
 
@@ -33,14 +34,16 @@ public class Character_Controller : MonoBehaviourPun
 
     private GameObject Ordinary_go;
     private Image bar;
-    private Text Nickname;
+    public Text Nickname;
 
+    public bool unlimitedhealth=false;
 
     void Awake()
     {
+        Console = GameObject.Find("ButtonController").GetComponent<ConsoleManager>();
         pw = GetComponent<PhotonView>();
         PlayerController = GameObject.Find("PlayerController").GetComponent<Players_Controller>();
-         this.gameObject.GetComponent<PhotonView>().RPC("addlist", RpcTarget.All, null);
+        this.gameObject.GetComponent<PhotonView>().RPC("addlist", RpcTarget.All, null);
         this.gameObject.transform.parent = PlayerController.transform;
         GameObject healthbar = this.gameObject.transform.Find("Canvas").gameObject.transform.Find("healthbar").gameObject;
         bar = healthbar.transform.Find("bar_").GetComponent<Image>();
@@ -51,13 +54,26 @@ public class Character_Controller : MonoBehaviourPun
         bar.color = ColorToBeGenerate;
         // print(new Color((float)UnityEngine.Random.Range(0, 255), (float)UnityEngine.Random.Range(0, 255), (float)UnityEngine.Random.Range(0, 255)));
         Nickname = this.gameObject.transform.Find("Canvas").gameObject.transform.Find("NickName").gameObject.GetComponent<Text>();
-        Nickname.text = PlayerProperties.nickname_;
+
+
+
+
 
     }
+
+    [PunRPC]
+    private void setnick(String nick)
+    {
+        //pw is mine olmıyacak???
+        Nickname.text = nick;
+
+    }
+
+
     [PunRPC]
     public void addlist()
     {
- 
+
         PlayerController.photonviewlist.Add(this.transform.GetComponent<PhotonView>());
     }
 
@@ -73,6 +89,10 @@ public class Character_Controller : MonoBehaviourPun
             anim.SetBool("isWalking", false);
             timer.thisplayer = this.transform.gameObject;
         }
+
+
+        object[] obj = { PlayerProperties.nickname_ };
+        transform.gameObject.GetComponent<PhotonView>().RPC("setnick", RpcTarget.All, obj);
 
     }
 
@@ -119,7 +139,8 @@ public class Character_Controller : MonoBehaviourPun
 
             if (this.transform.gameObject.GetComponent<PhotonView>().ViewID == killer_id)
             {
-                this.transform.GetComponent<PlayerDatabase>().UpdateAndAddData(100, 0, 1);
+                PlayerProperties.score_ += 100;
+                PlayerProperties.kill_ += 1;
             }
         }
     }
@@ -130,7 +151,7 @@ public class Character_Controller : MonoBehaviourPun
 
         if (bullet != null && bullet.ordinary != this.gameObject)
         {
-            health -= 50;
+            health -= 34;
             if (health <= 0)
             {
                 //BURASI RPC OLMALI MI?
@@ -198,6 +219,42 @@ public class Character_Controller : MonoBehaviourPun
             {
                 anim.SetBool("isWalking", false);
             }
+
+            if (Console.isactive)
+            {
+                if (Console.code == "health")
+                {
+                    print("health");
+                    unlimitedhealth=true;
+                    Console.code = "";
+
+                }
+                if (Console.code == "health*")
+                {
+                    unlimitedhealth=false;
+                    Console.code = "";
+                }
+                if (Console.code == "bullet")
+                {
+                    transform.GetComponent<playerShoot>().fireRate = 0.1f;
+                    Console.code = "";
+                }
+                if (Console.code == "bullet*")
+                {
+                    transform.GetComponent<playerShoot>().fireRate = 0.2f;
+                    Console.code = "";
+                }
+
+            }
+        if(unlimitedhealth){
+            health=100;
+        }
+
+
+
+
+
+
 
         }
         if (isTouchingGround)

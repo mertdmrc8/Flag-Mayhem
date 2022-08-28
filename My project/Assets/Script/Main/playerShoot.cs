@@ -6,16 +6,17 @@ using Photon.Pun;
 public class playerShoot : MonoBehaviour
 {
     public float fireRate = 0.2f;
-    public Transform firingPoint;
+    public GameObject RotatePoint;
     public GameObject bullet;
     float timeUntilFire;
     Character_Controller cc;
 
-
+    private GameObject BulletTransform ;
     private void Start()
     {
-        cc = gameObject.GetComponent<Character_Controller>();
-
+        
+        BulletTransform= RotatePoint.transform.Find("BulletTransform").gameObject;
+        cc = gameObject.GetComponent<Character_Controller>(); 
         ParticleSystem part = GetComponentInChildren<ParticleSystem>();
 
     }
@@ -31,6 +32,9 @@ public class playerShoot : MonoBehaviour
                 timeUntilFire = Time.time + fireRate;
             }
         }
+        else{
+            RotatePoint.SetActive(false);
+        }
 
 
 
@@ -40,8 +44,8 @@ public class playerShoot : MonoBehaviour
     {
         var part = GetComponentInChildren<ParticleSystem>();
         part.Play();
-        float angle = cc.isFacingRight ? 0f : 180f;
-        GameObject gameob = PhotonNetwork.Instantiate("Bullet", firingPoint.position, Quaternion.Euler(new Vector3(0f, 0f, angle)));
+        float angle = RotatePoint.transform.GetComponent<Aim>().rotZ;
+        GameObject gameob = PhotonNetwork.Instantiate("Bullet", BulletTransform.transform.position, Quaternion.Euler(new Vector3(0f, 0f, angle)));
         gameob.GetComponent<PhotonView>().RPC("destroybullet",RpcTarget.All,this.transform.gameObject.GetComponent<PhotonView>().ViewID);
          
     } 

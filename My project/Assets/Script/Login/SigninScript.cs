@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -13,12 +14,18 @@ public class SigninScript : MonoBehaviour
     [SerializeField]
     private GameObject Canvals;
 
-    readonly string signin_posturl = "http://10.16.0.74:8080/auth/sign-in";
+    readonly string signin_posturl = "http://192.168.1.144:8080/auth/sign-in";
+
+
+    private Text infobar;
 
     public void signinbutton()
     {
         GameObject cloneprefab = Instantiate(prefab, new Vector3(Canvals.transform.position.x, Canvals.transform.position.y, Canvals.transform.position.z), Quaternion.identity);
 
+        infobar = cloneprefab.transform.Find("info").GetComponent<Text>();
+
+        
         cloneprefab.transform.eulerAngles = new Vector3(cloneprefab.transform.eulerAngles.x, cloneprefab.transform.eulerAngles.y, cloneprefab.transform.eulerAngles.z - 90f);
         cloneprefab.transform.parent = Canvals.transform;
         Text nick = GameObject.Find("Input0").GetComponent<Text>();
@@ -31,8 +38,15 @@ public class SigninScript : MonoBehaviour
 
         connection_button.onClick.AddListener(delegate
         {
+            bool boolean_=nick.text==""|| email.text==""||password.text=="";
+            if(!boolean_){
+                
             StartCoroutine(SigninPostRequest(nick.text, email.text, password.text));
-            Destroy(cloneprefab);
+            }
+            else{
+                infobar.text="Lutfen butun formu doldurunuz";
+            }
+           // Destroy(cloneprefab);
 
         });
 
@@ -66,6 +80,10 @@ public class SigninScript : MonoBehaviour
         {
             print("ifte");
             Debug.Log($"response: {www.downloadHandler.text}");
+            
+            Data stuff = JsonConvert.DeserializeObject<Data>($"{www.downloadHandler.text}");
+             infobar.text=stuff.message;
+            
         }
         else
             Debug.Log("failed");

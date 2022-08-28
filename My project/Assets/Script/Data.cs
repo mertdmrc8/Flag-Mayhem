@@ -8,4 +8,5 @@ public class Data
     public string id;
     public bool OnLogin;
     public string NickName;
+    public string message;
 }

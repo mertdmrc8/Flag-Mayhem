@@ -18,7 +18,7 @@ public static class PlayerProperties
     private static int score = 0;
     private static int win = 0;
     private static int lose = 0;
-    private static int sira=0;
+    private static int sira = 0;
 
 
 
@@ -41,15 +41,43 @@ public static class PlayerProperties
     public static int lose_ { get { return lose; } set { lose = value; } }
 
 
-    public static void resetdata()
+public static void resetdataGame()
     {
+
+       
+        CurrentRoomİd = ""; 
         in_room = false;
+        roomid = -1;
         kill = 0;
         death = 0;
         score = 0;
         win = 0;
         lose = 0;
+        sira = 0;
+ 
     }
+
+
+    public static void resetdata()
+    {
+
+        token = "";
+        OnLogin = false;
+        id = "";
+        CurrentRoomİd = "";
+        nickname = "";
+        in_room = false;
+        roomid = -1;
+        kill = 0;
+        death = 0;
+        score = 0;
+        win = 0;
+        lose = 0;
+        sira = 0;
+ 
+    }
+
+
 
 
 }

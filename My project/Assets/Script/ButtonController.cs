@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -8,6 +9,9 @@ using UnityEngine.UI;
 public class ButtonController : MonoBehaviourPunCallbacks
 {
 
+
+
+    readonly string setOnlogin_posturl = "http://localhost:8080/UserArchive/setOnlogin";
 
     readonly string saved_gameScore = "http://localhost:8080/UserArchive/GameScores";
 
@@ -20,14 +24,26 @@ public class ButtonController : MonoBehaviourPunCallbacks
     {
         Application.Quit();
     }
- 
-    public void return_main(){
+
+    public void return_main()
+    {    
+        
+        
+            print("burda");
+        if( PlayerProperties.OnLogin_){
+            StartCoroutine(transform.gameObject.GetComponent<QuitGameRequest>().SetOnloginPostRequest())  ; 
+
+        }
+        PlayerProperties.resetdata();
+
         PhotonNetwork.LeaveLobby();
         SceneManager.LoadScene(0);
-        
+
     }
 
-        
+ 
+
+
 
 
 

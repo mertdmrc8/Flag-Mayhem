@@ -16,13 +16,18 @@ public class LoginScript : MonoBehaviour
     [SerializeField]
     private GameObject Canvals;
 
-    readonly string login_posturl = "http://10.16.0.74:8080/auth/Login";
-    readonly string info_geturl = "http://10.16.0.74:8080/UserArchive/user-info";
+    readonly string login_posturl = "http://192.168.1.144:8080/auth/Login";
+    readonly string info_geturl = "http://192.168.1.144:8080/UserArchive/user-info";
+
+    private Text infobar;
+
 
 
     public void loginbutton()
     {
         GameObject cloneprefab = Instantiate(prefab, new Vector3(Canvals.transform.position.x, Canvals.transform.position.y, Canvals.transform.position.z), Quaternion.identity);
+        infobar = cloneprefab.transform.Find("info").GetComponent<Text>();
+
 
         cloneprefab.transform.eulerAngles = new Vector3(cloneprefab.transform.eulerAngles.x, cloneprefab.transform.eulerAngles.y, cloneprefab.transform.eulerAngles.z - 90f);
         cloneprefab.transform.parent = Canvals.transform;
@@ -47,6 +52,44 @@ public class LoginScript : MonoBehaviour
 
 
 
+    }
+
+     IEnumerator LoginPostRequest(string email, string password)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("email", email);
+        form.AddField("password", password);
+
+        UnityWebRequest www = UnityWebRequest.Post(login_posturl, form);
+
+        var operation = www.SendWebRequest();
+        yield return operation;
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            print("login den donen");
+            Debug.Log($"response: {www.downloadHandler.text}");
+           
+            Data stuff = JsonConvert.DeserializeObject<Data>($"{www.downloadHandler.text}");
+
+            infobar.text=stuff.message;
+            PlayerProperties.token_ = stuff.token;
+            PlayerProperties.id_= stuff.id;
+            print("token ve id kayıt ");
+            print("token:"+PlayerProperties.token_ );
+            print("id:"+PlayerProperties.id_);
+        }
+        else
+            Debug.Log("response failed");
+
+
+        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+        {
+
+            print(www.error);
+        }
+        print("login post bitis");
+        StartCoroutine(GetInfo());
     }
     IEnumerator GetInfo()
     {
@@ -95,41 +138,7 @@ public class LoginScript : MonoBehaviour
         }
     }
 
-    IEnumerator LoginPostRequest(string email, string password)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("email", email);
-        form.AddField("password", password);
-
-        UnityWebRequest www = UnityWebRequest.Post(login_posturl, form);
-
-        var operation = www.SendWebRequest();
-        yield return operation;
-
-        if (www.result == UnityWebRequest.Result.Success)
-        {
-            print("login den donen");
-            Debug.Log($"response: {www.downloadHandler.text}");
-
-            Data stuff = JsonConvert.DeserializeObject<Data>($"{www.downloadHandler.text}");
-            PlayerProperties.token_ = stuff.token;
-            PlayerProperties.id_= stuff.id;
-            print("token ve id kayıt ");
-            print("token:"+PlayerProperties.token_ );
-            print("id:"+PlayerProperties.id_);
-        }
-        else
-            Debug.Log("response failed");
-
-
-        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
-        {
-
-            print(www.error);
-        }
-        print("login post bitis");
-        StartCoroutine(GetInfo());
-    }
+   
 
 
 }

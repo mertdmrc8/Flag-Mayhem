@@ -33,7 +33,7 @@ public class TestConnect : MonoBehaviourPunCallbacks
         // MasterManager.DebugConsole.AddText("deneme",this);
         if (!PhotonNetwork.InLobby)
         {
-            PlayerProperties.resetdata();
+            PlayerProperties.resetdataGame();
             PhotonNetwork.JoinLobby();
             print("joined lobby  ");
             if (PlayerProperties.OnLogin_)

@@ -28,7 +28,7 @@ public class Timer : MonoBehaviour
 
     private Image TimerImage;
 
-    readonly string saved_gameScore = "http://10.16.0.74:8080/UserArchive/GameScores";
+    readonly string saved_gameScore = "http://192.168.1.144:8080/UserArchive/GameScores";
 
     private void Start()
     {
@@ -40,13 +40,7 @@ public class Timer : MonoBehaviour
     {
 
         TimerImage.fillAmount = countdownTo / 60f;
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            WonOrLost();
-            saved_score();
-            show_data();
-        }
+ 
 
         countdownTo -= Time.deltaTime;
 
@@ -74,9 +68,9 @@ public class Timer : MonoBehaviour
     public void Onclick_LeaveGame()
     {
 
-           PhotonNetwork.LeaveRoom(true);
+           PhotonNetwork.LeaveRoom(true); 
         if (PlayerProperties.OnLogin_)
-        {
+        { 
             WonOrLost();
             saved_score();
             StartCoroutine(UserSaved());
