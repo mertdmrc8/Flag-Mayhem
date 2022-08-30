@@ -28,7 +28,7 @@ public class Timer : MonoBehaviour
 
     private Image TimerImage;
 
-    readonly string saved_gameScore = "http://192.168.1.144:8080/UserArchive/GameScores";
+    readonly string saved_gameScore = "http://localhost:8080/UserArchive/GameScores";
 
     private void Start()
     {
@@ -40,7 +40,7 @@ public class Timer : MonoBehaviour
     {
 
         TimerImage.fillAmount = countdownTo / 60f;
- 
+
 
         countdownTo -= Time.deltaTime;
 
@@ -53,29 +53,31 @@ public class Timer : MonoBehaviour
             countdownText.text = countdownTo.ToString().Substring(0, 1);
         }
         else
-        {
+        { 
+            print("odadan çıkıldi");
 
-              PhotonNetwork.LeaveRoom(true);
+            PhotonNetwork.LeaveRoom(true);
+
             if (PlayerProperties.OnLogin_)
             {
                 WonOrLost();
                 saved_score();
                 StartCoroutine(UserSaved());
             }
-              SceneManager.LoadScene(1);
+            SceneManager.LoadScene(1);
         }
     }
     public void Onclick_LeaveGame()
     {
 
-           PhotonNetwork.LeaveRoom(true); 
+        PhotonNetwork.LeaveRoom(true);
         if (PlayerProperties.OnLogin_)
-        { 
+        {
             WonOrLost();
             saved_score();
             StartCoroutine(UserSaved());
         }
-         SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1);
 
     }
     private void WonOrLost()

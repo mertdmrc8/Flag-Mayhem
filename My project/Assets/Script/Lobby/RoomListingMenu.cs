@@ -16,6 +16,9 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
     private List<Roomlisting> _listings = new List<Roomlisting>();
 
 
+    [SerializeField]
+    private PlayerListingsMenu _playerlistingMenu;
+
     private RoomsCanvases _roomsCanvases;
 
     public void FirstInitialize(RoomsCanvases canvases)
@@ -32,9 +35,11 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
         //PlayerProperties.roomid_=PhotonNetwork.CurrentRoom
         
         _content.DestroyChildren();
-        print("joined room "); 
-
-        _listings.Clear();
+        print("joined room ");  
+        _listings.Clear(); 
+        print("asdadaf");
+        PhotonNetwork.AutomaticallySyncScene = true;
+        _playerlistingMenu.GetCurrentRoomPlayers();
     }
 
 

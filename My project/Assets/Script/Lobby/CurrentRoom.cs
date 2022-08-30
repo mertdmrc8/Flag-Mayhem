@@ -5,7 +5,7 @@ using UnityEngine;
 public class CurrentRoom : MonoBehaviour
 {
     //mevcut oda
-
+ 
     [SerializeField]
     private PlayerListingsMenu _playerListingsMenu;
     [SerializeField]
@@ -28,11 +28,12 @@ public class CurrentRoom : MonoBehaviour
 
     public void Show()
     {  
-        this.gameObject.SetActive(true);
+        this.gameObject.SetActive(true);  
 
     }
     public void Hide()
-    {
+    { 
         this.gameObject.SetActive(false);
+
     }
 }

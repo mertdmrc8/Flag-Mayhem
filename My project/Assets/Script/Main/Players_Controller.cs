@@ -27,6 +27,7 @@ public class Players_Controller : MonoBehaviourPun
 
         sira = PlayerProperties.sira_;
         print("benim sira " +sira );
+
     }
 
     public void AddPlayerCountInScene()
@@ -129,7 +130,7 @@ public class Players_Controller : MonoBehaviourPun
 
     void Start()
     {
-
+        PhotonNetwork.AutomaticallySyncScene=false;
         // object[] PlayerData = { PlayerProperties.roomid_ };
 
         // self_Ordinary = PhotonNetwork.Instantiate("Player_Soldier", Vector3.zero, Quaternion.identity, 0, PlayerData);

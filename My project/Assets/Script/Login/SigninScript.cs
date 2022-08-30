@@ -14,7 +14,7 @@ public class SigninScript : MonoBehaviour
     [SerializeField]
     private GameObject Canvals;
 
-    readonly string signin_posturl = "http://192.168.1.144:8080/auth/sign-in";
+    readonly string signin_posturl = "http://localhost:8080/auth/sign-in";
 
 
     private Text infobar;

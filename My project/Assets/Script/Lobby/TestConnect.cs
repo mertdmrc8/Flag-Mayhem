@@ -14,7 +14,7 @@ public class TestConnect : MonoBehaviourPunCallbacks
     private void Start()
     {
         print("connecting to server");
-        PhotonNetwork.AutomaticallySyncScene = true;
+        
         if (PlayerProperties.nickname_ == "")
         {
             PhotonNetwork.NickName = MasterManager.GameSettings.NicName;

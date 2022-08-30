@@ -1074,6 +1074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ba7b22e1f27244dafab6fe7e2bb820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _content: {fileID: 746697981}
 --- !u!1 &1023347018
 GameObject:
   m_ObjectHideFlags: 0
@@ -3111,6 +3112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _content: {fileID: 1993816641}
   _roomlisting: {fileID: 7021938624510901934, guid: cd6dd0b18d9150b43926625ac6b4f889, type: 3}
+  _playerlistingMenu: {fileID: 1202499540}
 --- !u!224 &5192578044222494208
 RectTransform:
   m_ObjectHideFlags: 0

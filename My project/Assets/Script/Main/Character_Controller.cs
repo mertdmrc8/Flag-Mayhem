@@ -40,6 +40,9 @@ public class Character_Controller : MonoBehaviourPun
 
     void Awake()
     {
+
+    
+
         Console = GameObject.Find("ButtonController").GetComponent<ConsoleManager>();
         pw = GetComponent<PhotonView>();
         PlayerController = GameObject.Find("PlayerController").GetComponent<Players_Controller>();

@@ -19,7 +19,7 @@ public static class PlayerProperties
     private static int win = 0;
     private static int lose = 0;
     private static int sira = 0;
-
+    public static bool deneme =false;
 
 
     //  public static string email_  {   get   {   return email;   }    set    {  email = value;  }  }

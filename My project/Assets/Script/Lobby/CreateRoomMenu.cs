@@ -24,8 +24,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
             return;
          RoomOptions options= new RoomOptions(); 
          options.MaxPlayers=4;
-         options.PublishUserId=true;
-              print("create room join or create room");
+         options.PublishUserId=true; 
 
           PhotonNetwork.JoinOrCreateRoom(_roomName.text,options,TypedLobby.Default );
 
@@ -35,8 +34,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
 
 
     public override void OnCreatedRoom()
-    { 
-        print("CreateRoon Succesfuly ");
+    {  
         //SceneManager.LoadScene(2);
         //_roomsCanvases.CurrentRoomsCanvas.Show();//Büyük canvalsın leave roomunu göster
 

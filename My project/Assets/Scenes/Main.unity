@@ -5484,7 +5484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdown: {fileID: 291940248}
-  countdownTo: 6000
+  countdownTo: 60
   thisplayer: {fileID: 0}
   TeamRed: {fileID: 1654592345}
   TeamBlue: {fileID: 1477320742}
@@ -14113,7 +14113,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &7448160864897314156
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,44 +19,50 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
 
     [SerializeField]
     private Button button;
-    private int room_sira=-1;
+    private int room_sira = -1;
 
-    private void Awake()
+
+
+    void Awake()
     {
-
-        GetCurrentRoomPlayers();
+        // print("asdadaf");
+        // PhotonNetwork.AutomaticallySyncScene = true;
+        // GetCurrentRoomPlayers();
     }
+     
+
+
 
     public void FirstInitialize(RoomsCanvases canvases)
     {
-
+        print("fi");
         _roomsCanvases = canvases;
     }
 
 
-    public override void OnLeftRoom()
-    {
-        _content.DestroyChildren();
-    }
-    private void GetCurrentRoomPlayers()
-    {
-
+    // public override void OnLeftRoom()
+    // {   print("destroy child");
+    //     _content.DestroyChildren();
+    // }
+    public void GetCurrentRoomPlayers()
+    { 
 
         if (!PhotonNetwork.IsConnected)
-        {
+        { 
+
             return;
         }
         if (PhotonNetwork.CurrentRoom == null || PhotonNetwork.PlayerList == null)
-        {
+        { 
             return;
         }
 
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
-        {
+        { 
             AddPlayerListing(playerInfo.Value);
             room_sira++;
 
-            
+
         }
         setroomid();
 
@@ -66,38 +72,29 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     {
 
         PlayerListing listing = Instantiate(_playerlisting, _content);
-
+ 
         if (listing != null)
-        {
+        { 
             listing.SetPlayerInfo(player);
-            print(listing.userid);
-            print(listing.name);
+         
             _listings.Add(listing);
         }
-
-
-
-
 
     }
 
     public void OnClickStart()
     {
-
-
-        // if (PhotonNetwork.IsMasterClient )
-        // {
+        if (PlayerProperties.sira_ == 0)
+        {
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
-            PhotonNetwork.LoadLevel(2);
-            print("starta basıldı ");
+            PhotonNetwork.LoadLevel(2); 
+        }
 
-        //}
 
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        print("on player entered room__");
+    { 
         AddPlayerListing(newPlayer);
         setroomid();
 
@@ -106,8 +103,6 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
 
-
-        print("0nplayerleftroom index");
         print(_listings.Count);
         foreach (var item in _listings)
         {
@@ -118,8 +113,7 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
 
         //çıkann indexi listede olmuor sebeb
         if (index != -1)
-        {   //sıkıntı burda
-            print("0nplayerleftroom");
+        {   //sıkıntı burda 
             Destroy(_listings[index].gameObject);
             _listings.RemoveAt(index);
         }
@@ -130,11 +124,12 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     {
         int i = 0;
 
-        PlayerProperties.sira_= room_sira;
-
+        PlayerProperties.sira_ = room_sira;
+        
+       print("sira "+ PlayerProperties.sira_) ;
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
-           
+
 
             if (playerInfo.Value.UserId == PhotonNetwork.LocalPlayer.UserId)
             {
@@ -142,6 +137,12 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
             }
 
             i++;
+        }
+
+        if (PlayerProperties.sira_ != 0)
+        {
+            GameObject StartGameButton = transform.Find("StartGame").gameObject;
+            StartGameButton.SetActive(false);
         }
 
     }
