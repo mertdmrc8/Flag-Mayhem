@@ -12,14 +12,13 @@ public static class PlayerProperties
     private static string CurrentRoomİd = "";
     private static string nickname = "";
     private static bool in_room = false;
-    private static int roomid = -1;
     private static int kill = 0;
     private static int death = 0;
     private static int score = 0;
     private static int win = 0;
     private static int lose = 0;
     private static int sira = 0;
-    public static bool deneme =false;
+    public static bool deneme = false;
 
 
     //  public static string email_  {   get   {   return email;   }    set    {  email = value;  }  }
@@ -36,25 +35,23 @@ public static class PlayerProperties
     public static int death_ { get { return death; } set { death = value; } }
     public static int score_ { get { return score; } set { score = value; } }
     public static bool in_room_ { get { return in_room; } set { in_room = value; } }
-    public static int roomid_ { get { return roomid; } set { roomid = value; } }
     public static int win_ { get { return win; } set { win = value; } }
     public static int lose_ { get { return lose; } set { lose = value; } }
 
 
-public static void resetdataGame()
+    public static void resetdataGame()
     {
 
-       
-        CurrentRoomİd = ""; 
-        in_room = false;
-        roomid = -1;
+
+        CurrentRoomİd = "";
+        in_room = false; 
         kill = 0;
         death = 0;
         score = 0;
         win = 0;
         lose = 0;
         sira = 0;
- 
+
     }
 
 
@@ -66,15 +63,14 @@ public static void resetdataGame()
         id = "";
         CurrentRoomİd = "";
         nickname = "";
-        in_room = false;
-        roomid = -1;
+        in_room = false; 
         kill = 0;
         death = 0;
         score = 0;
         win = 0;
         lose = 0;
         sira = 0;
- 
+
     }
 
 

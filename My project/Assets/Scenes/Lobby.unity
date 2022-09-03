@@ -1075,6 +1075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _content: {fileID: 746697981}
+  _playerlistingMenu: {fileID: 1202499540}
 --- !u!1 &1023347018
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,6 +1617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _content: {fileID: 746697981}
   _playerlisting: {fileID: -2537426235612013821, guid: 1fb72949ef719ae428650f29bf6bfb16, type: 3}
+  _listings: []
   button: {fileID: 0}
 --- !u!1001 &1284750451
 PrefabInstance:

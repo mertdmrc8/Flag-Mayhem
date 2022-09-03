@@ -34,20 +34,19 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
         PlayerProperties.in_room_ = true;
         //PlayerProperties.roomid_=PhotonNetwork.CurrentRoom
         
-        _content.DestroyChildren();
-        print("joined room ");  
-        _listings.Clear(); 
-        print("asdadaf");
-        PhotonNetwork.AutomaticallySyncScene = true;
-        _playerlistingMenu.GetCurrentRoomPlayers();
+        _content.DestroyChildren();   
+        _listings.Clear();  
+        PhotonNetwork.AutomaticallySyncScene = true; 
+        print("oyuncu sayısı " +PhotonNetwork.CurrentRoom.Players.Count );
+        PlayerProperties.sira_=PhotonNetwork.CurrentRoom.Players.Count -1;
+        _playerlistingMenu.GetCurrentRoomPlayers(); 
     }
 
 
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-
-        print("onroomlist update");
+ 
         foreach (RoomInfo info in roomList)
         {
 

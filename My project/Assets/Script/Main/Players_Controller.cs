@@ -26,7 +26,7 @@ public class Players_Controller : MonoBehaviourPun
         Camera = GameObject.Find("Camera").gameObject.GetComponent<CameraManager>();
 
         sira = PlayerProperties.sira_;
-        print("benim sira " +sira );
+        print("benim sira " + sira);
 
     }
 
@@ -41,15 +41,17 @@ public class Players_Controller : MonoBehaviourPun
     private void CreatePlayer()
     {
 
+        print("create player  player count "+PlayerCountInScene);
         if (PlayerCountInScene < PhotonNetwork.CurrentRoom.PlayerCount)
         {
+            print("create player if1 ");
             if (sira == PlayerCountInScene)
             {
 
+                print("create player if2");
 
-            
                 GameObject self_Soldier = PhotonNetwork.Instantiate("Player_Soldier", Vector3.zero, Quaternion.identity, 0, null);
-                self_Soldier.GetComponent<Character_Controller>().Nickname.text=PlayerProperties.nickname_;
+                self_Soldier.GetComponent<Character_Controller>().Nickname.text = PlayerProperties.nickname_;
                 self_Soldier.GetComponent<PhotonView>().RPC("SetTeam", RpcTarget.All, null);
 
                 Camera.Ordinary = self_Soldier;
@@ -125,12 +127,13 @@ public class Players_Controller : MonoBehaviourPun
 
     }
 
-    
-   
+
+
 
     void Start()
     {
-        PhotonNetwork.AutomaticallySyncScene=false;
+        print("startta");
+        PhotonNetwork.AutomaticallySyncScene = false;
         // object[] PlayerData = { PlayerProperties.roomid_ };
 
         // self_Ordinary = PhotonNetwork.Instantiate("Player_Soldier", Vector3.zero, Quaternion.identity, 0, PlayerData);
