@@ -12,6 +12,9 @@ public class LeaveRoomMenu : MonoBehaviour
 
     [SerializeField]
     private Transform _content;
+
+    [SerializeField]
+    private PlayerListingsMenu  _playerlistingMenu;
     public void FirstInitialize(RoomsCanvases canvases)
     {
 
@@ -20,13 +23,17 @@ public class LeaveRoomMenu : MonoBehaviour
 
     public void Onclick_LeaveRoom()
     {
-      PlayerProperties.resetdataGame();
-      _content.DestroyChildren();
+        PlayerProperties.resetdataGame();
+        _content.DestroyChildren();
         print("leave room by button");
         PhotonNetwork.LeaveRoom(true);
         _roomsCanvases.CurrentRoomsCanvas.Hide();
+        _playerlistingMenu._listings.Clear(); 
+        _playerlistingMenu._listingsLast.Clear();
 
     }
+ 
+
 
 }
 

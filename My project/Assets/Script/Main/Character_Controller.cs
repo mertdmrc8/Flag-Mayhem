@@ -36,12 +36,12 @@ public class Character_Controller : MonoBehaviourPun
     private Image bar;
     public Text Nickname;
 
-    public bool unlimitedhealth=false;
+    public bool unlimitedhealth = false;
 
     void Awake()
     {
 
-    
+        print("local nick " + PlayerProperties.nickname_);
 
         Console = GameObject.Find("ButtonController").GetComponent<ConsoleManager>();
         pw = GetComponent<PhotonView>();
@@ -63,23 +63,6 @@ public class Character_Controller : MonoBehaviourPun
 
 
     }
-
-    [PunRPC]
-    private void setnick(String nick)
-    {
-        //pw is mine olmıyacak???
-        Nickname.text = nick;
-
-    }
-
-
-    [PunRPC]
-    public void addlist()
-    {
-
-        PlayerController.photonviewlist.Add(this.transform.GetComponent<PhotonView>());
-    }
-
     void Start()
     {
         //bütün photon viewlere  odadaki bütün bilgiler gider  
@@ -93,11 +76,38 @@ public class Character_Controller : MonoBehaviourPun
             timer.thisplayer = this.transform.gameObject;
         }
 
+        if (pw.IsMine)
+        {
 
-        object[] obj = { PlayerProperties.nickname_ };
-        transform.gameObject.GetComponent<PhotonView>().RPC("setnick", RpcTarget.All, obj);
+            object[] obj = { pw.ViewID, PlayerProperties.nickname_ };
+            transform.gameObject.GetComponent<PhotonView>().RPC("setnick", RpcTarget.All, obj);
+
+        }
+    }
+
+    [PunRPC]
+    private void setnick(object[] data)
+    {
+        //pw is mine olmıyacak???
+        int ordinary_id = Convert.ToInt32(data[0]);
+        string nick = Convert.ToString(data[1]);
+        if (ordinary_id == pw.ViewID)
+        {
+            Nickname.text = nick;
+        }
+
 
     }
+
+
+    [PunRPC]
+    public void addlist()
+    {
+
+        PlayerController.photonviewlist.Add(this.transform.GetComponent<PhotonView>());
+    }
+
+
 
     [PunRPC]
     private void SetTeam()
@@ -106,7 +116,9 @@ public class Character_Controller : MonoBehaviourPun
         TeamManager CurrentTeam = PlayerController.getCurrentTeam();
 
         this.transform.parent = CurrentTeam.transform;
-        // this.transform.position = CurrentTeam.Base_.transform.position;
+    
+        this.transform.position = CurrentTeam.Base_.transform.position;
+
         this.GetComponent<Character_Controller>().Team = CurrentTeam;
         print(Team.name + "den üretildi");
         CurrentTeam.team_players.Add(this.GetComponent<Character_Controller>());
@@ -135,9 +147,6 @@ public class Character_Controller : MonoBehaviourPun
     {
         if (pw.IsMine)
         {
-            print("find killer :::" + Team.name);
-
-            print("view id " + this.transform.gameObject.GetComponent<PhotonView>().ViewID);
 
 
             if (this.transform.gameObject.GetComponent<PhotonView>().ViewID == killer_id)
@@ -152,7 +161,7 @@ public class Character_Controller : MonoBehaviourPun
     {
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
 
-        if (bullet != null && bullet.ordinary != this.gameObject)
+        if (bullet != null && bullet.team != this.Team)
         {
             health -= 34;
             if (health <= 0)
@@ -181,9 +190,8 @@ public class Character_Controller : MonoBehaviourPun
                     //   transform.GetComponent<PhotonView>().RPC("FindKiller", RpcTarget.All, bullet.incoming_id);
                     //bu id den kişiyi bul ozmn 
                     //bulunan kişinn sadece localinde çalıştırmak istiyosam ?? RPC içine ismine mı ? 
-                    Team.PlayerSetBase(this.transform.GetComponent<Character_Controller>());
+                    Team.GetComponent<PhotonView>().RPC("PlayerSetBase", RpcTarget.All, pw.ViewID);
                 }
-                health = 100;
             }
             Destroy(bullet.gameObject);
         }
@@ -228,13 +236,13 @@ public class Character_Controller : MonoBehaviourPun
                 if (Console.code == "health")
                 {
                     print("health");
-                    unlimitedhealth=true;
+                    unlimitedhealth = true;
                     Console.code = "";
 
                 }
                 if (Console.code == "health*")
                 {
-                    unlimitedhealth=false;
+                    unlimitedhealth = false;
                     Console.code = "";
                 }
                 if (Console.code == "bullet")
@@ -249,9 +257,10 @@ public class Character_Controller : MonoBehaviourPun
                 }
 
             }
-        if(unlimitedhealth){
-            health=100;
-        }
+            if (unlimitedhealth)
+            {
+                health = 100;
+            }
 
 
 

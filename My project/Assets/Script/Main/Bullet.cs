@@ -9,11 +9,13 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rb;
     PhotonView pw_b;
     public GameObject ordinary;
-    public int incoming_id ;
- 
-    private void Awake(){ 
+    public int incoming_id;
 
-        
+    public TeamManager team;
+    private void Awake()
+    {
+
+
     }
     private void Start()
     {
@@ -32,32 +34,34 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
 
 
-
     }
-
 
     [PunRPC]
-    public void destroybullet(int ordinaryid){
-        //PhotonNetwork.GetPhotonView(ordinaryid);
-        this.incoming_id=ordinaryid; 
-        GameObject ordinary_=PhotonNetwork.GetPhotonView(ordinaryid).gameObject;
-        this.ordinary = ordinary_.gameObject ;
-        StartCoroutine(wait(ordinary_));
-    }
-    
+    public void setbullet(int ordinaryid)
+    {
+        this.incoming_id = ordinaryid;
+        team = PhotonNetwork.GetPhotonView(incoming_id).transform.GetComponent<Character_Controller>().Team;
 
-    
-    public IEnumerator wait(GameObject ordinary_)
+    }
+
+    [PunRPC]
+    public void destroybullet( )
+    {
+        //PhotonNetwork.GetPhotonView(ordinaryid);
+
+        StartCoroutine(wait());
+    }
+    public IEnumerator wait()
     {
 
         //burda atıyor karşıda nasıl atama yapıcak 
-         yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f);
         try
         {
-            Destroy(gameObject); 
+            Destroy(gameObject);
         }
         catch
-        { 
+        {
 
         }
     }

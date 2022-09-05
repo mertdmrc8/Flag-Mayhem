@@ -19,8 +19,8 @@ public class GameSettings : ScriptableObject
          
 
          get{
-            int value = Random.Range(0,9999);
-            _nicName ="Punfish"+value.ToString();
+            int value = Random.Range(0,99);
+            _nicName ="Player"+value.ToString();
             PlayerProperties.nickname_=_nicName;
             return _nicName ;
 

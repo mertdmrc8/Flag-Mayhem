@@ -24,23 +24,14 @@ public class TeamManager : MonoBehaviour
     }
 
    [PunRPC]
-    public void PlayerSetBase(Character_Controller ordinary_ )
+    public void PlayerSetBase(int ordinary_id )
     {
-        ordinary_.gameObject.SetActive(false);
-        print(name +" aktif değil health 100");
-        ordinary_.health=100;
-        print( this.transform.name+" "+Base_.name);
+        Character_Controller ordinary_ =PhotonNetwork.GetPhotonView(ordinary_id).GetComponent<Character_Controller>();
+        ordinary_.gameObject.SetActive(false); 
+        ordinary_.health=100; 
         ordinary_.transform.position = Base_.gameObject.transform.position;
-        ordinary_.gameObject.SetActive(true);
+        ordinary_.gameObject.SetActive(true); 
+     
 
-      //  StartCoroutine(wait(ordinary_));
-
-    }
-
-    IEnumerator wait(Character_Controller ordinary_){
-
-        yield return new WaitForSeconds(1f);
-        print(name +" aktif");
-
-    }
+    } 
 }

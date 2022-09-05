@@ -40,10 +40,7 @@ public class TestConnect : MonoBehaviourPunCallbacks
             {
                 PhotonNetwork.LocalPlayer.NickName = PlayerProperties.nickname_;
             }
-
-            print("my nick__" + PlayerProperties.nickname_);
-
-            print("my nick" + PhotonNetwork.LocalPlayer.NickName);
+ 
         }
 
     }
