@@ -28,7 +28,7 @@ public class TestConnect : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        print("Connected to server");
+        print("Connected to server2");
         //PlayerProperties.nickname_
         // MasterManager.DebugConsole.AddText("deneme",this);
         if (!PhotonNetwork.InLobby)
@@ -42,6 +42,7 @@ public class TestConnect : MonoBehaviourPunCallbacks
             }
  
         }
+      
 
     }
 

@@ -38,7 +38,8 @@ public class ButtonController : MonoBehaviourPunCallbacks
 
         PhotonNetwork.LeaveLobby();
         SceneManager.LoadScene(0);
-
+      //  PhotonNetwork.LeaveLobby();
+        PhotonNetwork.Disconnect();
     }
 
  
