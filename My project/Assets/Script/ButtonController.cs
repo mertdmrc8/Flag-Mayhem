@@ -42,11 +42,7 @@ public class ButtonController : MonoBehaviourPunCallbacks
         PhotonNetwork.Disconnect();
     }
 
- 
-
-
-
-
+  
 
 
 }
