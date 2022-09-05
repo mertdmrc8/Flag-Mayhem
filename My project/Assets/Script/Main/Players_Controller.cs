@@ -48,7 +48,7 @@ public class Players_Controller : MonoBehaviourPun
 
 
             
-                GameObject self_Soldier = PhotonNetwork.Instantiate("Player_Soldier", Vector3.zero, Quaternion.identity, 0, null);
+                GameObject self_Soldier = PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity, 0, null);
                 self_Soldier.GetComponent<Character_Controller>().Nickname.text=PlayerProperties.nickname_;
                 self_Soldier.GetComponent<PhotonView>().RPC("SetTeam", RpcTarget.All, null);
 
