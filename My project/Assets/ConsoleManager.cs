@@ -7,7 +7,7 @@ public class ConsoleManager : MonoBehaviour
 {
 
     [SerializeField]
-    private   GameObject Console;
+    private GameObject Console;
     public bool isactive = false;
     public string code = "";
 
@@ -24,8 +24,11 @@ public class ConsoleManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            Text input = Console.transform.Find("Input").GetComponent<Text>(); 
-            code = input.text; 
+            print("entra basıldı ");
+            Text input = Console.transform.Find("Input").GetComponent<Text>();
+            code = input.text;
+            Console.transform.Find("Input").GetComponent<Text>().text = "";
+            Console.transform.GetComponent<InputField>().text = "";
         }
     }
 }

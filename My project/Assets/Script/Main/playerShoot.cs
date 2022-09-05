@@ -45,8 +45,9 @@ public class playerShoot : MonoBehaviour
         var part = GetComponentInChildren<ParticleSystem>();
         part.Play();
         float angle = RotatePoint.transform.GetComponent<Aim>().rotZ;
-        GameObject gameob = PhotonNetwork.Instantiate("Bullet", BulletTransform.transform.position, Quaternion.Euler(new Vector3(0f, 0f, angle)));
-        gameob.GetComponent<PhotonView>().RPC("destroybullet",RpcTarget.All,this.transform.gameObject.GetComponent<PhotonView>().ViewID);
+        GameObject bullet = PhotonNetwork.Instantiate("Bullet", BulletTransform.transform.position, Quaternion.Euler(new Vector3(0f, 0f, angle)));
+        bullet.GetComponent<PhotonView>().RPC("setbullet",RpcTarget.All,this.transform.gameObject.GetComponent<PhotonView>().ViewID);
+        bullet.GetComponent<PhotonView>().RPC("destroybullet",RpcTarget.All,null);
          
     } 
 

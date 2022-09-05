@@ -47,11 +47,8 @@ public class Players_Controller : MonoBehaviourPun
             print("create player if1 ");
             if (sira == PlayerCountInScene)
             {
-
                 print("create player if2");
-
-                GameObject self_Soldier = PhotonNetwork.Instantiate("Player_Soldier", Vector3.zero, Quaternion.identity, 0, null);
-                self_Soldier.GetComponent<Character_Controller>().Nickname.text = PlayerProperties.nickname_;
+                GameObject self_Soldier = PhotonNetwork.Instantiate("Player_Soldier", Vector3.zero, Quaternion.identity, 0, null); 
                 self_Soldier.GetComponent<PhotonView>().RPC("SetTeam", RpcTarget.All, null);
 
                 Camera.Ordinary = self_Soldier;
