@@ -11,11 +11,11 @@ public class playerShoot : MonoBehaviour
     float timeUntilFire;
     Character_Controller cc;
 
-    private GameObject BulletTransform ;
+    public GameObject BulletTransform ;
     private void Start()
     {
         
-        BulletTransform= RotatePoint.transform.Find("BulletTransform").gameObject;
+       // BulletTransform= RotatePoint.transform.Find("BulletTransform").gameObject;
         cc = gameObject.GetComponent<Character_Controller>(); 
         ParticleSystem part = GetComponentInChildren<ParticleSystem>();
 

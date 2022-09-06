@@ -122,7 +122,7 @@ public class Character_Controller : MonoBehaviourPun
         this.GetComponent<Character_Controller>().Team = CurrentTeam;
         print(Team.name + "den üretildi");
         CurrentTeam.team_players.Add(this.GetComponent<Character_Controller>());
-        this.transform.GetComponent<SpriteRenderer>().color = CurrentTeam.Color.color;
+      //  this.transform.GetComponent<SpriteRenderer>().color = CurrentTeam.Color.color;
 
 
     }
@@ -302,16 +302,16 @@ public class Character_Controller : MonoBehaviourPun
         if (direction > 0f)
         {
             rb.velocity = new Vector2(direction * speed, rb.velocity.y);
-            transform.eulerAngles = new Vector3(0, 0, 0); // Flipped
-            isFacingRight = true;
+            //transform.eulerAngles = new Vector3(0, 0, 0); // Flipped
+            //isFacingRight = true;
 
 
         }
         else if (direction < 0f)
         {
             rb.velocity = new Vector2(direction * speed, rb.velocity.y);
-            transform.eulerAngles = new Vector3(0, 180, 0); // Flipped
-            isFacingRight = false;
+            //transform.eulerAngles = new Vector3(0, 180, 0); // Flipped
+            //isFacingRight = false;
 
         }
 
