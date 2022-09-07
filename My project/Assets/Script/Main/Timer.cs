@@ -27,8 +27,7 @@ public class Timer : MonoBehaviour
     private TeamManager TeamBlue;
 
     private Image TimerImage;
-
-    readonly string saved_gameScore = "http://10.16.0.75:8080/UserArchive/GameScores";
+ 
 
     private void Start()
     {
@@ -112,7 +111,7 @@ public class Timer : MonoBehaviour
         }
         PlayerProperties.score_ += thisplayer.GetComponent<Character_Controller>().flagscore;
 
-
+        
 
     }
     private void show_data()
@@ -136,7 +135,7 @@ public class Timer : MonoBehaviour
         form.AddField("lose", PlayerProperties.lose_);
         form.AddField("win", PlayerProperties.win_);
 
-        UnityWebRequest www = UnityWebRequest.Post(saved_gameScore, form);
+        UnityWebRequest www = UnityWebRequest.Post(APImanager.saved_gameScore, form);
         www.SetRequestHeader("Authorization", "Bearer " + PlayerProperties.token_);
         var operation = www.SendWebRequest();
         yield return operation;

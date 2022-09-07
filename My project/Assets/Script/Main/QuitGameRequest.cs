@@ -7,8 +7,7 @@ using UnityEngine.Networking;
 public class QuitGameRequest : MonoBehaviour
 {
 
-
-    readonly string setOnlogin_posturl = "http://10.16.0.75:8080/UserArchive/setOnlogin";
+ 
 
 
     void OnApplicationQuit()
@@ -29,7 +28,7 @@ public class QuitGameRequest : MonoBehaviour
         WWWForm form = new WWWForm();
 
         form.AddField("id", PlayerProperties.id_);
-        UnityWebRequest www = UnityWebRequest.Post(setOnlogin_posturl, form);
+        UnityWebRequest www = UnityWebRequest.Post(APImanager.setOnlogin_posturl, form);
         www.SetRequestHeader("Authorization", "Bearer " + PlayerProperties.token_);
 
 

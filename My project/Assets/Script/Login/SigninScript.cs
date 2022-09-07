@@ -13,8 +13,7 @@ public class SigninScript : MonoBehaviour
     private GameObject prefab;
     [SerializeField]
     private GameObject Canvals;
-
-    readonly string signin_posturl = "http://localhost:8080/auth/sign-in";
+ 
 
 
     private Text infobar;
@@ -63,11 +62,10 @@ public class SigninScript : MonoBehaviour
         print("sign in de ");
         form.AddField("nick", nick);
         form.AddField("email", email);
-        form.AddField("password", password);
-        print(signin_posturl);
+        form.AddField("password", password); 
 
 
-        UnityWebRequest www = UnityWebRequest.Post(signin_posturl, form);
+        UnityWebRequest www = UnityWebRequest.Post(APImanager.signin_posturl, form);
 
 
         var operation = www.SendWebRequest();

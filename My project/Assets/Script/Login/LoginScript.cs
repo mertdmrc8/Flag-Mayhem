@@ -15,10 +15,7 @@ public class LoginScript : MonoBehaviour
     private GameObject prefab;
     [SerializeField]
     private GameObject Canvals;
-
-    readonly string login_posturl = "http://10.16.0.75:8080/auth/Login";
-    readonly string info_geturl = "http://10.16.0.75:8080/UserArchive/user-info";
-
+ 
     private Text infobar;
 
 
@@ -60,7 +57,7 @@ public class LoginScript : MonoBehaviour
         form.AddField("email", email);
         form.AddField("password", password);
 
-        UnityWebRequest www = UnityWebRequest.Post(login_posturl, form);
+        UnityWebRequest www = UnityWebRequest.Post(APImanager.login_posturl, form);
 
         var operation = www.SendWebRequest();
         yield return operation;
@@ -97,7 +94,7 @@ public class LoginScript : MonoBehaviour
         //authentication ile at 
         WWWForm form = new WWWForm(); 
         form.AddField("id", PlayerProperties.id_);
-        UnityWebRequest www = UnityWebRequest.Post(info_geturl, form);
+        UnityWebRequest www = UnityWebRequest.Post(APImanager.info_geturl, form);
         www.SetRequestHeader("Authorization", "Bearer " + PlayerProperties.token_);
         //Authorization
         var operation = www.SendWebRequest();
