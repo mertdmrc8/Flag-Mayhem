@@ -8,7 +8,7 @@ public class QuitGameRequest : MonoBehaviour
 {
 
 
-    readonly string setOnlogin_posturl = "http://localhost:8080/UserArchive/setOnlogin";
+    readonly string setOnlogin_posturl = "http://10.16.0.75:8080/UserArchive/setOnlogin";
 
 
     void OnApplicationQuit()

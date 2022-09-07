@@ -11,9 +11,9 @@ public class ButtonController : MonoBehaviourPunCallbacks
 
 
 
-    readonly string setOnlogin_posturl = "http://localhost:8080/UserArchive/setOnlogin";
+    readonly string setOnlogin_posturl = "http://10.16.0.75:8080/UserArchive/setOnlogin";
 
-    readonly string saved_gameScore = "http://localhost:8080/UserArchive/GameScores";
+    readonly string saved_gameScore = "http://10.16.0.75:8080/UserArchive/GameScores";
 
     public void startbutton()
     {
