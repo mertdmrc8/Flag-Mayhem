@@ -13,12 +13,15 @@ public class TestConnect : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        
         print("connecting to server");
         
         if (PlayerProperties.nickname_ == "")
         {
             PhotonNetwork.NickName = MasterManager.GameSettings.NicName;
         }
+        PhotonNetwork.SendRate = 40;
+        PhotonNetwork.SerializationRate = 10;
         PhotonNetwork.GameVersion = MasterManager.GameSettings.GameVersion;
         PhotonNetwork.ConnectUsingSettings();
 

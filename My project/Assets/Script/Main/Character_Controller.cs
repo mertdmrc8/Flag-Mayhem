@@ -6,7 +6,7 @@ using Photon.Pun;
 using System;
 using UnityEngine.UI;
 
-public class Character_Controller : MonoBehaviourPun
+public class Character_Controller : MonoBehaviourPun,IPunObservable
 {
     public Animator anim;
     Rigidbody2D rb;
@@ -275,6 +275,9 @@ public class Character_Controller : MonoBehaviourPun
             anim.SetBool("isGrounded", false);
         }
 
+        print("walking:" + anim.GetBool("isWalking") +" "+ "grounded:" + anim.GetBool("isGrounded")+" " + "jump:" + anim.GetBool("isJump"));
+      
+
     }
 
 
@@ -332,5 +335,20 @@ public class Character_Controller : MonoBehaviourPun
         }
     }
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(anim.GetBool("isWalking"));
+            stream.SendNext(anim.GetBool("isJump"));
+            stream.SendNext(anim.GetBool("isGrounded"));
+        }
+        else if (stream.IsReading)
+        {
+            anim.SetBool("isWalking", (bool)stream.ReceiveNext());
+            anim.SetBool("isJump", (bool)stream.ReceiveNext());
+            anim.SetBool("isGrounded", (bool)stream.ReceiveNext());
 
+        }
+    }
 }
