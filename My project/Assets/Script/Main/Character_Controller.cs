@@ -242,8 +242,7 @@ public class Character_Controller : MonoBehaviourPun,IPunObservable
         }
 
 
-        if (pw.IsMine)
-        {
+       
 
             isTouchingGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckRadius, groundLayer);
 
@@ -264,7 +263,7 @@ public class Character_Controller : MonoBehaviourPun,IPunObservable
                 anim.SetBool("isWalking", false);
             }
 
-        }
+        
         if (isTouchingGround)
         {
             anim.SetBool("isGrounded", true);
