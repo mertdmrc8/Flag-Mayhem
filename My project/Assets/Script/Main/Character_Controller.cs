@@ -32,9 +32,11 @@ public class Character_Controller : MonoBehaviourPun,IPunObservable
 
     public Timer timer;
 
-    private GameObject Ordinary_go;
+   
     private Image bar;
     public Text Nickname;
+
+    public GameObject head,body;
 
     public bool unlimitedhealth = false;
 
@@ -83,6 +85,7 @@ public class Character_Controller : MonoBehaviourPun,IPunObservable
             transform.gameObject.GetComponent<PhotonView>().RPC("setnick", RpcTarget.All, obj);
 
         }
+        
     }
 
     [PunRPC]
@@ -122,8 +125,9 @@ public class Character_Controller : MonoBehaviourPun,IPunObservable
         this.GetComponent<Character_Controller>().Team = CurrentTeam;
         print(Team.name + "den üretildi");
         CurrentTeam.team_players.Add(this.GetComponent<Character_Controller>());
-      //  this.transform.GetComponent<SpriteRenderer>().color = CurrentTeam.Color.color;
-
+        // this.transform.GetComponent<SpriteRenderer>().color = CurrentTeam.Color.color;
+        body.transform.GetComponent<SpriteRenderer>().color = CurrentTeam.Color.color;
+        head.transform.GetComponent<SpriteRenderer>().color = CurrentTeam.Color.color;
 
     }
 
