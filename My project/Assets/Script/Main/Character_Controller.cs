@@ -6,7 +6,7 @@ using Photon.Pun;
 using System;
 using UnityEngine.UI;
 
-public class Character_Controller : MonoBehaviourPun,IPunObservable
+public class Character_Controller : MonoBehaviourPun, IPunObservable
 {
     public Animator anim;
     Rigidbody2D rb;
@@ -32,11 +32,11 @@ public class Character_Controller : MonoBehaviourPun,IPunObservable
 
     public Timer timer;
 
-   
+
     private Image bar;
     public Text Nickname;
 
-    public GameObject head,body;
+    public GameObject head, body;
 
     public bool unlimitedhealth = false;
 
@@ -85,7 +85,7 @@ public class Character_Controller : MonoBehaviourPun,IPunObservable
             transform.gameObject.GetComponent<PhotonView>().RPC("setnick", RpcTarget.All, obj);
 
         }
-        
+
     }
 
     [PunRPC]
@@ -246,28 +246,28 @@ public class Character_Controller : MonoBehaviourPun,IPunObservable
         }
 
 
-       
 
-            isTouchingGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckRadius, groundLayer);
 
-            Movement();
+        isTouchingGround = Physics2D.OverlapCircle(groundcheck.position, groundcheckRadius, groundLayer);
 
-            //Animation
+        Movement();
 
-            if (direction < 0f || direction > 0f)
-            {
-                anim.SetBool("isWalking", true);
-            }
-            else
-            {
-                anim.SetBool("isWalking", false);
-            }
-            if (!isTouchingGround)
-            {
-                anim.SetBool("isWalking", false);
-            }
+        //Animation
 
-        
+        if (direction < 0f || direction > 0f)
+        {
+            anim.SetBool("isWalking", true);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
+        }
+        if (!isTouchingGround)
+        {
+            anim.SetBool("isWalking", false);
+        }
+
+
         if (isTouchingGround)
         {
             anim.SetBool("isGrounded", true);
@@ -278,8 +278,8 @@ public class Character_Controller : MonoBehaviourPun,IPunObservable
             anim.SetBool("isGrounded", false);
         }
 
-        print("walking:" + anim.GetBool("isWalking") +" "+ "grounded:" + anim.GetBool("isGrounded")+" " + "jump:" + anim.GetBool("isJump"));
-      
+        print("walking:" + anim.GetBool("isWalking") + " " + "grounded:" + anim.GetBool("isGrounded") + " " + "jump:" + anim.GetBool("isJump"));
+
 
     }
 
@@ -302,42 +302,46 @@ public class Character_Controller : MonoBehaviourPun,IPunObservable
 
     private void Movement()
     {
-        direction = Input.GetAxisRaw("Horizontal");
-
-
-        if (direction > 0f)
-        {
-            rb.velocity = new Vector2(direction * speed, rb.velocity.y);
-            //transform.eulerAngles = new Vector3(0, 0, 0); // Flipped
-            //isFacingRight = true;
-
-
-        }
-        else if (direction < 0f)
-        {
-            rb.velocity = new Vector2(direction * speed, rb.velocity.y);
-            //transform.eulerAngles = new Vector3(0, 180, 0); // Flipped
-            //isFacingRight = false;
-
-        }
-
-        else
-        {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-
-        }
-
-
-
-
-        if (Input.GetKeyDown(KeyCode.Space) && isTouchingGround)
+        if (pw.IsMine)
         {
 
-            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-            anim.SetBool("isJump", true);
+
+            direction = Input.GetAxisRaw("Horizontal");
+
+
+            if (direction > 0f)
+            {
+                rb.velocity = new Vector2(direction * speed, rb.velocity.y);
+                //transform.eulerAngles = new Vector3(0, 0, 0); // Flipped
+                //isFacingRight = true;
+
+
+            }
+            else if (direction < 0f)
+            {
+                rb.velocity = new Vector2(direction * speed, rb.velocity.y);
+                //transform.eulerAngles = new Vector3(0, 180, 0); // Flipped
+                //isFacingRight = false;
+
+            }
+
+            else
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+
+            }
+
+
+
+
+            if (Input.GetKeyDown(KeyCode.Space) && isTouchingGround)
+            {
+
+                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+                anim.SetBool("isJump", true);
+            }
         }
     }
-
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
