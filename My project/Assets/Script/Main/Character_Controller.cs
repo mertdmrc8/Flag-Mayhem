@@ -50,7 +50,7 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
         PlayerController = GameObject.Find("PlayerController").GetComponent<Players_Controller>();
         this.gameObject.GetComponent<PhotonView>().RPC("addlist", RpcTarget.All, null);
         this.gameObject.transform.parent = PlayerController.transform;
-        GameObject healthbar = this.gameObject.transform.Find("Canvas").gameObject.transform.Find("healthbar").gameObject;
+        GameObject healthbar = this.gameObject.transform.Find("playerCanvas").gameObject.transform.Find("healthbar").gameObject;
         bar = healthbar.transform.Find("bar_").GetComponent<Image>();
         float R = UnityEngine.Random.Range(0, 226 / 255f);
         float G = UnityEngine.Random.Range(0, 226 / 255f);
@@ -58,7 +58,7 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
         Color ColorToBeGenerate = new Color(R, G, B);
         bar.color = ColorToBeGenerate;
         // print(new Color((float)UnityEngine.Random.Range(0, 255), (float)UnityEngine.Random.Range(0, 255), (float)UnityEngine.Random.Range(0, 255)));
-        Nickname = this.gameObject.transform.Find("Canvas").gameObject.transform.Find("NickName").gameObject.GetComponent<Text>();
+        Nickname = this.gameObject.transform.Find("playerCanvas").gameObject.transform.Find("NickName").gameObject.GetComponent<Text>();
 
 
 

@@ -67,11 +67,13 @@ public class Aim : MonoBehaviour, IPunObservable
             if (rotation.x > 0)
             {
                 Player.transform.eulerAngles = new Vector3(0, 0, 0); // Flipped
+                Player.transform.Find("playerCanvas").transform.eulerAngles = new Vector3(0, 0, 0);
 
             }
             else if (rotation.x < 0)
             {
                 Player.transform.eulerAngles = new Vector3(0, 180, 0); // Flipped
+                Player.transform.Find("playerCanvas").transform.eulerAngles = new Vector3(0, 0, 0);
 
             }
         }

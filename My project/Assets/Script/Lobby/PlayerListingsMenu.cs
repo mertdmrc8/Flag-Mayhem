@@ -90,12 +90,14 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     private void setroomMasterClient()
     {
 
-        
-        // print("local  " + PhotonNetwork.LocalPlayer.NickName + " " + PlayerProperties.sira_);
-            print("sıra "+  PlayerProperties.sira_);
+
         GameObject StartGameButton = transform.Find("StartGame").gameObject;
-       
-        if (PlayerProperties.sira_!=0)
+
+        if (PhotonNetwork.CurrentRoom.PlayerCount < 2)
+        {
+            StartGameButton.SetActive(false);
+        }
+        else if (PlayerProperties.sira_ != 0)
         {
             StartGameButton.SetActive(false);
         }
@@ -105,7 +107,9 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
             StartGameButton.SetActive(true);
         }
 
+
     }
+
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
@@ -113,6 +117,7 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
 
         //   setroomid();
 
+        setroomMasterClient();
     }
     //baska biri odadan çıkınca 
     public override void OnPlayerLeftRoom(Player otherPlayer)
