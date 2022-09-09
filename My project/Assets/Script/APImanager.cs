@@ -13,12 +13,18 @@ public  class APImanager : MonoBehaviour
     public static string saved_gameScore ;
 
 
-    [SerializeField]
-    private string IP ;
+    public string IP ;
 
 
     void Awake()
     {
+
+        setUrl();
+
+    }
+
+    public void setUrl(){
+        
         signin_posturl= "http://"+IP+":8080/auth/sign-in";
         login_posturl="http://"+IP+":8080/auth/Login";
         info_geturl="http://"+IP+":8080/UserArchive/user-info";
