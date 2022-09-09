@@ -12,13 +12,16 @@ public class Timer : MonoBehaviour
 {
 
     //Bu obje static olabilir.
+    BaseManager baseManager;
 
     [SerializeField]
     private GameObject countdown;
     private Text countdownText;
+    Text winnerText;
     [SerializeField]
     private float countdownTo = 60.0F;
     public GameObject thisplayer;
+    public GameObject GameOver;
 
     [SerializeField]
     private TeamManager TeamRed;
@@ -33,6 +36,8 @@ public class Timer : MonoBehaviour
     {
         countdownText = countdown.transform.Find("CountdownText").gameObject.transform.GetComponent<Text>();
         TimerImage = countdown.GetComponent<Image>();
+        winnerText = GameOver.transform.Find("Winner").gameObject.transform.GetComponent<Text>();
+        
     }
 
     private void Update()
@@ -52,18 +57,30 @@ public class Timer : MonoBehaviour
             countdownText.text = countdownTo.ToString().Substring(0, 1);
         }
         else
-        { 
-            print("odadan çıkıldi");
-
-            PhotonNetwork.LeaveRoom(true);
-
-            if (PlayerProperties.OnLogin_)
+        {
+            GameOver.SetActive(true);
+            if (TeamBlue.TeamScore>TeamRed.TeamScore)
             {
-                WonOrLost();
-                saved_score();
-                StartCoroutine(UserSaved());
+                winnerText.text ="Blue Team Win " + TeamBlue.TeamScore.ToString();
             }
-            SceneManager.LoadScene(1);
+            else
+            {
+                winnerText.text = "Red Team Win " +TeamRed.TeamScore.ToString();
+            }
+            
+            
+                
+            print("oyun bitti");
+
+            //PhotonNetwork.LeaveRoom(true);
+
+            //if (PlayerProperties.OnLogin_)
+            //{
+            //    WonOrLost();
+            //    saved_score();
+            //    StartCoroutine(UserSaved());
+            //}
+            //SceneManager.LoadScene(1);
         }
     }
     public void Onclick_LeaveGame()
@@ -76,6 +93,7 @@ public class Timer : MonoBehaviour
             saved_score();
             StartCoroutine(UserSaved());
         }
+        GameOver.SetActive(false);
         SceneManager.LoadScene(1);
 
     }

@@ -13,6 +13,7 @@ public class BaseManager : MonoBehaviour
     private Text text;
 
     private int team_score;
+    public int final_team_Score;
 
     public Transform base_transform;
 
@@ -35,6 +36,7 @@ public class BaseManager : MonoBehaviour
             Destroy(flag.gameObject);   
             flagbase.CreateFlag();
             team_score++;
+            final_team_Score =team_score;
             text.text=Team.TeamName+"\n"+ team_score.ToString();
 
         }
