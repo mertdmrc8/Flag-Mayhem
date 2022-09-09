@@ -176,8 +176,8 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
                 {
                     print("bayrak " + Team.name + "di");
 
-                    flag.transform.parent = flag.flagbase.transform;
-                    flag.transform.position = flag.flagbase.transform.position;
+                    // flag.transform.parent = flag.flagbase.transform;
+                    // flag.transform.position = flag.flagbase.transform.position;
                     flag.player = null;
                     flag = null;
                 }

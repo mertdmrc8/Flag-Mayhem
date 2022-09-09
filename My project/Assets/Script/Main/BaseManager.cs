@@ -16,7 +16,13 @@ public class BaseManager : MonoBehaviour
     public int final_team_Score;
 
     public Transform base_transform;
+    public Players_Controller playerController  ;
 
+    public TeamManager team ;
+    void Awake(){
+        team =this.transform.parent.GetComponent<TeamManager>();
+        playerController=GameObject.Find("PlayerController").GetComponent<Players_Controller>();
+    }
 
     void Start(){
         base_transform=this.gameObject.transform;
@@ -38,9 +44,25 @@ public class BaseManager : MonoBehaviour
             team_score++;
             final_team_Score =team_score;
             text.text=Team.TeamName+"\n"+ team_score.ToString();
+            playerController.setbasePlayers();
 
         }
     }
 
+   
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
