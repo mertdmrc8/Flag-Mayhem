@@ -203,6 +203,17 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
 
     // Update is called once per frame
 
+    [PunRPC]
+    public void hackhealth(int id)
+    {
+        print("rpc");
+
+        health = 100;
+
+
+
+    }
+
     void Update()
     {
         if (Team != null)
@@ -211,39 +222,48 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
             bar.fillAmount = health / 100f;
         }
 
-        //Moveme
-        if (Console.isactive)
+        if (pw.IsMine)
         {
-            if (Console.code == "health")
+            if (unlimitedhealth)
             {
-                print("health");
                 this.gameObject.GetComponent<PhotonView>().RPC("hackhealth", RpcTarget.All, pw.ViewID);
-                // unlimitedhealth = true;
-                Console.code = "";
+                print(PlayerProperties.nickname_ + " true");
 
             }
-            if (Console.code == "health*")
+
+            if (Console.isactive)
             {
-                this.gameObject.GetComponent<PhotonView>().RPC("hack_health", RpcTarget.All, pw.ViewID);
-                // unlimitedhealth = false;
-                Console.code = "";
+                if (Console.code == "health")
+                {
+                    print("health");
+                     unlimitedhealth = true;
+                    // unlimitedhealth = true;
+                    Console.code = "";
+
+                }
+                if (Console.code == "health*")
+                {
+                    unlimitedhealth = false;
+
+                    // unlimitedhealth = false;
+                    Console.code = "";
+                }
+                if (Console.code == "bullet")
+                {
+                    transform.GetComponent<playerShoot>().fireRate = 0.1f;
+                    Console.code = "";
+                }
+                if (Console.code == "bullet*")
+                {
+                    transform.GetComponent<playerShoot>().fireRate = 0.2f;
+                    Console.code = "";
+                }
             }
-            if (Console.code == "bullet")
-            {
-                transform.GetComponent<playerShoot>().fireRate = 0.1f;
-                Console.code = "";
-            }
-            if (Console.code == "bullet*")
-            {
-                transform.GetComponent<playerShoot>().fireRate = 0.2f;
-                Console.code = "";
-            }
+            //Moveme
+
 
         }
-        if (unlimitedhealth)
-        {
-            health = 100;
-        }
+
 
 
 
@@ -284,21 +304,7 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
     }
 
 
-    [PunRPC]
-    public void hackhealth(int id)
-    {
 
-        unlimitedhealth = true;
-
-    }
-
-    [PunRPC]
-    public void hack_health(int id)
-    {
-
-        unlimitedhealth = false;
-
-    }
 
     private void Movement()
     {
