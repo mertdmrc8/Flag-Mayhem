@@ -61,11 +61,11 @@ public class Timer : MonoBehaviour
             GameOver.SetActive(true);
             if (TeamBlue.TeamScore>TeamRed.TeamScore)
             {
-                winnerText.text ="Blue Team Win " + TeamBlue.TeamScore.ToString();
+                winnerText.text ="Blue Team Win :" + TeamBlue.TeamScore.ToString();
             }
             else
             {
-                winnerText.text = "Red Team Win " +TeamRed.TeamScore.ToString();
+                winnerText.text = "Red Team Win :" +TeamRed.TeamScore.ToString();
             }
             
             
