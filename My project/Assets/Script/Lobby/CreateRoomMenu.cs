@@ -15,8 +15,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     public void FirstInitialize(RoomsCanvases canvases){
 
     _roomsCanvases=canvases;
-    } 
-
+    }  
 
     public void onClick_CreateRoom(){
 
@@ -26,10 +25,25 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
          options.MaxPlayers=8;
          options.PublishUserId=true; 
 
-          PhotonNetwork.JoinOrCreateRoom(_roomName.text,options,TypedLobby.Default );
-
+          PhotonNetwork.JoinOrCreateRoom(_roomName.text,options,TypedLobby.Default ); 
 
     }
+
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        print("CreateRoon failed ");
+    }
+
+
+
+
+
+
+
+
+
+
+    
      
 
 
@@ -41,9 +55,4 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
 
     }
 
-
-    public override void OnCreateRoomFailed(short returnCode, string message)
-    {
-        print("CreateRoon failed ");
-    }
 }

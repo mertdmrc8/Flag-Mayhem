@@ -43,9 +43,7 @@ public class Timer : MonoBehaviour
     private void Update()
     {
 
-        TimerImage.fillAmount = countdownTo / 60f;
-
-
+        TimerImage.fillAmount = countdownTo / 60f; 
         countdownTo -= Time.deltaTime;
 
         if (countdownTo >= 10)
@@ -67,9 +65,7 @@ public class Timer : MonoBehaviour
             {
                 winnerText.text = "Red Team Win :" +TeamRed.TeamScore.ToString();
             }
-            
-            
-                
+             
             print("oyun bitti");
 
             //PhotonNetwork.LeaveRoom(true);

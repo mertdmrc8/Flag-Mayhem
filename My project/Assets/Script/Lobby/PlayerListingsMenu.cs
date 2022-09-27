@@ -25,42 +25,25 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
 
     private Player lastPlayer;
 
-    void Awake()
-    {
-
-        // print("asdadaf");
-        // PhotonNetwork.AutomaticallySyncScene = true;
-        // GetCurrentRoomPlayers();
-    }
-
-
-
+    
 
     public void FirstInitialize(RoomsCanvases canvases)
-    {
-        print("fi");
+    { 
         _roomsCanvases = canvases;
     }
 
 
-    // public override void OnLeftRoom()
-    // {   print("destroy child");
-    //     _content.DestroyChildren();
-    // }
     public void GetCurrentRoomPlayers()
     {
 
         if (!PhotonNetwork.IsConnected)
-        {
-
+        { 
             return;
         }
         if (PhotonNetwork.CurrentRoom == null || PhotonNetwork.PlayerList == null)
         {
             return;
-        }
-
-        //listeye yeni gelenin indexi 0 oluyor 
+        } 
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
             AddPlayerListing(playerInfo.Value);
@@ -155,6 +138,20 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
 
 
     }
+    void Awake()
+    {
+
+        // print("asdadaf");
+        // PhotonNetwork.AutomaticallySyncScene = true;
+        // GetCurrentRoomPlayers();
+    }
+
+
+    // public override void OnLeftRoom()
+    // {   print("destroy child");
+    //     _content.DestroyChildren();
+    // }
+
 
 
 }

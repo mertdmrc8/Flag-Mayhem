@@ -6,12 +6,8 @@ using UnityEngine.UI;
 
 public class BaseManager : MonoBehaviour
 { 
-    [SerializeField]
-    private Flagbase flagbase;
-
-     [SerializeField]
-    private Text text;
-
+    [SerializeField]  private Flagbase flagbase; 
+     [SerializeField]  private Text text; 
     private int team_score;
     public int final_team_Score;
 
@@ -22,13 +18,10 @@ public class BaseManager : MonoBehaviour
     void Awake(){
         team =this.transform.parent.GetComponent<TeamManager>();
         playerController=GameObject.Find("PlayerController").GetComponent<Players_Controller>();
-    }
-
+    } 
     void Start(){
         base_transform=this.gameObject.transform;
-    }
-
-
+    }  
     private void OnTriggerEnter2D(Collider2D collision){
 
         Flag flag = collision.gameObject.transform.GetComponent<Flag>();
@@ -47,10 +40,7 @@ public class BaseManager : MonoBehaviour
             playerController.setbasePlayers();
 
         }
-    }
-
-   
-
+    } 
 }
 
 

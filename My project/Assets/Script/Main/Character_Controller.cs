@@ -124,28 +124,17 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
 
         this.GetComponent<Character_Controller>().Team = CurrentTeam;
         print(Team.name + "den üretildi");
-        CurrentTeam.team_players.Add(this.GetComponent<Character_Controller>());
-        // this.transform.GetComponent<SpriteRenderer>().color = CurrentTeam.Color.color;
+        CurrentTeam.team_players.Add(this.GetComponent<Character_Controller>()); 
         body.transform.GetComponent<SpriteRenderer>().color = CurrentTeam.Color.color;
-        head.transform.GetComponent<SpriteRenderer>().color = CurrentTeam.Color.color;
-
+        head.transform.GetComponent<SpriteRenderer>().color = CurrentTeam.Color.color; 
     }
 
-    IEnumerator waitflag()
-    {
-        print(Team.name + " bayrak ayarlandi ");
-        flag.enabled = false;
-        yield return new WaitForSeconds(1);
-        flag.enabled = true;
 
-    }
+     
     //burda değil karşıda doru çalışıyor 
 
 
-
-    //rpc her 2 yerde de çağırılır 
-    //karşıdaki kendi görüntüsünde çağırıyor
-    //yani ölen kişi
+ 
     [PunRPC]
     public void FindKiller(int killer_id)
     {
@@ -169,31 +158,19 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
         {
             health -= 34;
             if (health <= 0)
-            {
-                //BURASI RPC OLMALI MI?
-                print(Team.name + "health 0 ");
+            { 
                 if (flag != null)
-                {
-                    print("bayrak " + Team.name + "di");
-
-                    // flag.transform.parent = flag.flagbase.transform;
-                    // flag.transform.position = flag.flagbase.transform.position;
+                { 
                     flag.player = null;
                     flag = null;
-                }
-                // print(this.gameObject.name + " , " + Team.Base_.gameObject.name);
+                } 
 
                 if (pw.IsMine)
                 {
 
                     PlayerProperties.death_++;
-                    print("bullet :" + bullet.incoming_id);
-                    //rpc gereksiz olabilr karşıdaki istemciden bir şey çalışsın isteniyor ama sadece ölenlerde çalışıyor 
-                    // o kişiyi bulup rpcsini çalıştırmak daha doru 
-                    PhotonNetwork.GetPhotonView(bullet.incoming_id).RPC("FindKiller", RpcTarget.All, bullet.incoming_id);
-                    //   transform.GetComponent<PhotonView>().RPC("FindKiller", RpcTarget.All, bullet.incoming_id);
-                    //bu id den kişiyi bul ozmn 
-                    //bulunan kişinn sadece localinde çalıştırmak istiyosam ?? RPC içine ismine mı ? 
+                    print("bullet :" + bullet.incoming_id);  
+                    PhotonNetwork.GetPhotonView(bullet.incoming_id).RPC("FindKiller", RpcTarget.All, bullet.incoming_id); 
                     Team.GetComponent<PhotonView>().RPC("PlayerSetBase", RpcTarget.All, pw.ViewID);
                 }
             }
