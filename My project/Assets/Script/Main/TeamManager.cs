@@ -11,6 +11,8 @@ public class TeamManager : MonoBehaviour
     public List<Character_Controller> team_players;
     public int TeamScore = 0;
     public bool boolWon = false;
+    public Vector3 flagPosition;
+    public bool flagp=false;
 
     [SerializeField]
     public Image healthbar;
@@ -31,10 +33,19 @@ public class TeamManager : MonoBehaviour
         ordinary_.health = 100;
         ordinary_.transform.position = Base_.gameObject.transform.position;
         ordinary_.gameObject.SetActive(true);
-
+        print(flagp);
+        if(flagp){
+            StartCoroutine(setTflag(flagPosition));
+        }
 
     }
-
+ IEnumerator setTflag(Vector3 v3){
+        print("create flag");
+       yield return new WaitForSeconds(2.5f); 
+        print("---");
+       Base_.flagbase.CreateFlag(v3);
+       flagp=false;
+    }
     public void setbaseTeam()
     {
 

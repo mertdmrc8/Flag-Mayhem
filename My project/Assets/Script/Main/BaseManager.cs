@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BaseManager : MonoBehaviour
 { 
-    [SerializeField]  private Flagbase flagbase; 
+    public Flagbase flagbase; 
      [SerializeField]  private Text text; 
     private int team_score;
     public int final_team_Score;

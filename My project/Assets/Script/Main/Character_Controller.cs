@@ -161,15 +161,19 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
             { 
                 if (flag != null)
                 { 
+                    Team.flagPosition= flag.transform.position;
+                    Team.flagp=true;
                     flag.player = null;
-                    flag = null;
+                    Destroy(flag.gameObject);
+                    flag = null; 
+
+                  //  StartCoroutine(setTflag(LocateFlag));
                 } 
 
                 if (pw.IsMine)
                 {
 
-                    PlayerProperties.death_++;
-                    print("bullet :" + bullet.incoming_id);  
+                    PlayerProperties.death_++;  
                     PhotonNetwork.GetPhotonView(bullet.incoming_id).RPC("FindKiller", RpcTarget.All, bullet.incoming_id); 
                     Team.GetComponent<PhotonView>().RPC("PlayerSetBase", RpcTarget.All, pw.ViewID);
                 }
@@ -179,6 +183,11 @@ public class Character_Controller : MonoBehaviourPun, IPunObservable
     }
 
     // Update is called once per frame
+
+    
+    
+
+
 
     [PunRPC]
     public void hackhealth(int id)
